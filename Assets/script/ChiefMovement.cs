@@ -14,6 +14,7 @@ public class ChiefMovement : MonoBehaviour
     public Vector2 Moving()
     {
         Vector2 Input = chiefInput.Chief.Move.ReadValue<Vector2>();
+        Input = Input.normalized;
         return Input;
     }
 }
