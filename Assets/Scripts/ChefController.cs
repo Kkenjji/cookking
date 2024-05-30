@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1 : MonoBehaviour
+public class ChefController : MonoBehaviour
 {
     [SerializeField] private float MoveSpeed = 8f;
     [SerializeField] private float RotationSpeed = 10f;
-    [SerializeField] private ChiefMovement chiefMovement;
+    [SerializeField] private ChefMovement chefMovement;
     private Vector3 LastSeen;
     private void Update()
     {
@@ -16,7 +16,7 @@ public class Player1 : MonoBehaviour
 
     private void Interaction()
     {
-        Vector2 InputVector = chiefMovement.Moving();
+        Vector2 InputVector = chefMovement.Moving();
         Vector3 Position3D = new Vector3(InputVector.x, 0f, InputVector.y);
         float InteractionDistance = 2f;
         if (Position3D != Vector3.zero)
@@ -36,7 +36,7 @@ public class Player1 : MonoBehaviour
 
     private void Movement()
     {
-        Vector2 InputVector = chiefMovement.Moving();
+        Vector2 InputVector = chefMovement.Moving();
         Vector3 Position3D = new Vector3(InputVector.x, 0f, InputVector.y);
         float PlayerSize = 0.5f;
         float PlayerHeight = 2f;

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class ChiefMovement : MonoBehaviour
+public class ChefMovement : MonoBehaviour
 {
-    private ChiefInput chiefInput;
+    private ChefInput chefInput;
     private void Awake()
     {
-        chiefInput = new ChiefInput();
-        chiefInput.Chief.Enable();
+        chefInput = new ChefInput();
+        chefInput.Chef.Enable();
     }
     public Vector2 Moving()
     {
-        Vector2 Input = chiefInput.Chief.Move.ReadValue<Vector2>();
+        Vector2 Input = chefInput.Chef.Move.ReadValue<Vector2>();
         Input = Input.normalized;
         return Input;
     }

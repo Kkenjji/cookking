@@ -4,9 +4,11 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class WaiterController : MonoBehaviour
 {
     GridManager gridManager;
+    [SerializeField] private float movementSpeed = 8f;
+    [SerializeField] private float rotationSpeed = 10f;
     private NavMeshAgent agent;
 
     // Start is called before the first frame update
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
             
             if(hasHit)
             {
+                // if mouse click hits restaurant floor tile
                 if(hit.transform.tag == "Tile")
                 {
                     Vector2Int hitTile = hit.transform.GetComponent<Labeller>().coords;
