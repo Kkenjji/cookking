@@ -7,7 +7,34 @@ public class Player1 : MonoBehaviour
     [SerializeField] private float MoveSpeed = 8f;
     [SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private ChiefMovement chiefMovement;
+    private Vector3 LastSeen;
     private void Update()
+    {
+        Movement();
+
+    }
+
+    private void Interaction()
+    {
+        Vector2 InputVector = chiefMovement.Moving();
+        Vector3 Position3D = new Vector3(InputVector.x, 0f, InputVector.y);
+        float InteractionDistance = 2f;
+        if (Position3D != Vector3.zero)
+        {
+            LastSeen = Position3D;
+        }
+        if (Physics.Raycast(transform.position, LastSeen, out RaycastHit raycasthit, InteractionDistance))
+        {
+            if (raycasthit.transform.TryGetComponent( out EmptyKitchenTable emptyKitchenTable)){
+            }
+
+
+        }
+    
+    }
+
+
+    private void Movement()
     {
         Vector2 InputVector = chiefMovement.Moving();
         Vector3 Position3D = new Vector3(InputVector.x, 0f, InputVector.y);
@@ -16,7 +43,7 @@ public class Player1 : MonoBehaviour
         float Distance = Time.deltaTime * MoveSpeed;
         bool ObjectInfront = Physics.CapsuleCast(transform.position, transform.position + Vector3.up * PlayerHeight, PlayerSize, Position3D, Distance);
 
-        
+
         if (ObjectInfront)// when got object infront
         {
             Vector3 MoveLeft = new Vector3(Position3D.x, 0, 0);//try to move left
@@ -46,4 +73,5 @@ public class Player1 : MonoBehaviour
             transform.position += Position3D * Time.deltaTime * MoveSpeed;
         }
     }
-}
+
+    }
