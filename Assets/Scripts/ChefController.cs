@@ -2,12 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChefController : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
     [SerializeField] private float MoveSpeed = 8f;
     [SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private ChefMovement chefMovement;
     private Vector3 LastSeen;
+    private EmptyCounter InteractedCounter;
+
+    private void Start()
+    {
+        chefMovement.OnInteract += ChefMovement_OnInteract;
+    }
+
+    private void ChefMovement_OnInteract(object sender, System.EventArgs e)
+    {
+        if (InteractedCounter != null)
+        {
+            InteractedCounter.Interact();
+        }
+    }
     private void Update()
     {
         Movement();
@@ -25,14 +39,26 @@ public class ChefController : MonoBehaviour
         }
         if (Physics.Raycast(transform.position, LastSeen, out RaycastHit raycasthit, InteractionDistance))
         {
-            if (raycasthit.transform.TryGetComponent( out EmptyKitchenTable emptyKitchenTable)){
+            if (raycasthit.transform.TryGetComponent(out EmptyCounter emptyCounter))
+            {
+                if (emptyCounter != InteractedCounter)
+                {
+                    InteractedCounter = emptyCounter;
+                }
             }
 
+            else
+            {
+                InteractedCounter = null;
+            }
+        }
+
+        else
+        {
+            InteractedCounter = null;
+        }
 
         }
-    
-    }
-
 
     private void Movement()
     {
@@ -74,4 +100,4 @@ public class ChefController : MonoBehaviour
         }
     }
 
-    }
+}
