@@ -1,16 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Xml.Serialization;
 
 public class ChefController : MonoBehaviour
 {
+    public static ChefController Instance {
+        get;
+        private set;
+    }
     [SerializeField] private float MoveSpeed = 8f;
     [SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private ChefMovement chefMovement;
     private Vector3 LastSeen;
+    private EmptyCounter InteractedCounter;
+    public event EventHandler<SelectedCounterEventArgs> SelectedCounter;
+    public class SelectedCounterEventArgs : EventArgs
+    {
+        public EmptyCounter InteractedCounter;
+    }
+
+    private void Awake()
+    {
+        if (Instance != null) {
+            Debug.Log("Multiplayer");
+        }
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        
+        chefMovement.OnInteract += ChefMovement_OnInteract;
+    }
+
+    private void ChefMovement_OnInteract(object sender, System.EventArgs e)
+    {
+        if (InteractedCounter != null)
+        {
+            InteractedCounter.Interact();
+        }
+    }
     private void Update()
     {
         Movement();
+        Interaction();
 
     }
 
@@ -25,14 +60,29 @@ public class ChefController : MonoBehaviour
         }
         if (Physics.Raycast(transform.position, LastSeen, out RaycastHit raycasthit, InteractionDistance))
         {
-            if (raycasthit.transform.TryGetComponent( out EmptyKitchenTable emptyKitchenTable)){
+            if (raycasthit.transform.TryGetComponent(out EmptyCounter emptyCounter))
+            {
+                if (emptyCounter != InteractedCounter)
+                {
+                    SetInteractedCounter(emptyCounter);
+                }
+
             }
 
-
+            else
+            {
+                
+                SetInteractedCounter( null);
+            }
         }
-    
-    }
 
+        else
+        {
+            
+            SetInteractedCounter(null);
+        }
+
+    }
 
     private void Movement()
     {
@@ -74,4 +124,16 @@ public class ChefController : MonoBehaviour
         }
     }
 
+
+    private void SetInteractedCounter(EmptyCounter InteractedCounter)
+    {
+        this.InteractedCounter = InteractedCounter;
+
+        SelectedCounter?.Invoke(this, new SelectedCounterEventArgs
+        {
+            InteractedCounter = InteractedCounter
+        });
+        
+
     }
+}

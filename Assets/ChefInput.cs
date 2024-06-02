@@ -35,6 +35,15 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ec4e1d9-88d6-4b2d-ab1e-16816ad03220"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -147,6 +156,28 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f892bbf-71fa-4ca6-b32b-7b87ceddee88"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""467636ca-541a-465d-b382-32f256e87a3e"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -156,6 +187,7 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
         // Chef
         m_Chef = asset.FindActionMap("Chef", throwIfNotFound: true);
         m_Chef_Move = m_Chef.FindAction("Move", throwIfNotFound: true);
+        m_Chef_Interact = m_Chef.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,11 +250,13 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Chef;
     private List<IChefActions> m_ChefActionsCallbackInterfaces = new List<IChefActions>();
     private readonly InputAction m_Chef_Move;
+    private readonly InputAction m_Chef_Interact;
     public struct ChefActions
     {
         private @ChefInput m_Wrapper;
         public ChefActions(@ChefInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Chef_Move;
+        public InputAction @Interact => m_Wrapper.m_Chef_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Chef; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -235,6 +269,9 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IChefActions instance)
@@ -242,6 +279,9 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IChefActions instance)
@@ -262,5 +302,6 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
     public interface IChefActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
