@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class WhenInteractCounter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private EmptyCounter emptyCounter;
+    [SerializeField] private GameObject visual;
+
+    private void Start()//do on start and not awake to make sure Instance is initialised first
     {
-        
+        ChefController.Instance.SelectedCounter += Instance_SelectedCounter;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Instance_SelectedCounter(object sender, ChefController.SelectedCounterEventArgs e)
     {
         
+        if (e.InteractedCounter == emptyCounter)
+        {
+            Show();
+        }
+        else {
+            Hide();  
+        }
+    }
+
+    private void Show() {
+        
+        visual.SetActive(true);
+}
+
+    private void Hide()
+    {
+        
+        visual.SetActive(false);
     }
 }

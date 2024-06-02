@@ -6,5 +6,6 @@ public class EmptyCounter : MonoBehaviour
 {
     public void Interact()
     {
+        
     }
 }

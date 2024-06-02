@@ -1,17 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Xml.Serialization;
 
-public class Player1 : MonoBehaviour
+public class ChefController : MonoBehaviour
 {
+    public static ChefController Instance {
+        get;
+        private set;
+    }
     [SerializeField] private float MoveSpeed = 8f;
     [SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private ChefMovement chefMovement;
     private Vector3 LastSeen;
     private EmptyCounter InteractedCounter;
+    public event EventHandler<SelectedCounterEventArgs> SelectedCounter;
+    public class SelectedCounterEventArgs : EventArgs
+    {
+        public EmptyCounter InteractedCounter;
+    }
+
+    private void Awake()
+    {
+        if (Instance != null) {
+            Debug.Log("Multiplayer");
+        }
+        Instance = this;
+    }
 
     private void Start()
     {
+        
         chefMovement.OnInteract += ChefMovement_OnInteract;
     }
 
@@ -25,6 +45,7 @@ public class Player1 : MonoBehaviour
     private void Update()
     {
         Movement();
+        Interaction();
 
     }
 
@@ -43,22 +64,25 @@ public class Player1 : MonoBehaviour
             {
                 if (emptyCounter != InteractedCounter)
                 {
-                    InteractedCounter = emptyCounter;
+                    SetInteractedCounter(emptyCounter);
                 }
+
             }
 
             else
             {
-                InteractedCounter = null;
+                
+                SetInteractedCounter( null);
             }
         }
 
         else
         {
-            InteractedCounter = null;
+            
+            SetInteractedCounter(null);
         }
 
-        }
+    }
 
     private void Movement()
     {
@@ -100,4 +124,16 @@ public class Player1 : MonoBehaviour
         }
     }
 
+
+    private void SetInteractedCounter(EmptyCounter InteractedCounter)
+    {
+        this.InteractedCounter = InteractedCounter;
+
+        SelectedCounter?.Invoke(this, new SelectedCounterEventArgs
+        {
+            InteractedCounter = InteractedCounter
+        });
+        
+
+    }
 }
