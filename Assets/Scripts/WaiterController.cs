@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,8 +32,8 @@ public class WaiterController : MonoBehaviour
                 // if mouse click hits restaurant floor tile
                 if(hit.transform.tag == "Tile")
                 {
-                    Vector2Int hitTile = hit.transform.GetComponent<Labeller>().coords;
-                    Vector3Int targetDest = new Vector3Int(hitTile.x, 1, hitTile.y);
+                    Vector2 hitTile = hit.transform.GetComponent<Labeller>().coords;
+                    Vector3 targetDest = new Vector3(hitTile.x, 1, hitTile.y);
                     agent.destination = targetDest;
                 }
             }
