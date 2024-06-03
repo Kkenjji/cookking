@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class WaiterController : MonoBehaviour
 {
     GridManager gridManager;
+    private Camera camera2;
     [SerializeField] private float movementSpeed = 8f;
     [SerializeField] private float rotationSpeed = 10f;
     private NavMeshAgent agent;
@@ -16,6 +16,7 @@ public class WaiterController : MonoBehaviour
     {
         gridManager = FindObjectOfType<GridManager>();
         agent = GetComponent<NavMeshAgent>();
+        camera2 = GameObject.Find("Camera 2").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -23,7 +24,7 @@ public class WaiterController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = camera2.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             bool hasHit = Physics.Raycast(ray, out hit);
@@ -33,8 +34,8 @@ public class WaiterController : MonoBehaviour
                 // if mouse click hits restaurant floor tile
                 if(hit.transform.tag == "Tile")
                 {
-                    Vector2Int hitTile = hit.transform.GetComponent<Labeller>().coords;
-                    Vector3Int targetDest = new Vector3Int(hitTile.x, 1, hitTile.y);
+                    Vector2 hitTile = hit.transform.GetComponent<Labeller>().coords;
+                    Vector3 targetDest = new Vector3(hitTile.x, 1, hitTile.y);
                     agent.destination = targetDest;
                 }
             }
