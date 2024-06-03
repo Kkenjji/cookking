@@ -7,8 +7,15 @@ using UnityEngine;
 public class CustomerMovement : MonoBehaviour
 {
     private GameObject customerObj;
+    private Camera camera2;
     private Vector3 initCustomerPosition;
     private GameObject tableSeat;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        camera2 = GameObject.Find("Camera 2").GetComponent<Camera>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -41,8 +48,8 @@ public class CustomerMovement : MonoBehaviour
                 // Vector3 position = new Vector3(
                 //     Input.mousePosition.x, 
                 //     Input.mousePosition.y, 
-                //     Camera.main.WorldToScreenPoint(customerObj.transform.position).z);
-                // Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
+                //     camera2.WorldToScreenPoint(customerObj.transform.position).z);
+                // Vector3 worldPosition = camera2.ScreenToWorldPoint(position);
                 // customerObj.transform.position = new Vector3(worldPosition.x, 2f, worldPosition.z);
 
                 customerObj = null;
@@ -55,8 +62,8 @@ public class CustomerMovement : MonoBehaviour
             Vector3 position = new Vector3(
                 Input.mousePosition.x, 
                 Input.mousePosition.y, 
-                Camera.main.WorldToScreenPoint(customerObj.transform.position).z);
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
+                camera2.WorldToScreenPoint(customerObj.transform.position).z);
+            Vector3 worldPosition = camera2.ScreenToWorldPoint(position);
             customerObj.transform.position = new Vector3(worldPosition.x, 1f, worldPosition.z);
         }
     }
@@ -66,13 +73,13 @@ public class CustomerMovement : MonoBehaviour
         Vector3 screenMouseFar = new Vector3(
             Input.mousePosition.x,
             Input.mousePosition.y,
-            Camera.main.farClipPlane);
+            camera2.farClipPlane);
         Vector3 screenMouseNear = new Vector3(
             Input.mousePosition.x,
             Input.mousePosition.y,
-            Camera.main.nearClipPlane);
-        Vector3 worldMouseFar = Camera.main.ScreenToWorldPoint(screenMouseFar);
-        Vector3 worldMouseNear = Camera.main.ScreenToWorldPoint(screenMouseNear);
+            camera2.nearClipPlane);
+        Vector3 worldMouseFar = camera2.ScreenToWorldPoint(screenMouseFar);
+        Vector3 worldMouseNear = camera2.ScreenToWorldPoint(screenMouseNear);
 
         RaycastHit hit;
         Physics.Raycast(worldMouseNear, worldMouseFar - worldMouseNear, out hit);
