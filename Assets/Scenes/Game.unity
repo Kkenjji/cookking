@@ -5478,6 +5478,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 727671976887311161, guid: f654b201009d4494eaec255daca3821a,
+        type: 3}
+      propertyPath: Tomato
+      value: 
+      objectReference: {fileID: 6738135828068229569, guid: 21657ae61e2762d44aca3dc7d41bb556,
+        type: 3}
+    - target: {fileID: 727671976887311161, guid: f654b201009d4494eaec255daca3821a,
+        type: 3}
+      propertyPath: kitchenObjectScript
+      value: 
+      objectReference: {fileID: 11400000, guid: 84237c660fc1fcc44ac3eef16e751a53,
+        type: 2}
     - target: {fileID: 5009568773780692136, guid: f654b201009d4494eaec255daca3821a,
         type: 3}
       propertyPath: m_Name
