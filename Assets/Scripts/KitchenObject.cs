@@ -5,19 +5,24 @@ using UnityEngine;
 public class KitchenObject : MonoBehaviour
 {
     [SerializeField] private KitchenObjectScript kitchenObjectScript;
+
+    private EmptyCounter emptyCounter;
+
     public KitchenObjectScript GetKitchenObjectScript()
     {
         return kitchenObjectScript;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public void SetEmptyCounter(EmptyCounter emptyCounter) {
+        if (this.emptyCounter != null) {
+        this.emptyCounter.ClearKitchenObject();//set new parent
+        }
+        this.emptyCounter = emptyCounter;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        emptyCounter.SetKitchenObject(this);
+        transform.parent = emptyCounter.MovementPointTransform();
+        transform.localPosition = Vector3.zero;
+    }
+    public EmptyCounter GetEmptyCounter() { 
+        return emptyCounter;
     }
 }
