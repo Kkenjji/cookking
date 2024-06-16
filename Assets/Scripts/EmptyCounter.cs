@@ -2,34 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmptyCounter : MonoBehaviour
+public class EmptyCounter : MonoBehaviour, KitchenInterface
 {
     [SerializeField] private KitchenObjectScript kitchenObjectScript;
     [SerializeField] private Transform Countertop;
-    [SerializeField] private EmptyCounter NextCounter;
-    [SerializeField] private bool Test;
     private KitchenObject kitchenObject;
 
 
-    private void Update()
-    {
-        if (Test && Input.GetKeyDown(KeyCode.K)) {
-            if (kitchenObject != null) { 
-                kitchenObject.SetEmptyCounter(NextCounter);//set new parent 
-            }
-        }
-    }
+    
     public void Interact(ChefController Chef)
     {
         if (kitchenObject == null)
         {
             Transform kitchenObjectTransform = Instantiate(kitchenObjectScript.prefab, Countertop);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetEmptyCounter(this);
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenInterface(this);
             
             //makes sure only one object is spawned each time 
         }
         else { //pass object to player
-            
+            kitchenObject.SetKitchenInterface(Chef);
         }
         
     }

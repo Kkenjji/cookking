@@ -6,23 +6,23 @@ public class KitchenObject : MonoBehaviour
 {
     [SerializeField] private KitchenObjectScript kitchenObjectScript;
 
-    private EmptyCounter emptyCounter;
+    private KitchenInterface kitchenInterface;
 
     public KitchenObjectScript GetKitchenObjectScript()
     {
         return kitchenObjectScript;
     }
-    public void SetEmptyCounter(EmptyCounter emptyCounter) {
-        if (this.emptyCounter != null) {
-        this.emptyCounter.ClearKitchenObject();//set new parent
+    public void SetKitchenInterface(KitchenInterface kitchenInterface) {
+        if (this.kitchenInterface != null) {
+        this.kitchenInterface.ClearKitchenObject();//set new parent
         }
-        this.emptyCounter = emptyCounter;
+        this.kitchenInterface = kitchenInterface;
 
-        emptyCounter.SetKitchenObject(this);
-        transform.parent = emptyCounter.MovementPointTransform();
+        kitchenInterface.SetKitchenObject(this);
+        transform.parent = kitchenInterface.MovementPointTransform();
         transform.localPosition = Vector3.zero;
     }
-    public EmptyCounter GetEmptyCounter() { 
-        return emptyCounter;
+    public KitchenInterface GetKitchenInterface() { 
+        return kitchenInterface;
     }
 }
