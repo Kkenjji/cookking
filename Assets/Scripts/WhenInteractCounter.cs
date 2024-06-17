@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WhenInteractCounter : MonoBehaviour
+public class WhenInteractCounter : Base
 {
-    [SerializeField] private EmptyCounter emptyCounter;
+    [SerializeField] private Base bAse;
     [SerializeField] private GameObject visual;
 
     private void Start()//do on start and not awake to make sure Instance is initialised first
@@ -15,7 +15,7 @@ public class WhenInteractCounter : MonoBehaviour
     private void Instance_SelectedCounter(object sender, ChefController.SelectedCounterEventArgs e)
     {
         
-        if (e.InteractedCounter == emptyCounter)
+        if (e.InteractedCounter == bAse)
         {
             Show();
         }

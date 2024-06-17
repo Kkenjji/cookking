@@ -15,14 +15,14 @@ public class ChefController : MonoBehaviour, KitchenInterface
     [SerializeField] private ChefMovement chefMovement;
     [SerializeField] private Transform KitchenObjectHold;
     private Vector3 LastSeen;
-    private EmptyCounter InteractedCounter;
+    private Base InteractedCounter;
     public event EventHandler<SelectedCounterEventArgs> SelectedCounter;
     private KitchenObject kitchenObject;
 
 
     public class SelectedCounterEventArgs : EventArgs
     {
-        public EmptyCounter InteractedCounter;
+        public Base InteractedCounter;
     }
 
     private void Awake()
@@ -64,11 +64,11 @@ public class ChefController : MonoBehaviour, KitchenInterface
         }
         if (Physics.Raycast(transform.position, LastSeen, out RaycastHit raycasthit, InteractionDistance))
         {
-            if (raycasthit.transform.TryGetComponent(out EmptyCounter emptyCounter))
+            if (raycasthit.transform.TryGetComponent(out Base bAse))
             {
-                if (emptyCounter != InteractedCounter)
+                if (bAse != InteractedCounter)
                 {
-                    SetInteractedCounter(emptyCounter);
+                    SetInteractedCounter(bAse);
                 }
 
             }
@@ -128,7 +128,7 @@ public class ChefController : MonoBehaviour, KitchenInterface
     }
 
 
-    private void SetInteractedCounter(EmptyCounter InteractedCounter)
+    private void SetInteractedCounter(Base InteractedCounter)
     {
         this.InteractedCounter = InteractedCounter;
 
