@@ -8,6 +8,8 @@ TagManager:
   - 2 Pax Table
   - 4 Pax Table
   - Counter
+  - Customer
+  - Non-Walkable
   layers:
   - Default
   - TransparentFX
