@@ -5,11 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
-  - 2 Pax Table
-  - 4 Pax Table
   - Counter
-  - Customer
-  - Non-Walkable
+  - Blocked
   layers:
   - Default
   - TransparentFX

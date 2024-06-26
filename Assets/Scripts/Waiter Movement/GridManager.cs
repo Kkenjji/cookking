@@ -5,8 +5,6 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] Vector2Int gridSize;
-    public Vector2Int GridSize { get { return gridSize; } }
-
     [SerializeField] int unityGridSize;
     public int UnityGridSize { get { return unityGridSize; } }
 
@@ -38,11 +36,11 @@ public class GridManager : MonoBehaviour
 
     public void ResetNodes()
     {
-        foreach (KeyValuePair<Vector2Int, Node> node in grid)
+        foreach (KeyValuePair<Vector2Int, Node> entry in grid)
         {
-            node.Value.parent = null;
-            node.Value.visited = false;
-            node.Value.onPath = false;
+            entry.Value.parent = null;
+            entry.Value.visited = false;
+            entry.Value.onPath = false;
         }
     }
 
@@ -60,17 +58,17 @@ public class GridManager : MonoBehaviour
     {
         Vector3 position = new Vector3();
 
-        position.x = coordinates.x * unityGridSize;
-        position.y = coordinates.y * unityGridSize;
+        position.x = (float)(coordinates.x * unityGridSize + 0.5);
+        position.z = (float)(coordinates.y * unityGridSize + 0.8);
 
         return position;
     }
 
     private void CreateGrid()
     {
-        for(int x = 0; x < gridSize.x; x++)
+        for (int x = 0; x < gridSize.x; x++)
         {
-            for(int y = 0; y < gridSize.y; y++)
+            for (int y = 0; y < gridSize.y; y++)
             {
                 Vector2Int coords = new Vector2Int(x, y);
                 grid.Add(coords, new Node(coords, true));

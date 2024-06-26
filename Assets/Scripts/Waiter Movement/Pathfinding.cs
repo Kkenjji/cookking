@@ -19,12 +19,12 @@ public class Pathfinding : MonoBehaviour
     Node currentNode;
 
     Queue<Node> frontier = new Queue<Node>();
-    Dictionary<Vector2Int, Node> visited = new Dictionary<Vector2Int, Node>();
+    Dictionary<Vector2Int, Node> reached = new Dictionary<Vector2Int, Node>();
 
     GridManager gridManager;
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
 
-    Vector2Int[] searchOrder = {Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left}; // (1, 0), (-1, 0), (0, 1), (0, -1)
+    Vector2Int[] searchOrder = {Vector2Int.right, Vector2Int.left, Vector2Int.up, Vector2Int.down}; // (1, 0), (-1, 0), (0, 1), (0, -1)
 
     private void Awake()
     {
@@ -33,18 +33,6 @@ public class Pathfinding : MonoBehaviour
         {
             grid = gridManager.Grid;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public List<Node> GetNewPath()
@@ -66,14 +54,14 @@ public class Pathfinding : MonoBehaviour
         targetNode.walkable = true;
 
         frontier.Clear();
-        visited.Clear();
+        reached.Clear();
 
         bool isRunning = true;
 
         frontier.Enqueue(grid[coordinates]);
-        visited.Add(coordinates, grid[coordinates]);
+        reached.Add(coordinates, grid[coordinates]);
 
-        while(frontier.Count > 0 && isRunning == true)
+        while (frontier.Count > 0 && isRunning == true)
         {
             currentNode = frontier.Dequeue();
             currentNode.visited = true;
@@ -101,10 +89,10 @@ public class Pathfinding : MonoBehaviour
 
         foreach (Node neighbour in neighbours)
         {
-            if (!visited.ContainsKey(neighbour.coords) && neighbour.walkable)
+            if (!reached.ContainsKey(neighbour.coords) && neighbour.walkable)
             {
                 neighbour.parent = currentNode;
-                visited.Add(neighbour.coords, neighbour);
+                reached.Add(neighbour.coords, neighbour);
                 frontier.Enqueue(neighbour);
             }
         }
@@ -129,6 +117,10 @@ public class Pathfinding : MonoBehaviour
         return path;
     }
 
+    public void NotifyReceivers()
+    {
+        BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver);
+    }
     public void SetNewDestination(Vector2Int startCoordinates, Vector2Int targetCoordinates)
     {
         startCoords = startCoordinates;
