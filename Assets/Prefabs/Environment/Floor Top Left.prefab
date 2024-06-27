@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7624527132334348189}
   m_Layer: 0
   m_Name: Floor Top Left
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

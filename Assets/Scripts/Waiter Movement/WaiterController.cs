@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class WaiterController : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 5f;
+    public Animator animator;
     
     [SerializeField] GameObject waiter;
     Transform wTransform;
@@ -23,21 +25,22 @@ public class WaiterController : MonoBehaviour
         pathFinder = FindObjectOfType<Pathfinding>();
         camera2 = GameObject.Find("Camera 2").GetComponent<Camera>();
         wTransform = waiter.transform;
+        animator = waiter.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = camera2.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             bool hasHit = Physics.Raycast(ray, out hit);
             
-            if(hasHit)
+            if (hasHit)
             {
-                if(hit.transform.tag != "Blocked")
+                if (hit.transform.tag == "Tile")
                 {
                     Vector2Int targetCoords = hit.transform.GetComponent<Tile>().coords;
                     Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
@@ -76,6 +79,12 @@ public class WaiterController : MonoBehaviour
             float travelPercent = 0f;
 
             Debug.Log($"Moving from {startPos} to {endPos}");
+            Vector3 direction = endPos - startPos;
+
+            animator.SetFloat("Horizontal", direction.x);
+            animator.SetFloat("Vertical", direction.z);
+            animator.SetFloat("Speed", movementSpeed);
+
             while (travelPercent < 1f)
             {
                 travelPercent += Time.deltaTime * movementSpeed;
@@ -83,5 +92,8 @@ public class WaiterController : MonoBehaviour
                 yield return new WaitForEndOfFrame(); 
             }
         }
+
+        animator.SetFloat("Speed", 0);
+        Debug.Log("Idle");
     }
 }

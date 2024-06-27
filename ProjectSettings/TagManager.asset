@@ -6,7 +6,10 @@ TagManager:
   tags:
   - Tile
   - Counter
-  - Blocked
+  - Table Left
+  - Table Right
+  - Chair
+  - Customer
   layers:
   - Default
   - TransparentFX

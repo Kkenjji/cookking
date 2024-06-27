@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3825555614820967358}
   m_Layer: 0
   m_Name: Table Right
-  m_TagString: Blocked
+  m_TagString: Table Right
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
