@@ -11005,7 +11005,7 @@ MonoBehaviour:
   - {fileID: 1183737119}
   - {fileID: 1309065782}
   queueManager: {fileID: 0}
-  counter: 10
+  totalCustomers: 10
 --- !u!4 &611754682
 Transform:
   m_ObjectHideFlags: 0
@@ -19433,7 +19433,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8752825669419076595, guid: 53e3e2fbf3ad74a1eb078ce199843886, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

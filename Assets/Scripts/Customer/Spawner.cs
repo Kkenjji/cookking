@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject[] customerPrefabs;
     public QueueManager queueManager;
-    [SerializeField] int counter;
+    [SerializeField] float spawnTimeMin;
+    [SerializeField] float spawnTimeMax;
+    [SerializeField] int totalCustomers;
 
     // Start is called before the first frame update
     void Start()
@@ -17,28 +20,33 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator FirstSpawn()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         SpawnCustomer();
-        StartCoroutine(SpawnRegularly());
+        StartCoroutine(Spawn());
     }
 
-    private IEnumerator SpawnRegularly()
+    private IEnumerator Spawn()
     {
-        while (counter > 0)
+        while (totalCustomers > 0)
         {
             if (queueManager.queue.Count < queueManager.capacity)
             {
-                float spawnInterval = Random.Range(4f, 7f);
+                float spawnInterval = Random.Range(spawnTimeMin, spawnTimeMax);
                 yield return new WaitForSeconds(spawnInterval);
                 SpawnCustomer();
+            }
+            else
+            {
+                yield return new WaitForSeconds(1f);
             }
         }
     }
 
     private void SpawnCustomer()
     {
-        int prefabIndex = Random.Range(0, customerPrefabs.Length);
-        GameObject newCustomer = customerPrefabs[prefabIndex];
+        int prefabIndex = Random.Range(0, customerPrefabs.Length - 1);
+        GameObject newCustomer = Instantiate(customerPrefabs[prefabIndex]);
         queueManager.AddCustomer(newCustomer);
+        totalCustomers--;
     }
 }

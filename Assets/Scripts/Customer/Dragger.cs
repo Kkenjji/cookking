@@ -26,23 +26,22 @@ public class Dragger : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-
             bool hasHit = Physics.Raycast(ray, out hit);
+            
             Debug.Log("Mouse button down. Has hit: " + hasHit);
 
             if (currCustomer == null)
             {
-                if (hasHit)
+                if (hasHit && hit.collider.CompareTag("Customer"))
                 {
                     Debug.Log("Hit object: " + hit.collider.name);
-                    if (hit.collider.CompareTag("Customer"))
-                    {
-                        currCustomer = hit.collider.gameObject;
-                        initPosition = currCustomer.transform.position;
-                        currCustomer.GetComponent<BoxCollider>().enabled = false;
-                        Cursor.visible = false;
-                        Debug.Log("Picked up customer: " + currCustomer.name);
-                    }
+
+                    currCustomer = hit.collider.gameObject;
+                    initPosition = currCustomer.transform.position;
+                    currCustomer.GetComponent<BoxCollider>().enabled = false;
+                    Cursor.visible = false;
+
+                    Debug.Log("Picked up customer: " + currCustomer.name);
                 }                
             }
             else
@@ -52,6 +51,7 @@ public class Dragger : MonoBehaviour
                     GameObject hitObj = hit.collider.gameObject;
                     Vector3 seatPos = new Vector3(hitObj.transform.position.x, initPosition.y, hitObj.transform.position.z);
                     string hitObjTag = hitObj.tag;
+
                     Debug.Log("Trying to place customer on: " + hitObj.name + " with tag: " + hitObjTag);
                     
                     switch (hitObjTag)
@@ -59,26 +59,30 @@ public class Dragger : MonoBehaviour
                         case "Table Left":
                             seatPos.z += 1;
                             currCustomer.transform.position = seatPos;
-                            queueManager.RemoveCustomer(currCustomer);
+                            queueManager.SeatCustomer(currCustomer);
                             currCustomer.GetComponent<Customer>().isSeated = true;
+
                             Debug.Log("Placed customer at Table Left");
                             break;
                         case "Table Right":
                             seatPos.x -= 1;
                             seatPos.z += 1;
                             currCustomer.transform.position = seatPos;
-                            queueManager.RemoveCustomer(currCustomer);
+                            queueManager.SeatCustomer(currCustomer);
                             currCustomer.GetComponent<Customer>().isSeated = true;
+
                             Debug.Log("Placed customer at Table Right");
                             break;
                         case "Chair":
                             currCustomer.transform.position = seatPos;
-                            queueManager.RemoveCustomer(currCustomer);
+                            queueManager.SeatCustomer(currCustomer);
                             currCustomer.GetComponent<Customer>().isSeated = true;
+
                             Debug.Log("Placed customer at Chair");
                             break;
                         default:
                             currCustomer.transform.position = initPosition;
+
                             Debug.Log("Placed customer back to initial position");
                             break;
                     }
@@ -86,6 +90,7 @@ public class Dragger : MonoBehaviour
                 else
                 {
                     currCustomer.transform.position = initPosition;
+                    
                     Debug.Log("No valid position found, returned customer to initial position");
                 }
                 
@@ -97,7 +102,7 @@ public class Dragger : MonoBehaviour
 
         if (currCustomer != null)
         {
-            Plane plane = new Plane(Vector3.up, initPosition.y); // Plane at the initial Y position
+            Plane plane = new Plane(Vector3.up, initPosition.y);
             float distance;
             if (plane.Raycast(ray, out distance))
             {

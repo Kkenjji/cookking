@@ -9,16 +9,18 @@ public class QueueManager : MonoBehaviour
     public Queue<GameObject> queue = new Queue<GameObject>();
     public int capacity = 4;
     
-    public void AddCustomer(GameObject newCustomer)
+    public void AddCustomer(GameObject customer)
     {
-        if (queue.Count < capacity)
-        {
-            Instantiate(newCustomer, queuePositions[queue.Count]);
-            queue.Enqueue(newCustomer);
-        }
+        customer.transform.position = queuePositions[queue.Count].position;
+        queue.Enqueue(customer);
     }
 
-    public void RemoveCustomer(GameObject customer)
+    public void SeatCustomer(GameObject customer)
+    {
+        RemoveCustomer(customer);
+    }
+
+    private void RemoveCustomer(GameObject customer)
     {
         List<GameObject> temp = new List<GameObject>(queue);
         temp.Remove(customer);
