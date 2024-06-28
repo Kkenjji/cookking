@@ -9,12 +9,14 @@ public class Dragger : MonoBehaviour
     private Camera camera2;
     private Vector3 initPosition;
     private int layerCount;
+    private QueueManager queueManager;
 
     // Start is called before the first frame update
     void Start()
     {
         layerCount = 5;
         camera2 = GameObject.Find("Camera 2").GetComponent<Camera>();
+        queueManager = FindObjectOfType<QueueManager>();
     }
 
     // Update is called once per frame
@@ -57,16 +59,22 @@ public class Dragger : MonoBehaviour
                         case "Table Left":
                             seatPos.z += 1;
                             currCustomer.transform.position = seatPos;
+                            queueManager.RemoveCustomer(currCustomer);
+                            currCustomer.GetComponent<Customer>().isSeated = true;
                             Debug.Log("Placed customer at Table Left");
                             break;
                         case "Table Right":
                             seatPos.x -= 1;
                             seatPos.z += 1;
                             currCustomer.transform.position = seatPos;
+                            queueManager.RemoveCustomer(currCustomer);
+                            currCustomer.GetComponent<Customer>().isSeated = true;
                             Debug.Log("Placed customer at Table Right");
                             break;
                         case "Chair":
                             currCustomer.transform.position = seatPos;
+                            queueManager.RemoveCustomer(currCustomer);
+                            currCustomer.GetComponent<Customer>().isSeated = true;
                             Debug.Log("Placed customer at Chair");
                             break;
                         default:

@@ -5,24 +5,14 @@ using UnityEngine.Rendering;
 
 public class QueueManager : MonoBehaviour
 {
-    public GameObject[] customerPrefabs;
     public Transform[] queuePositions;
-    private Queue<GameObject> queue = new Queue<GameObject>();
-    private int capacity = 4;
-
-    void Start()
-    {
-        AddCustomer();
-        AddCustomer();
-        AddCustomer();
-    }
+    public Queue<GameObject> queue = new Queue<GameObject>();
+    public int capacity = 4;
     
-    public void AddCustomer()
+    public void AddCustomer(GameObject newCustomer)
     {
         if (queue.Count < capacity)
         {
-            int prefabIndex = Random.Range(0, customerPrefabs.Length);
-            GameObject newCustomer = customerPrefabs[prefabIndex];
             Instantiate(newCustomer, queuePositions[queue.Count]);
             queue.Enqueue(newCustomer);
         }
@@ -40,7 +30,7 @@ public class QueueManager : MonoBehaviour
         UpdateQueue();
     }
 
-    public void UpdateQueue()
+    private void UpdateQueue()
     {
         int index = 0;
         foreach (GameObject customer in queue)
