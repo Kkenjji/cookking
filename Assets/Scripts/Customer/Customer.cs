@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
+    public Animator animator;
     public bool isSeated = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,10 @@ public class Customer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isSeated)
+        {
+            
+        }
     }
 
     void Menu()

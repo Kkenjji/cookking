@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField] Vector2Int gridSize;
-    [SerializeField] int unityGridSize;
+    [SerializeField] private int unityGridSize;
     public int UnityGridSize { get { return unityGridSize; } }
 
-    public Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
+    private Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
     public Dictionary<Vector2Int, Node> Grid { get { return grid; } }
+
+    public Tilemap layer2;
+    public Tilemap layer5;
+
+    public bool hasUpdated = false;
 
     private void Awake()
     {
         CreateGrid();
+        // UpdateWalkability();
     }
 
     public Node GetNode(Vector2Int coordinates)
@@ -75,4 +82,21 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    // public void UpdateWalkability()
+    // {
+    //     foreach (Transform tile in layer2.transform)
+    //     {
+    //         Vector2Int coordinates = new Vector2Int((int) tile.position.x, (int) tile.position.z);
+    //         BlockNode(coordinates);
+    //     }
+
+    //     foreach (Transform tile in layer5.transform)
+    //     {
+    //         Vector2Int coordinates = new Vector2Int((int) tile.position.x, (int) tile.position.z);
+    //         BlockNode(coordinates);
+    //     }
+
+    //     hasUpdated = true;
+    // }
 }

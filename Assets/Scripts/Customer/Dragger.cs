@@ -27,7 +27,7 @@ public class Dragger : MonoBehaviour
         {
             RaycastHit hit;
             bool hasHit = Physics.Raycast(ray, out hit);
-            
+
             Debug.Log("Mouse button down. Has hit: " + hasHit);
 
             if (currCustomer == null)
@@ -60,7 +60,6 @@ public class Dragger : MonoBehaviour
                             seatPos.z += 1;
                             currCustomer.transform.position = seatPos;
                             queueManager.SeatCustomer(currCustomer);
-                            currCustomer.GetComponent<Customer>().isSeated = true;
 
                             Debug.Log("Placed customer at Table Left");
                             break;
@@ -69,14 +68,12 @@ public class Dragger : MonoBehaviour
                             seatPos.z += 1;
                             currCustomer.transform.position = seatPos;
                             queueManager.SeatCustomer(currCustomer);
-                            currCustomer.GetComponent<Customer>().isSeated = true;
 
                             Debug.Log("Placed customer at Table Right");
                             break;
                         case "Chair":
                             currCustomer.transform.position = seatPos;
                             queueManager.SeatCustomer(currCustomer);
-                            currCustomer.GetComponent<Customer>().isSeated = true;
 
                             Debug.Log("Placed customer at Chair");
                             break;

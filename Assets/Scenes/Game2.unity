@@ -11005,6 +11005,8 @@ MonoBehaviour:
   - {fileID: 1183737119}
   - {fileID: 1309065782}
   queueManager: {fileID: 0}
+  spawnTimeMin: 4
+  spawnTimeMax: 6
   totalCustomers: 10
 --- !u!4 &611754682
 Transform:
@@ -28582,6 +28584,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: {x: 11, y: 12}
   unityGridSize: 1
+  layer2: {fileID: 598660043}
+  layer5: {fileID: 1193627708}
+  hasUpdated: 0
 --- !u!1 &1660188233
 GameObject:
   m_ObjectHideFlags: 0
