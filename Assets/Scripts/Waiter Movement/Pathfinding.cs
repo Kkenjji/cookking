@@ -29,17 +29,10 @@ public class Pathfinding : MonoBehaviour
     private void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
-        while (!gridManager.hasUpdated)
+        if (gridManager != null)
         {
-
+            grid = gridManager.Grid;
         }
-        grid = gridManager.Grid;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     public List<Node> GetNewPath()
