@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
@@ -24,17 +22,17 @@ public class Customer : MonoBehaviour
     private int patienceMin = 20;
     private int patienceMax = 30;
 
-    public bool isSeated = false;
     private float readTime;
     private float eatTime;
     public CustomerState currState;
+    [SerializeField] bool isActive = false;
     
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
-        //patience = Random.Range(patienceMin, patienceMax + 1);
-        StartCoroutine(StateMachine());
+        // animator = GetComponent<Animator>();
+        patience = Random.Range(patienceMin, patienceMax + 1);
+        // StartCoroutine(StateMachine());
     }
 
     private IEnumerator StateMachine()
@@ -87,34 +85,69 @@ public class Customer : MonoBehaviour
 
     private IEnumerator ReadMenu()
     {
-        String animation = GetAnimation(CustomerState.ReadingMenu);
+        string animation = GetAnimation(CustomerState.ReadingMenu);
         animator.Play(animation);
+        SetActive(false);
         yield return new WaitForSeconds(readTime);
-        animator.Play("RaiseHand");
+        currState = CustomerState.WaitingForOrderPickup;
     }
 
     private IEnumerator WaitForOrderPickup()
     {
-        yield return new Vector2();
+        string animation = GetAnimation(CustomerState.WaitingForOrderPickup);
+        animator.Play(animation);
+        SetActive(true);
+        yield return new WaitForSeconds(patience);
     }
     
     private IEnumerator WaitForFood()
     {
-        yield return new Vector2();
+        string animation = GetAnimation(CustomerState.WaitingForFood);
+        animator.Play(animation);
+        SetActive(true);
+        yield return new WaitForSeconds(patience);
     }
 
     private IEnumerator Eating()
     {
-        yield return new Vector2();
+        string animation = GetAnimation(CustomerState.Eating);
+        animator.Play(animation);
+        SetActive(false);
+        yield return new WaitForSeconds(eatTime);
     }
 
     private IEnumerator WaitForBillCheck()
     {
-        yield return new Vector2();
+        string animation = GetAnimation(CustomerState.WaitingForBillCheck);
+        animator.Play(animation);
+        SetActive(true);
+        yield return new WaitForSeconds(patience);
     }
 
     private void Leave()
     {
-        ;
+        string animation = GetAnimation(CustomerState.Leave);
+        animator.Play(animation); // wave animation
+        SetActive(false);
+        Destroy(gameObject, 1f);
+    }
+
+    private void SetActive(bool isActive)
+    {
+        this.isActive = isActive;
+    }
+
+    public void Interact()
+    {
+        Debug.Log(isActive + "Interacted");
+        if (isActive == false)
+        {
+            isActive = true;
+        }
+        else
+        {
+            isActive = false;
+        }
+        return;
     }
 }

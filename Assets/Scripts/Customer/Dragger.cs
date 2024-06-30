@@ -62,50 +62,17 @@ public class Dragger : MonoBehaviour
                         case "Table Left":
                             seatPos.z += 1;
                             seat.y += 1;
-                            if (!seatManager.isOccupied(seat))
-                            {
-                                currCustomer.transform.position = seatPos;
-                                queueManager.SeatCustomer(currCustomer);
-                                seatManager.Occupy(seat);
-                                Debug.Log("Placed customer at Table Left");
-                            }
-                            else
-                            {
-                                currCustomer.transform.position = initPosition;
-                                Debug.Log("Placed customer back to initial position");
-                            }
+                            SeatOrReturnToInitial(seat, seatPos);
                             break;
                         case "Table Right":
                             seatPos.x -= 1;
                             seatPos.z += 1;
                             seat.x -= 1;
                             seat.y += 1;
-                            if (!seatManager.isOccupied(seat))
-                            {
-                                currCustomer.transform.position = seatPos;
-                                queueManager.SeatCustomer(currCustomer);
-                                seatManager.Occupy(seat);
-                                Debug.Log("Placed customer at Table Left");
-                            }
-                            else
-                            {
-                                currCustomer.transform.position = initPosition;
-                                Debug.Log("Placed customer back to initial position");
-                            }
+                            SeatOrReturnToInitial(seat, seatPos);
                             break;
                         case "Chair":
-                            if (!seatManager.isOccupied(seat))
-                            {
-                                currCustomer.transform.position = seatPos;
-                                queueManager.SeatCustomer(currCustomer);
-                                seatManager.Occupy(seat);
-                                Debug.Log("Placed customer at Table Left");
-                            }
-                            else
-                            {
-                                currCustomer.transform.position = initPosition;
-                                Debug.Log("Placed customer back to initial position");
-                            }
+                            SeatOrReturnToInitial(seat, seatPos);
                             break;
                         default:
                             currCustomer.transform.position = initPosition;
@@ -134,6 +101,22 @@ public class Dragger : MonoBehaviour
                 Vector3 position = ray.GetPoint(distance);
                 currCustomer.transform.position = new Vector3(position.x, initPosition.y + layerCount, position.z);
             }
+        }
+    }
+
+    private void SeatOrReturnToInitial(Vector2Int seat, Vector3 seatPos)
+    {
+        if (!seatManager.isOccupied(seat))
+        {
+            currCustomer.transform.position = seatPos;
+            queueManager.SeatCustomer(currCustomer);
+            seatManager.Occupy(seat);
+            Debug.Log("Placed customer at Table Left");
+        }
+        else
+        {
+            currCustomer.transform.position = initPosition;
+            Debug.Log("Placed customer back to initial position");
         }
     }
 }
