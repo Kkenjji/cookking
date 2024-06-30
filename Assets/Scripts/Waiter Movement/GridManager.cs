@@ -12,7 +12,7 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
     public Dictionary<Vector2Int, Node> Grid { get { return grid; } }
     public Tilemap layer2;
-    public Tilemap layer5;
+    public Tilemap layer4;
 
     private void Awake()
     {
@@ -86,16 +86,24 @@ public class GridManager : MonoBehaviour
         {
             Vector2Int coordinates = new Vector2Int((int) tile.position.x, (int) tile.position.z);
             BlockNode(coordinates);
-            Debug.Log(coordinates.x);
-            Debug.Log(coordinates.y);
         }
 
-        foreach (Transform tile in layer5.transform)
+        foreach (Transform tile in layer4.transform)
         {
             Vector2Int coordinates = new Vector2Int((int) tile.position.x, (int) tile.position.z);
             BlockNode(coordinates);
-            Debug.Log(coordinates.x);
-            Debug.Log(coordinates.y);
         }
+    }
+
+    public List<Node> GetSeats()
+    {
+        List<Node> nodeList = new List<Node>();
+        foreach (Transform tile in layer2.transform)
+        {
+            Vector2Int coordinates = new Vector2Int((int) tile.position.x, (int) tile.position.z);
+            nodeList.Add(GetNode(coordinates));
+        }
+
+        return nodeList;
     }
 }

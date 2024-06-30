@@ -10,6 +10,7 @@ public class Dragger : MonoBehaviour
     private Vector3 initPosition;
     private int layerCount;
     private QueueManager queueManager;
+    private SeatManager seatManager;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class Dragger : MonoBehaviour
         layerCount = 5;
         camera2 = GameObject.Find("Camera 2").GetComponent<Camera>();
         queueManager = FindObjectOfType<QueueManager>();
+        seatManager = FindObjectOfType<SeatManager>();
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class Dragger : MonoBehaviour
                 {
                     GameObject hitObj = hit.collider.gameObject;
                     Vector3 seatPos = new Vector3(hitObj.transform.position.x, initPosition.y, hitObj.transform.position.z);
+                    Vector2Int seat = new Vector2Int((int)seatPos.x, (int)seatPos.z);
                     string hitObjTag = hitObj.tag;
 
                     Debug.Log("Trying to place customer on: " + hitObj.name + " with tag: " + hitObjTag);
@@ -58,28 +61,54 @@ public class Dragger : MonoBehaviour
                     {
                         case "Table Left":
                             seatPos.z += 1;
-                            currCustomer.transform.position = seatPos;
-                            queueManager.SeatCustomer(currCustomer);
-
-                            Debug.Log("Placed customer at Table Left");
+                            seat.y += 1;
+                            if (!seatManager.isOccupied(seat))
+                            {
+                                currCustomer.transform.position = seatPos;
+                                queueManager.SeatCustomer(currCustomer);
+                                seatManager.Occupy(seat);
+                                Debug.Log("Placed customer at Table Left");
+                            }
+                            else
+                            {
+                                currCustomer.transform.position = initPosition;
+                                Debug.Log("Placed customer back to initial position");
+                            }
                             break;
                         case "Table Right":
                             seatPos.x -= 1;
                             seatPos.z += 1;
-                            currCustomer.transform.position = seatPos;
-                            queueManager.SeatCustomer(currCustomer);
-
-                            Debug.Log("Placed customer at Table Right");
+                            seat.x -= 1;
+                            seat.y += 1;
+                            if (!seatManager.isOccupied(seat))
+                            {
+                                currCustomer.transform.position = seatPos;
+                                queueManager.SeatCustomer(currCustomer);
+                                seatManager.Occupy(seat);
+                                Debug.Log("Placed customer at Table Left");
+                            }
+                            else
+                            {
+                                currCustomer.transform.position = initPosition;
+                                Debug.Log("Placed customer back to initial position");
+                            }
                             break;
                         case "Chair":
-                            currCustomer.transform.position = seatPos;
-                            queueManager.SeatCustomer(currCustomer);
-
-                            Debug.Log("Placed customer at Chair");
+                            if (!seatManager.isOccupied(seat))
+                            {
+                                currCustomer.transform.position = seatPos;
+                                queueManager.SeatCustomer(currCustomer);
+                                seatManager.Occupy(seat);
+                                Debug.Log("Placed customer at Table Left");
+                            }
+                            else
+                            {
+                                currCustomer.transform.position = initPosition;
+                                Debug.Log("Placed customer back to initial position");
+                            }
                             break;
                         default:
                             currCustomer.transform.position = initPosition;
-
                             Debug.Log("Placed customer back to initial position");
                             break;
                     }
@@ -87,7 +116,6 @@ public class Dragger : MonoBehaviour
                 else
                 {
                     currCustomer.transform.position = initPosition;
-                    
                     Debug.Log("No valid position found, returned customer to initial position");
                 }
                 
