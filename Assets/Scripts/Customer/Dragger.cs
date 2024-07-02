@@ -40,9 +40,12 @@ public class Dragger : MonoBehaviour
 
                     currCustomer = hit.collider.gameObject;
                     initPosition = currCustomer.transform.position;
-                    currCustomer.GetComponent<BoxCollider>().enabled = false;
-                    Cursor.visible = false;
-
+                    if (!currCustomer.GetComponent<Customer>().isSeated)
+                    {
+                        currCustomer.GetComponent<BoxCollider>().enabled = false;
+                        Cursor.visible = false;
+                    }
+                    
                     Debug.Log("Picked up customer: " + currCustomer.name);
                 }                
             }
@@ -92,7 +95,7 @@ public class Dragger : MonoBehaviour
             }               
         }
 
-        if (currCustomer != null)
+        if (currCustomer != null && !currCustomer.GetComponent<Customer>().isSeated)
         {
             Plane plane = new Plane(Vector3.up, initPosition.y);
             float distance;

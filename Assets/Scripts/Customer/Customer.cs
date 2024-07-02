@@ -25,7 +25,8 @@ public class Customer : MonoBehaviour
     private float readTime;
     private float eatTime;
     public CustomerState currState;
-    [SerializeField] bool isActive = false;
+    public bool isActive = false;
+    public bool isSeated = false;
     
     // Start is called before the first frame update
     void Start()
@@ -135,6 +136,11 @@ public class Customer : MonoBehaviour
     private void SetActive(bool isActive)
     {
         this.isActive = isActive;
+    }
+
+    public void SetSeated()
+    {
+        isSeated = true;
     }
 
     public void Interact()
