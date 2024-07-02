@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Bell pepper green.prefab.meta
 guid: cb83f814934cfc140b16be0112da5872
+========
+guid: 9211927fa2d79ef42b8421dfe1d3f621
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Bundt Cake Piece.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

@@ -1,6 +1,10 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
 --- !u!1 &4901884870586211037
+========
+--- !u!1 &294599964465735222
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,6 +12,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
   - component: {fileID: 5714275166693310567}
   - component: {fileID: 8710794457749409730}
   - component: {fileID: 6847162627434003208}
@@ -15,18 +20,35 @@ GameObject:
   - component: {fileID: 183753875509031756}
   m_Layer: 0
   m_Name: Tamago
+========
+  - component: {fileID: 1107166117457230988}
+  - component: {fileID: 4103529275715351337}
+  - component: {fileID: 2240080580659972067}
+  - component: {fileID: 30733998941117232}
+  - component: {fileID: 4972351589644477200}
+  m_Layer: 0
+  m_Name: Curry plate
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
 --- !u!4 &5714275166693310567
+========
+--- !u!4 &1107166117457230988
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
   m_GameObject: {fileID: 4901884870586211037}
+========
+  m_GameObject: {fileID: 294599964465735222}
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,21 +56,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
 --- !u!33 &8710794457749409730
+========
+--- !u!33 &4103529275715351337
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
   m_GameObject: {fileID: 4901884870586211037}
   m_Mesh: {fileID: 9054130860995434139, guid: 5a94d5106699cb94c878bf7d4f249029, type: 3}
 --- !u!23 &6847162627434003208
+========
+  m_GameObject: {fileID: 294599964465735222}
+  m_Mesh: {fileID: -5899475391614491685, guid: 3dfb58f22f566b1458e7d1ce6c6538bb, type: 3}
+--- !u!23 &2240080580659972067
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
   m_GameObject: {fileID: 4901884870586211037}
+========
+  m_GameObject: {fileID: 294599964465735222}
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -83,13 +119,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
 --- !u!54 &60794285754980238
+========
+--- !u!54 &30733998941117232
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
   m_GameObject: {fileID: 4901884870586211037}
+========
+  m_GameObject: {fileID: 294599964465735222}
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -99,17 +143,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
 --- !u!64 &183753875509031756
+========
+--- !u!64 &4972351589644477200
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
   m_GameObject: {fileID: 4901884870586211037}
+========
+  m_GameObject: {fileID: 294599964465735222}
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Tamago.prefab
   m_Mesh: {fileID: 4527480663280081044, guid: 92ec02f8dba0a5247b37099ac8e12670, type: 3}
+========
+  m_Mesh: {fileID: 8671441387285859966, guid: 193b087adebfccb4b9620bd940aaf75e, type: 3}
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Curry plate.prefab

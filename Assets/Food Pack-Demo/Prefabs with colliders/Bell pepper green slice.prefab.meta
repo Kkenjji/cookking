@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Food Pack-Demo/Prefabs with colliders/Bell pepper green slice.prefab.meta
 guid: 85650ce63efce4849986302aa38c779f
+========
+guid: cb83f814934cfc140b16be0112da5872
+>>>>>>>> main:Assets/Food Pack-Demo/Prefabs with colliders/Bell pepper green.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

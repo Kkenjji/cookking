@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Food Kit/meatPatty 1.fbx.meta
 guid: 004e97d0cbe7efe4a8599614d58bbb3e
 ModelImporter:
   serializedVersion: 22200
@@ -9,6 +10,13 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: brownDark
     second: {fileID: 2100000, guid: 3bf5bd6b320e4f240bfcd85c12a0dc77, type: 2}
+========
+guid: 644e40701abf8ab40a4ecaf5120ca4d7
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable: []
+  externalObjects: {}
+>>>>>>>> main:Assets/Food Pack-Demo/Mesh Collider/Salami A.fbx.meta
   materials:
     materialImportMode: 2
     materialName: 0
@@ -19,7 +27,10 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+<<<<<<<< HEAD:Assets/Food Kit/meatPatty 1.fbx.meta
     removeConstantScaleCurves: 0
+========
+>>>>>>>> main:Assets/Food Pack-Demo/Mesh Collider/Salami A.fbx.meta
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -50,7 +61,6 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -62,7 +72,6 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
-    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -106,8 +115,11 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+<<<<<<<< HEAD:Assets/Food Kit/meatPatty 1.fbx.meta
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
+========
+>>>>>>>> main:Assets/Food Pack-Demo/Mesh Collider/Salami A.fbx.meta
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Assets/Sprites/Materials.meta
 guid: eb7ba21e73762294c9551016df34df2c
+========
+guid: 0e769f8238b11f44cbcad20f3d7ec395
+>>>>>>>> main:Assets/Food Pack-Demo/Mesh.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
