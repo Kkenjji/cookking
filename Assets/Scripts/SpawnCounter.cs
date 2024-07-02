@@ -9,9 +9,10 @@ public class NewBehaviourScript : Base
 
     public override void Interact(ChefController Chef)
     {
-       
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectScript.prefab);
-        kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenInterface(Chef);
+        if (!Chef.IsKitchenObject())//Chef not carrying any items
+        {
+            KitchenObject.SpawnFood(kitchenObjectScript,Chef);
+        }
 
         }
 

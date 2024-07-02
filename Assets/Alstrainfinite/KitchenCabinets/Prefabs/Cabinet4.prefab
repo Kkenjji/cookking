@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4726218749345342306}
   - component: {fileID: 2489392053964652549}
   - component: {fileID: 5578068939670027481}
-  - component: {fileID: 6026569493098389791}
   m_Layer: 0
   m_Name: Cabinet4
   m_TagString: Untagged
@@ -107,18 +106,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5287125780125612089, guid: 08403b9a482b6f44fb5b8ef44f58dca7, type: 3}
---- !u!114 &6026569493098389791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687875887428104787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed7ff3f8a7021349b28ca733f203b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1254602173230087908
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +118,6 @@ GameObject:
   - component: {fileID: 3282338245327760379}
   - component: {fileID: 750344632300232497}
   - component: {fileID: 6139119574828714315}
-  - component: {fileID: 2403391489258182450}
   m_Layer: 0
   m_Name: Cabinet4
   m_TagString: Untagged
@@ -228,18 +214,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5287125780125612089, guid: 08403b9a482b6f44fb5b8ef44f58dca7, type: 3}
---- !u!114 &2403391489258182450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254602173230087908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed7ff3f8a7021349b28ca733f203b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4152074572330569018
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +226,6 @@ GameObject:
   - component: {fileID: 4710682345231395438}
   - component: {fileID: 1314193929119222672}
   - component: {fileID: 6622008283323802554}
-  - component: {fileID: 1648181205575016850}
   m_Layer: 0
   m_Name: Cabinet4
   m_TagString: Untagged
@@ -347,18 +320,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5287125780125612089, guid: 08403b9a482b6f44fb5b8ef44f58dca7, type: 3}
---- !u!114 &1648181205575016850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152074572330569018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed7ff3f8a7021349b28ca733f203b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6506867502112995615
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +332,6 @@ GameObject:
   - component: {fileID: 8650052645178152338}
   - component: {fileID: 6511225056220790828}
   - component: {fileID: 8199885547222215387}
-  - component: {fileID: 7479718458217416763}
   - component: {fileID: 5501178981029418562}
   m_Layer: 0
   m_Name: Selected
@@ -379,7 +339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6624996246555199719
 Transform:
   m_ObjectHideFlags: 0
@@ -468,18 +428,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5287125780125612089, guid: 08403b9a482b6f44fb5b8ef44f58dca7, type: 3}
---- !u!114 &7479718458217416763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506867502112995615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed7ff3f8a7021349b28ca733f203b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5501178981029418562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,5 +440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be15888be6ce28488ce70be0ade28bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyCounter: {fileID: 1648181205575016850}
+  Countertop: {fileID: 0}
+  bAse: {fileID: 0}
   visual: {fileID: 6506867502112995615}

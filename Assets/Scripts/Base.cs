@@ -12,6 +12,10 @@ public class Base : MonoBehaviour, KitchenInterface
         
     }
 
+    public virtual void Cut(ChefController Chef) {
+    
+    }
+
     public Transform MovementPointTransform()
     {
         return Countertop;

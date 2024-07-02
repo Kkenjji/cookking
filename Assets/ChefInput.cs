@@ -44,6 +44,15 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cut"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b5a943f-beff-4c88-b406-9cbece28e2a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +187,17 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7ae63f2-a868-4735-96c3-35fea92afb48"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +208,7 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
         m_Chef = asset.FindActionMap("Chef", throwIfNotFound: true);
         m_Chef_Move = m_Chef.FindAction("Move", throwIfNotFound: true);
         m_Chef_Interact = m_Chef.FindAction("Interact", throwIfNotFound: true);
+        m_Chef_Cut = m_Chef.FindAction("Cut", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,12 +272,14 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
     private List<IChefActions> m_ChefActionsCallbackInterfaces = new List<IChefActions>();
     private readonly InputAction m_Chef_Move;
     private readonly InputAction m_Chef_Interact;
+    private readonly InputAction m_Chef_Cut;
     public struct ChefActions
     {
         private @ChefInput m_Wrapper;
         public ChefActions(@ChefInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Chef_Move;
         public InputAction @Interact => m_Wrapper.m_Chef_Interact;
+        public InputAction @Cut => m_Wrapper.m_Chef_Cut;
         public InputActionMap Get() { return m_Wrapper.m_Chef; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +295,9 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Cut.started += instance.OnCut;
+            @Cut.performed += instance.OnCut;
+            @Cut.canceled += instance.OnCut;
         }
 
         private void UnregisterCallbacks(IChefActions instance)
@@ -282,6 +308,9 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Cut.started -= instance.OnCut;
+            @Cut.performed -= instance.OnCut;
+            @Cut.canceled -= instance.OnCut;
         }
 
         public void RemoveCallbacks(IChefActions instance)
@@ -303,5 +332,6 @@ public partial class @ChefInput: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnCut(InputAction.CallbackContext context);
     }
 }

@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5311004806697268735
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8143208853580046229}
-  m_Layer: 0
-  m_Name: SpriteSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8143208853580046229
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5311004806697268735}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.84, z: 0.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6126506743037800125}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7956331655795884519
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +12,6 @@ GameObject:
   - component: {fileID: 3517226869867195188}
   - component: {fileID: 4333757046568016680}
   - component: {fileID: 6526618288589871532}
-  - component: {fileID: 1946536670149424538}
   m_Layer: 0
   m_Name: Cabinet4 (1)
   m_TagString: Untagged
@@ -138,20 +106,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5287125780125612089, guid: 08403b9a482b6f44fb5b8ef44f58dca7, type: 3}
---- !u!114 &1946536670149424538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7956331655795884519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed7ff3f8a7021349b28ca733f203b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitchenObjectScript: {fileID: 0}
-  Countertop: {fileID: 0}
 --- !u!1001 &1137451217444812780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -268,7 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be15888be6ce28488ce70be0ade28bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyCounter: {fileID: 5254368179458704986}
+  Countertop: {fileID: 0}
+  bAse: {fileID: 8819197483567224383}
   visual: {fileID: 7956331655795884519}
 --- !u!4 &8549459509871334953 stripped
 Transform:
@@ -289,6 +244,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TomatoCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 6283530453443994583, guid: b5bf6d97b7f032e4a92ed08be063bd92,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e71ca37870e84e147a37fc31cc4ab65a,
+        type: 3}
     - target: {fileID: 8719114587914872905, guid: b5bf6d97b7f032e4a92ed08be063bd92,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -344,23 +305,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7666114202667049020, guid: b5bf6d97b7f032e4a92ed08be063bd92, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5bf6d97b7f032e4a92ed08be063bd92, type: 3}
---- !u!114 &5254368179458704986 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7666114202667049020, guid: b5bf6d97b7f032e4a92ed08be063bd92,
-    type: 3}
-  m_PrefabInstance: {fileID: 2488456794151282278}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed7ff3f8a7021349b28ca733f203b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6621425867184539555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8749581462108725701, guid: b5bf6d97b7f032e4a92ed08be063bd92,
@@ -441,10 +391,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8549459509871334953}
-    - targetCorrespondingSourceObject: {fileID: 7845374553042169458, guid: 91a2f8ecd1c0e6447b53046c7347dcd8,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8143208853580046229}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5009568773780692136, guid: 91a2f8ecd1c0e6447b53046c7347dcd8,
         type: 3}
@@ -481,8 +427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9581642c37ae7704aa57fbf234808a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Countertop: {fileID: 1859717914663098416}
   kitchenObjectScript: {fileID: 11400000, guid: 502c6b0aedef7a6439bad2669062ec0a,
     type: 2}
-  Countertop: {fileID: 1859717914663098416}
-  sprite: {fileID: 21300000, guid: e71ca37870e84e147a37fc31cc4ab65a, type: 3}
-  SpritePoint: {fileID: 8143208853580046229}

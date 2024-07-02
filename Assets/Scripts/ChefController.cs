@@ -37,7 +37,17 @@ public class ChefController : MonoBehaviour, KitchenInterface
     {
         
         chefMovement.OnInteract += ChefMovement_OnInteract;
+        chefMovement.OnCut += ChefMovement_OnCut;
     }
+
+    private void ChefMovement_OnCut(object sender, EventArgs e)
+    {
+        if (InteractedCounter != null)
+        {
+            InteractedCounter.Cut(this);
+        }
+    }
+
 
     private void ChefMovement_OnInteract(object sender, System.EventArgs e)
     {
