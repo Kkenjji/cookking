@@ -5,9 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
-  - 2 Pax Table
-  - 4 Pax Table
   - Counter
+  - Table Left
+  - Table Right
+  - Chair
+  - Customer
   layers:
   - Default
   - TransparentFX
