@@ -18735,7 +18735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12456d0dfbdf349f4b83f4ae19ac4b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 10
   animator: {fileID: 0}
   waiter: {fileID: 1460542731}
 --- !u!4 &373752756
@@ -25041,7 +25041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816258eded3b0bb4aae0c985d6de24e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 8
+  MoveSpeed: 12
   RotationSpeed: 10
   chefMovement: {fileID: 513459704}
   KitchenObjectHold: {fileID: 2035579194}

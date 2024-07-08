@@ -30,13 +30,13 @@ public class Dragger : MonoBehaviour
             RaycastHit hit;
             bool hasHit = Physics.Raycast(ray, out hit);
 
-            Debug.Log("Mouse button down. Has hit: " + hasHit);
+            // Debug.Log("Mouse button down. Has hit: " + hasHit);
 
             if (currCustomer == null)
             {
                 if (hasHit && hit.collider.CompareTag("Customer"))
                 {
-                    Debug.Log("Hit object: " + hit.collider.name);
+                    // Debug.Log("Hit object: " + hit.collider.name);
 
                     currCustomer = hit.collider.gameObject;
                     initPosition = currCustomer.transform.position;
@@ -45,8 +45,12 @@ public class Dragger : MonoBehaviour
                         currCustomer.GetComponent<BoxCollider>().enabled = false;
                         Cursor.visible = false;
                     }
+                    else
+                    {
+                        currCustomer = null;
+                    }
                     
-                    Debug.Log("Picked up customer: " + currCustomer.name);
+                    // Debug.Log("Picked up customer: " + currCustomer.name);
                 }                
             }
             else
@@ -58,7 +62,7 @@ public class Dragger : MonoBehaviour
                     Vector2Int seat = new Vector2Int((int)seatPos.x, (int)seatPos.z);
                     string hitObjTag = hitObj.tag;
 
-                    Debug.Log("Trying to place customer on: " + hitObj.name + " with tag: " + hitObjTag);
+                    // Debug.Log("Trying to place customer on: " + hitObj.name + " with tag: " + hitObjTag);
                     
                     switch (hitObjTag)
                     {
@@ -79,14 +83,14 @@ public class Dragger : MonoBehaviour
                             break;
                         default:
                             currCustomer.transform.position = initPosition;
-                            Debug.Log("Placed customer back to initial position");
+                            // Debug.Log("Placed customer back to initial position");
                             break;
                     }
                 }
                 else
                 {
                     currCustomer.transform.position = initPosition;
-                    Debug.Log("No valid position found, returned customer to initial position");
+                    // Debug.Log("No valid position found, returned customer to initial position");
                 }
                 
                 currCustomer.GetComponent<BoxCollider>().enabled = true;
@@ -114,12 +118,12 @@ public class Dragger : MonoBehaviour
             currCustomer.transform.position = seatPos;
             queueManager.SeatCustomer(currCustomer);
             seatManager.Occupy(seat);
-            Debug.Log("Placed customer at Table Left");
+            // Debug.Log("Placed customer at Table Left");
         }
         else
         {
             currCustomer.transform.position = initPosition;
-            Debug.Log("Placed customer back to initial position");
+            // Debug.Log("Placed customer back to initial position");
         }
     }
 }

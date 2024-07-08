@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public GameObject queue;
     public GameObject[] customerPrefabs;
     public QueueManager queueManager;
     [SerializeField] float spawnTimeMin;
@@ -44,11 +45,10 @@ public class Spawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
-        int prefabIndex = Random.Range(0, customerPrefabs.Length);
+        int prefabIndex = Random.Range(0, 1); // customerPrefabs.Length);
         GameObject newCustomer = Instantiate(customerPrefabs[prefabIndex]);
+        newCustomer.transform.SetParent(queue.transform);
         queueManager.AddCustomer(newCustomer);
-        Customer customerProperties = newCustomer.GetComponent<Customer>();
-        customerProperties.currState = Customer.CustomerState.InQueue;
         totalCustomers--;
     }
 }

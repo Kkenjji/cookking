@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class WaiterController : MonoBehaviour
@@ -113,7 +112,7 @@ public class WaiterController : MonoBehaviour
             endPos.y = wTransform.position.y;
             float travelPercent = 0f;
 
-            Debug.Log($"Moving from {startPos} to {endPos}");
+            // Debug.Log($"Moving from {startPos} to {endPos}");
             Vector3 direction = endPos - startPos;
 
             animator.SetFloat("Horizontal", direction.x);
@@ -129,7 +128,7 @@ public class WaiterController : MonoBehaviour
         }
 
         animator.SetFloat("Speed", 0);
-        Debug.Log("Idle");
+        // Debug.Log("Idle");
     }
     
     private void MoveFromChair(RaycastHit hit)
