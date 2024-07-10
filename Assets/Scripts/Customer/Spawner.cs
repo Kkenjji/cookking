@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject queue;
+    public Tilemap layer3;
     public GameObject[] customerPrefabs;
     public QueueManager queueManager;
     [SerializeField] float spawnTimeMin;
@@ -47,7 +48,7 @@ public class Spawner : MonoBehaviour
     {
         int prefabIndex = Random.Range(0, 1); // customerPrefabs.Length);
         GameObject newCustomer = Instantiate(customerPrefabs[prefabIndex]);
-        newCustomer.transform.SetParent(queue.transform);
+        newCustomer.transform.SetParent(layer3.transform);
         queueManager.AddCustomer(newCustomer);
         totalCustomers--;
     }

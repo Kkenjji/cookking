@@ -19,7 +19,6 @@ public class QueueManager : MonoBehaviour
     {
         RemoveCustomer(customer);
         customer.GetComponent<Customer>().SetSeated();
-        customer.GetComponent<Customer>().currState = Customer.CustomerState.ReadingMenu;
     }
 
     private void RemoveCustomer(GameObject customer)

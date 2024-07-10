@@ -19,18 +19,17 @@ public class Customer : MonoBehaviour
     public Animator animator;
     public int customerType;
 
-    private float readTime = 7f;
-    private float eatTime = 7f;
-    private float patience = 20f;    
+    private float readTime = 3f;
+    private float eatTime = 3f;
+    private float patience = 5f;
     
-    public bool isActive = false;
     public bool isSeated = false;
     
     // Start is called before the first frame update
     void Start()
     {
-        currState = CustomerState.InQueue;
         animator = GetComponent<Animator>();
+        currState = CustomerState.InQueue;
         StartCoroutine(StateMachine());
     }
 
@@ -89,106 +88,72 @@ public class Customer : MonoBehaviour
 
     private IEnumerator InQueue()
     {
-        // animator.Play(GetAnimation(CustomerState.InQueue)); // play animation
-        SetActive(false);
-        Debug.Log("isActive = " + isActive);
-        yield return new WaitForSeconds(5f); // PatienceTimer(patience);
-        // currState = CustomerState.ReadingMenu; // Leave
-        if (currState != CustomerState.ReadingMenu)
-        {
-            currState = CustomerState.Leave;
-        }
+        // animator.Play(GetAnimation(CustomerState.InQueue));
+        yield return PatienceTimer(patience, true, CustomerState.ReadingMenu);
     }
 
     private IEnumerator ReadMenu()
     {
-        // animator.Play(GetAnimation(CustomerState.ReadingMenu)); // play animation
-        SetActive(true);
-        Debug.Log("isActive = " + isActive);
-        yield return new WaitForSeconds(5f);
-        currState = CustomerState.WaitingForOrderPickup;
+        // animator.Play(GetAnimation(CustomerState.ReadingMenu));
+        yield return PatienceTimer(readTime, false, CustomerState.WaitingForOrderPickup);
     }
 
     private IEnumerator WaitForOrderPickup()
     {
-        // animator.Play(GetAnimation(CustomerState.WaitingForOrderPickup)); // play animation
-        SetActive(true);
-        Debug.Log(currState + "isActive = " + isActive);
-        yield return new WaitForSeconds(5f);
-        // currState = CustomerState.WaitingForFood; // Leave
-        if (currState != CustomerState.WaitingForFood)
-        {
-            currState = CustomerState.Leave;
-        }
+        // animator.Play(GetAnimation(CustomerState.WaitingForOrderPickup));
+        yield return PatienceTimer(patience, true, CustomerState.WaitingForFood);
     }
     
     private IEnumerator WaitForFood()
     {
-        // animator.Play(GetAnimation(CustomerState.WaitingForFood)); // play animation
-        SetActive(false);
-        Debug.Log(currState + "isActive = " + isActive);
-        yield return new WaitForSeconds(5f);
-        // currState = CustomerState.Eating; // Leave
-        if (currState != CustomerState.Eating)
-        {
-            currState = CustomerState.Leave;
-        }
+        // animator.Play(GetAnimation(CustomerState.WaitingForFood));
+        yield return PatienceTimer(patience, true, CustomerState.Eating);
     }
 
     private IEnumerator Eating()
     {
-        // animator.Play(GetAnimation(CustomerState.Eating)); // play animation
-        SetActive(false);
-        Debug.Log(currState + "isActive = " + isActive);
-        yield return new WaitForSeconds(5f);
-        currState = CustomerState.WaitingForBillCheck;
+        // animator.Play(GetAnimation(CustomerState.Eating));
+        yield return PatienceTimer(eatTime, false, CustomerState.WaitingForBillCheck);
     }
 
     private IEnumerator WaitForBillCheck()
     {
-        // animator.Play(GetAnimation(CustomerState.WaitingForBillCheck)); // play animation
-        SetActive(true);
-        Debug.Log(currState + "isActive = " + isActive);
-        yield return new WaitForSeconds(5f);
-        // currState = CustomerState.Leave; // Leave
-        if (currState != CustomerState.Leave)
-        {
-            currState = CustomerState.Leave;
-        }
+        // animator.Play(GetAnimation(CustomerState.WaitingForBillCheck));
+        yield return PatienceTimer(patience, true, CustomerState.Leave);
     }
 
     private void Leave()
     {
-        // animator.Play(GetAnimation(CustomerState.Leave)); // play animation
-        SetActive(false);
-        Debug.Log(currState + "isActive = " + isActive);
+        // animator.Play(GetAnimation(CustomerState.Leave));
         Destroy(gameObject, 1f);
-    }
-
-    private void SetActive(bool isActive)
-    {
-        this.isActive = isActive;
     }
 
     public void SetSeated()
     {
         isSeated = true;
+        currState = CustomerState.ReadingMenu;
     }
 
-    private IEnumerator PatienceTimer(float duration, bool leaveOnTimeout = false)
+    private IEnumerator PatienceTimer(float duration, bool leaveOnTimeout, CustomerState nextState)
     {
-        float elapsedTime = 0f;
-        while (elapsedTime < duration)
+        while (duration > 0f)
         {
-            elapsedTime += Time.deltaTime;
+            if (currState == nextState)
+            {
+                yield break;
+            }
+            duration -= Time.deltaTime;
             yield return null;
         }
 
         if (leaveOnTimeout)
         {
-            currState = CustomerState.Leave; // Leave if patience runs out in interactable states
+            currState = CustomerState.Leave;
         }
-        // For non-interactable states, transition to the next state is handled in their respective methods
+        else
+        {
+            currState = nextState;
+        }
     }
 
     public void Interact()
@@ -197,17 +162,14 @@ public class Customer : MonoBehaviour
         {
             case CustomerState.WaitingForOrderPickup:
                 currState = CustomerState.WaitingForFood;
-                SetActive(true);
                 Debug.Log("Order picked up.");
                 break;
             case CustomerState.WaitingForFood:
                 currState = CustomerState.Eating;
-                SetActive(false);
                 Debug.Log("Food served.");
                 break;
             case CustomerState.WaitingForBillCheck:
                 currState = CustomerState.Leave;
-                SetActive(false);
                 Debug.Log("Bill checked.");
                 break;
         }
