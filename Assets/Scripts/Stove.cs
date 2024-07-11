@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Stove : Base
 {
-    private enum State {
-    Raw,
-    Frying,
-    Done,
-    Burnt,
+    private enum State
+    {
+        Raw,
+        Frying,
+        Done,
+        Burnt,
     }
 
     private State state;
@@ -23,33 +24,34 @@ public class Stove : Base
 
     private void Start()
     {
-        state=State.Raw;
+        state = State.Raw;
     }
- 
+
     private void Update()
     {
         if (IsKitchenObject())
         {
-            switch (state) {
+            switch (state)
+            {
 
-            case State.Raw:
-                break;
-            case State.Frying:
-                FryTime += Time.deltaTime;
+                case State.Raw:
+                    break;
+                case State.Frying:
+                    FryTime += Time.deltaTime;
 
-                if (FryTime > cookings.FryingTimer)
-                {
-                    //fried meat
-                    GetKitchenObject().DestroyFood();
-                    KitchenObject.SpawnFood(cookings.New, this);
-                    
-                    state=State.Done;
-                    BurntTime = 0f;
-                    burntCooking = GetBurnt(GetKitchenObject().GetKitchenObjectScript());
+                    if (FryTime > cookings.FryingTimer)
+                    {
+                        //fried meat
+                        GetKitchenObject().DestroyFood();
+                        KitchenObject.SpawnFood(cookings.New, this);
+
+                        state = State.Done;
+                        BurntTime = 0f;
+                        burntCooking = GetBurnt(GetKitchenObject().GetKitchenObjectScript());
 
                     }
-                break;
-            case State.Done:
+                    break;
+                case State.Done:
                     BurntTime += Time.deltaTime;
 
                     if (BurntTime > burntCooking.BurningTimer)
@@ -59,11 +61,11 @@ public class Stove : Base
                         KitchenObject.SpawnFood(burntCooking.New, this);
                         state = State.Burnt;
                     }
-                        break;
-            case State.Burnt:
-                break;
-        }
-           
+                    break;
+                case State.Burnt:
+                    break;
+            }
+
         }
     }
     public override void Interact(ChefController Chef)
@@ -88,7 +90,16 @@ public class Stove : Base
         {
             if (Chef.IsKitchenObject())
             {//player carrying something
+                if (Chef.GetKitchenObject().CheckPlate(out PlateObject plateObject))
+                {
+                    //player holding plate
 
+                    if (plateObject.IngredientOnPlate(GetKitchenObject().GetKitchenObjectScript()))
+                    {// add to plate 
+                        GetKitchenObject().DestroyFood();//destroy object
+                        state = State.Raw;
+                    }
+                }
             }
             else
             {//player not carrying something
@@ -121,9 +132,12 @@ public class Stove : Base
         return false;
     }
 
-    private Cooking GetCooking(KitchenObjectScript input) {
-        foreach (Cooking cooking in CookingArray) {
-            if (cooking.Original == input) {
+    private Cooking GetCooking(KitchenObjectScript input)
+    {
+        foreach (Cooking cooking in CookingArray)
+        {
+            if (cooking.Original == input)
+            {
                 return cooking;
             }
         }
