@@ -7,12 +7,12 @@ public class Customer : MonoBehaviour
 {
     public enum CustomerState
     {
-        InQueue, // Idle // patience
-        ReadingMenu, // ReadMenu // readTime
-        WaitingForOrderPickup, // RaiseHand // patience
-        WaitingForFood, // Idle // patience
-        Eating, // Eating // eatTime
-        WaitingForBillCheck, // RaiseHand // patience
+        InQueue, // Idle
+        ReadingMenu, // Read Menu
+        WaitingForOrderPickup, // Raise Hand
+        WaitingForFood, // Idle
+        Eating, // Eating
+        WaitingForBillCheck, // Raise Hand
         Leave // Destroy
     }
     public CustomerState currState;
@@ -70,15 +70,15 @@ public class Customer : MonoBehaviour
             case CustomerState.InQueue:
                 return "Customer_" + customerType + "_Idle";
             case CustomerState.ReadingMenu:
-                return "Customer_" + customerType + "_ReadMenu";
+                return "Customer_" + customerType + "_Read_Menu";
             case CustomerState.WaitingForOrderPickup:
-                return "Customer_" + customerType + "_RaiseHand";
+                return "Customer_" + customerType + "_Raise_Hand";
             case CustomerState.WaitingForFood:
                 return "Customer_" + customerType + "_Idle";
             case CustomerState.Eating:
                 return "Customer_" + customerType + "_Eating";
             case CustomerState.WaitingForBillCheck:
-                return "Customer_" + customerType + "_RaiseHand";
+                return "Customer_" + customerType + "_Raise_Hand";
             case CustomerState.Leave:
                 return "Customer_" + customerType + "_Wave";
             default:
@@ -86,45 +86,50 @@ public class Customer : MonoBehaviour
         }
     }
 
+    private void PlayAnimation(CustomerState state)
+    {
+        animator.SetInteger("CustomerState", (int)state);
+    }
+    
     private IEnumerator InQueue()
     {
-        // animator.Play(GetAnimation(CustomerState.InQueue));
+        PlayAnimation(CustomerState.InQueue);
         yield return PatienceTimer(patience, true, CustomerState.ReadingMenu);
     }
 
     private IEnumerator ReadMenu()
     {
-        // animator.Play(GetAnimation(CustomerState.ReadingMenu));
+        PlayAnimation(CustomerState.ReadingMenu);
         yield return PatienceTimer(readTime, false, CustomerState.WaitingForOrderPickup);
     }
 
     private IEnumerator WaitForOrderPickup()
     {
-        // animator.Play(GetAnimation(CustomerState.WaitingForOrderPickup));
+        PlayAnimation(CustomerState.WaitingForOrderPickup);
         yield return PatienceTimer(patience, true, CustomerState.WaitingForFood);
     }
     
     private IEnumerator WaitForFood()
     {
-        // animator.Play(GetAnimation(CustomerState.WaitingForFood));
+        PlayAnimation(CustomerState.WaitingForFood);
         yield return PatienceTimer(patience, true, CustomerState.Eating);
     }
 
     private IEnumerator Eating()
     {
-        // animator.Play(GetAnimation(CustomerState.Eating));
+        PlayAnimation(CustomerState.Eating);
         yield return PatienceTimer(eatTime, false, CustomerState.WaitingForBillCheck);
     }
 
     private IEnumerator WaitForBillCheck()
     {
-        // animator.Play(GetAnimation(CustomerState.WaitingForBillCheck));
+        PlayAnimation(CustomerState.WaitingForBillCheck);
         yield return PatienceTimer(patience, true, CustomerState.Leave);
     }
 
     private void Leave()
     {
-        // animator.Play(GetAnimation(CustomerState.Leave));
+       PlayAnimation(CustomerState.Leave);
         Destroy(gameObject, 1f);
     }
 
@@ -158,20 +163,23 @@ public class Customer : MonoBehaviour
 
     public void Interact()
     {
-        switch(currState)
+        if (!PauseMenu.gameIsPaused)
         {
-            case CustomerState.WaitingForOrderPickup:
-                currState = CustomerState.WaitingForFood;
-                Debug.Log("Order picked up.");
-                break;
-            case CustomerState.WaitingForFood:
-                currState = CustomerState.Eating;
-                Debug.Log("Food served.");
-                break;
-            case CustomerState.WaitingForBillCheck:
-                currState = CustomerState.Leave;
-                Debug.Log("Bill checked.");
-                break;
+            switch(currState)
+            {
+                case CustomerState.WaitingForOrderPickup:
+                    currState = CustomerState.WaitingForFood;
+                    Debug.Log("Order picked up.");
+                    break;
+                case CustomerState.WaitingForFood:
+                    currState = CustomerState.Eating;
+                    Debug.Log("Food served.");
+                    break;
+                case CustomerState.WaitingForBillCheck:
+                    currState = CustomerState.Leave;
+                    Debug.Log("Bill checked.");
+                    break;
+            }
         }
     }
 }

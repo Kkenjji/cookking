@@ -133,32 +133,41 @@ public class WaiterController : MonoBehaviour
     
     private void MoveFromChair(RaycastHit hit)
     {
-        Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
-        targetCoords.x += 1;
-        Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
-                                                (int) wTransform.position.z / gridManager.UnityGridSize);
-        pathFinder.SetNewDestination(startCoords, targetCoords);
-        RecalculatePath(true);
+        if (!PauseMenu.gameIsPaused)
+        {
+            Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
+            targetCoords.x += 1;
+            Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
+                                                    (int) wTransform.position.z / gridManager.UnityGridSize);
+            pathFinder.SetNewDestination(startCoords, targetCoords);
+            RecalculatePath(true);
+        }
     }
 
     private void MoveFromTableLeft(RaycastHit hit)
     {
-        Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
-        targetCoords.x += 1;
-        targetCoords.y += 1;
-        Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
-                                                (int) wTransform.position.z / gridManager.UnityGridSize);
-        pathFinder.SetNewDestination(startCoords, targetCoords);
-        RecalculatePath(true);
+        if (!PauseMenu.gameIsPaused)
+        {
+            Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
+            targetCoords.x += 1;
+            targetCoords.y += 1;
+            Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
+                                                    (int) wTransform.position.z / gridManager.UnityGridSize);
+            pathFinder.SetNewDestination(startCoords, targetCoords);
+            RecalculatePath(true);
+        }
     }
 
     private void MoveFromTableRight(RaycastHit hit)
     {
-        Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
-        targetCoords.y += 1;
-        Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
-                                                (int) wTransform.position.z / gridManager.UnityGridSize);
-        pathFinder.SetNewDestination(startCoords, targetCoords);
-        RecalculatePath(true);
+        if (!PauseMenu.gameIsPaused)
+        {
+            Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
+            targetCoords.y += 1;
+            Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
+                                                    (int) wTransform.position.z / gridManager.UnityGridSize);
+            pathFinder.SetNewDestination(startCoords, targetCoords);
+            RecalculatePath(true);
+        }
     }
 }
