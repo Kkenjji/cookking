@@ -118,7 +118,7 @@ public class Dragger : MonoBehaviour
     {
         if (!seatManager.isOccupied(seat))
         {
-            currCustomer.transform.position = seatPos;
+            currCustomer.transform.position = seatPos + new Vector3(0, 0.1f, 0);
             queueManager.SeatCustomer(currCustomer);
             seatManager.Occupy(seat);
             // Debug.Log("Placed customer at Table Left");

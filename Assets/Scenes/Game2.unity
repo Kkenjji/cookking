@@ -26484,7 +26484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d896b44843936d4b8e6555eb5ab2e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  queueManager: {fileID: 0}
   currState: 0
+  foodType: 0
   animator: {fileID: 0}
   customerType: 2
   isSeated: 0
@@ -53712,7 +53714,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d896b44843936d4b8e6555eb5ab2e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  queueManager: {fileID: 0}
   currState: 0
+  foodType: 0
   animator: {fileID: 0}
   customerType: 1
   isSeated: 0
@@ -59540,7 +59544,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d896b44843936d4b8e6555eb5ab2e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  queueManager: {fileID: 0}
   currState: 0
+  foodType: 0
   animator: {fileID: 0}
   customerType: 3
   isSeated: 0
@@ -64483,7 +64489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d896b44843936d4b8e6555eb5ab2e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  queueManager: {fileID: 0}
   currState: 0
+  foodType: 0
   animator: {fileID: 0}
   customerType: 4
   isSeated: 0

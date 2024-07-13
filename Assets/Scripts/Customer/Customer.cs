@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
@@ -16,6 +16,16 @@ public class Customer : MonoBehaviour
         Leave // Destroy
     }
     public CustomerState currState;
+
+    public enum Food
+    {
+        Hamburger,
+        Sandwich,
+        Pizza,
+        MushroomSoup
+    }
+    public Food foodType;
+
     public Animator animator;
     public int customerType;
 
@@ -30,7 +40,15 @@ public class Customer : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         currState = CustomerState.InQueue;
+        foodType = GetFood();
         StartCoroutine(StateMachine());
+    }
+
+    private static Food GetFood()
+    {
+        Food[] foodTypes = (Food[]) Enum.GetValues(typeof(Type));
+        Food food = foodTypes[UnityEngine.Random.Range(0, foodTypes.Length)];
+        return food;
     }
 
     private IEnumerator StateMachine()
@@ -129,7 +147,7 @@ public class Customer : MonoBehaviour
 
     private void Leave()
     {
-       PlayAnimation(CustomerState.Leave);
+        PlayAnimation(CustomerState.Leave);
         Destroy(gameObject, 1f);
     }
 
