@@ -5,8 +5,8 @@ using static Customer;
 
 public class Orders : MonoBehaviour
 {
-    public Queue<Food> queue = new Queue<Food>();
-    
+    public Queue<KeyValuePair<int, Food>> orderList = new Queue<KeyValuePair<int, Food>>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,5 +17,10 @@ public class Orders : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddOrder(int id, Food foodType)
+    {
+        orderList.Enqueue(new KeyValuePair<int, Food>(id, foodType));
     }
 }

@@ -26,12 +26,17 @@ public class Customer : MonoBehaviour
     }
     public Food foodType;
 
+    // public SeatManager seatManager;
     public Animator animator;
     public int customerType;
+    public int id;
+    public static int counter;
+
+    private Orders orders;
 
     private float readTime = 3f;
     private float eatTime = 3f;
-    private float patience = 5f;
+    private float patience = 10f;
     
     public bool isSeated = false;
     
@@ -39,6 +44,7 @@ public class Customer : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        // seatManager = FindObjectOfType<SeatManager>();
         currState = CustomerState.InQueue;
         foodType = GetFood();
         StartCoroutine(StateMachine());
@@ -46,7 +52,7 @@ public class Customer : MonoBehaviour
 
     private static Food GetFood()
     {
-        Food[] foodTypes = (Food[]) Enum.GetValues(typeof(Type));
+        Food[] foodTypes = (Food[]) Enum.GetValues(typeof(Food));
         Food food = foodTypes[UnityEngine.Random.Range(0, foodTypes.Length)];
         return food;
     }
@@ -147,6 +153,8 @@ public class Customer : MonoBehaviour
 
     private void Leave()
     {
+        // Vector2Int seat = new Vector2Int((int)this.transform.position.x, (int)this.transform.position.z);
+        // seatManager.FreeUp(seat);
         PlayAnimation(CustomerState.Leave);
         Destroy(gameObject, 1f);
     }
@@ -186,6 +194,7 @@ public class Customer : MonoBehaviour
             switch(currState)
             {
                 case CustomerState.WaitingForOrderPickup:
+                    PickUp(id);
                     currState = CustomerState.WaitingForFood;
                     Debug.Log("Order picked up.");
                     break;
@@ -199,5 +208,23 @@ public class Customer : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void PickUp(int id)
+    {
+        orders.AddOrder(id, this.foodType);
+    }
+
+    private void ServeFood()
+    {
+        //if (WaiterInventory.)
+        {
+            
+        }
+    }
+
+    private void CheckBill()
+    {
+
     }
 }

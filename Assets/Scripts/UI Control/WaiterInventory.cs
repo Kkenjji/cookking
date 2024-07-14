@@ -5,7 +5,7 @@ using static Customer;
 
 public class WaiterInventory : MonoBehaviour
 {
-    public Food foodType;
+    public KeyValuePair<int, Food> order;
 
     // Start is called before the first frame update
     void Start()

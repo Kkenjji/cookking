@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Dragger : MonoBehaviour
 {
-    private GameObject currCustomer;
+    public GameObject currCustomer;
     private Camera camera2;
     private Vector3 initPosition;
     private int layerCount;
@@ -24,6 +24,11 @@ public class Dragger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currCustomer == null)
+        {
+            Cursor.visible = true;
+        }
+        
         if (!PauseMenu.gameIsPaused)
         {
             Ray ray = camera2.ScreenPointToRay(Input.mousePosition);
