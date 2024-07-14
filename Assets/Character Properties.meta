@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Food Pack-Demo.meta
+guid: ca2f3a5f269634541915deb970c53480
+========
 guid: 5dc7325fcbd1f4f46b060c3fdeb502ac
+>>>>>>>> main:Assets/Character Properties.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

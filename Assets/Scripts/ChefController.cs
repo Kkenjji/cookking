@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using System.Xml.Serialization;
 
-public class ChefController : MonoBehaviour
+public class ChefController : MonoBehaviour, KitchenInterface
 {
     public static ChefController Instance {
         get;
@@ -13,12 +13,16 @@ public class ChefController : MonoBehaviour
     [SerializeField] private float MoveSpeed = 8f;
     [SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private ChefMovement chefMovement;
+    [SerializeField] private Transform KitchenObjectHold;
     private Vector3 LastSeen;
-    private EmptyCounter InteractedCounter;
+    private Base InteractedCounter;
     public event EventHandler<SelectedCounterEventArgs> SelectedCounter;
+    private KitchenObject kitchenObject;
+
+
     public class SelectedCounterEventArgs : EventArgs
     {
-        public EmptyCounter InteractedCounter;
+        public Base InteractedCounter;
     }
 
     private void Awake()
@@ -33,13 +37,23 @@ public class ChefController : MonoBehaviour
     {
         
         chefMovement.OnInteract += ChefMovement_OnInteract;
+        chefMovement.OnCut += ChefMovement_OnCut;
     }
+
+    private void ChefMovement_OnCut(object sender, EventArgs e)
+    {
+        if (InteractedCounter != null)
+        {
+            InteractedCounter.Cut(this);
+        }
+    }
+
 
     private void ChefMovement_OnInteract(object sender, System.EventArgs e)
     {
         if (InteractedCounter != null)
         {
-            InteractedCounter.Interact();
+            InteractedCounter.Interact(this);
         }
     }
     private void Update()
@@ -60,11 +74,11 @@ public class ChefController : MonoBehaviour
         }
         if (Physics.Raycast(transform.position, LastSeen, out RaycastHit raycasthit, InteractionDistance))
         {
-            if (raycasthit.transform.TryGetComponent(out EmptyCounter emptyCounter))
+            if (raycasthit.transform.TryGetComponent(out Base bAse))
             {
-                if (emptyCounter != InteractedCounter)
+                if (bAse != InteractedCounter)
                 {
-                    SetInteractedCounter(emptyCounter);
+                    SetInteractedCounter(bAse);
                 }
 
             }
@@ -112,20 +126,19 @@ public class ChefController : MonoBehaviour
                 }
                 else//do not move
                 {
+                    Position3D = Vector3.zero;
                 }
-                transform.forward = Vector3.Slerp(transform.forward, Position3D, Time.deltaTime * RotationSpeed);
-
-
-            }
+           }
         }
         if (!ObjectInfront) //if no object can move
         {
             transform.position += Position3D * Time.deltaTime * MoveSpeed;
+            transform.forward = Vector3.Slerp(transform.forward, Position3D, Time.deltaTime * RotationSpeed);
         }
     }
 
 
-    private void SetInteractedCounter(EmptyCounter InteractedCounter)
+    private void SetInteractedCounter(Base InteractedCounter)
     {
         this.InteractedCounter = InteractedCounter;
 
@@ -135,5 +148,27 @@ public class ChefController : MonoBehaviour
         });
         
 
+    }
+
+    public Transform MovementPointTransform()
+    {
+        return KitchenObjectHold;
+    }
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        this.kitchenObject = kitchenObject;
+    }
+    public KitchenObject GetKitchenObject()
+    {
+        return kitchenObject;
+    }
+    public void ClearKitchenObject()
+    {
+        kitchenObject = null;
+    }
+
+    public bool IsKitchenObject()
+    {
+        return kitchenObject != null;
     }
 }

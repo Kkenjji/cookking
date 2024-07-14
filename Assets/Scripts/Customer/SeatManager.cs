@@ -16,7 +16,7 @@ public class SeatManager : MonoBehaviour
         {
             Vector2Int coordinates = new Vector2Int(node.coords.x, node.coords.y);
             occupiedSeats.Add(coordinates, false);
-            Debug.Log(coordinates.x + "," + coordinates.y);
+            // Debug.Log(coordinates.x + "," + coordinates.y);
         }
     }
 

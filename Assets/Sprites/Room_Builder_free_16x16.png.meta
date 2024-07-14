@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Assets/Sprites/BreadSprite.png.meta
+guid: 6f320f5ab8c1b4447a9a16b5f6bf7b55
+========
 guid: 05b0d936bc6d74f1193f7cc902ac7bcb
+>>>>>>>> main:Assets/Sprites/Room_Builder_free_16x16.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +47,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<<< HEAD:Assets/_Assets/Sprites/BreadSprite.png.meta
+  spriteMode: 1
+========
   spriteMode: 2
+>>>>>>>> main:Assets/Sprites/Room_Builder_free_16x16.png.meta
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -112,7 +120,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

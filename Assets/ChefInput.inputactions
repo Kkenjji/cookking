@@ -1,5 +1,5 @@
 {
-    "name": "ChiefInput",
+    "name": "ChefInput",
     "maps": [
         {
             "name": "Chef",
@@ -18,6 +18,15 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "8ec4e1d9-88d6-4b2d-ab1e-16816ad03220",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cut",
+                    "type": "Button",
+                    "id": "3b5a943f-beff-4c88-b406-9cbece28e2a5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -154,6 +163,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7ae63f2-a868-4735-96c3-35fea92afb48",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cut",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

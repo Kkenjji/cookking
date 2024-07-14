@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Base.cs.meta
+guid: 8d896b44843936d4b8e6555eb5ab2e2b
+========
 guid: 6caac38fdb58d40a3b27b8a5ef6c28ff
+>>>>>>>> main:Assets/Scripts/Customer/Customer.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

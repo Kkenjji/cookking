@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
@@ -8,32 +8,53 @@ public class Customer : MonoBehaviour
     public enum CustomerState
     {
         InQueue, // Idle
-        ReadingMenu, // ReadMenu
-        WaitingForOrderPickup, // RaiseHand
+        ReadingMenu, // Read Menu
+        WaitingForOrderPickup, // Raise Hand
         WaitingForFood, // Idle
         Eating, // Eating
-        WaitingForBillCheck, // RaiseHand
+        WaitingForBillCheck, // Raise Hand
         Leave // Destroy
     }
+    public CustomerState currState;
+
+    public enum Food
+    {
+        Hamburger,
+        Sandwich,
+        Pizza,
+        MushroomSoup
+    }
+    public Food foodType;
+
+    // public SeatManager seatManager;
     public Animator animator;
     public int customerType;
+    public int id;
+    public static int counter;
 
-    private float patience;
-    private int patienceMin = 20;
-    private int patienceMax = 30;
+    private Orders orders;
 
-    private float readTime;
-    private float eatTime;
-    public CustomerState currState;
-    public bool isActive = false;
+    private float readTime = 3f;
+    private float eatTime = 3f;
+    private float patience = 10f;
+    
     public bool isSeated = false;
     
     // Start is called before the first frame update
     void Start()
     {
-        // animator = GetComponent<Animator>();
-        patience = Random.Range(patienceMin, patienceMax + 1);
-        // StartCoroutine(StateMachine());
+        animator = GetComponent<Animator>();
+        // seatManager = FindObjectOfType<SeatManager>();
+        currState = CustomerState.InQueue;
+        foodType = GetFood();
+        StartCoroutine(StateMachine());
+    }
+
+    private static Food GetFood()
+    {
+        Food[] foodTypes = (Food[]) Enum.GetValues(typeof(Food));
+        Food food = foodTypes[UnityEngine.Random.Range(0, foodTypes.Length)];
+        return food;
     }
 
     private IEnumerator StateMachine()
@@ -42,6 +63,9 @@ public class Customer : MonoBehaviour
         {
             switch (currState)
             {
+                case CustomerState.InQueue:
+                    yield return InQueue();
+                    break;
                 case CustomerState.ReadingMenu:
                     yield return ReadMenu();
                     break;
@@ -67,16 +91,18 @@ public class Customer : MonoBehaviour
     {
         switch (state)
         {
+            case CustomerState.InQueue:
+                return "Customer_" + customerType + "_Idle";
             case CustomerState.ReadingMenu:
-                return "Customer_" + customerType + "_ReadMenu";
+                return "Customer_" + customerType + "_Read_Menu";
             case CustomerState.WaitingForOrderPickup:
-                return "Customer_" + customerType + "_RaiseHand";
+                return "Customer_" + customerType + "_Raise_Hand";
             case CustomerState.WaitingForFood:
                 return "Customer_" + customerType + "_Idle";
             case CustomerState.Eating:
                 return "Customer_" + customerType + "_Eating";
             case CustomerState.WaitingForBillCheck:
-                return "Customer_" + customerType + "_RaiseHand";
+                return "Customer_" + customerType + "_Raise_Hand";
             case CustomerState.Leave:
                 return "Customer_" + customerType + "_Wave";
             default:
@@ -84,76 +110,121 @@ public class Customer : MonoBehaviour
         }
     }
 
+    private void PlayAnimation(CustomerState state)
+    {
+        animator.SetInteger("CustomerState", (int)state);
+    }
+    
+    private IEnumerator InQueue()
+    {
+        PlayAnimation(CustomerState.InQueue);
+        yield return PatienceTimer(patience, true, CustomerState.ReadingMenu);
+    }
+
     private IEnumerator ReadMenu()
     {
-        string animation = GetAnimation(CustomerState.ReadingMenu);
-        animator.Play(animation);
-        SetActive(false);
-        yield return new WaitForSeconds(readTime);
-        currState = CustomerState.WaitingForOrderPickup;
+        PlayAnimation(CustomerState.ReadingMenu);
+        yield return PatienceTimer(readTime, false, CustomerState.WaitingForOrderPickup);
     }
 
     private IEnumerator WaitForOrderPickup()
     {
-        string animation = GetAnimation(CustomerState.WaitingForOrderPickup);
-        animator.Play(animation);
-        SetActive(true);
-        yield return new WaitForSeconds(patience);
+        PlayAnimation(CustomerState.WaitingForOrderPickup);
+        yield return PatienceTimer(patience, true, CustomerState.WaitingForFood);
     }
     
     private IEnumerator WaitForFood()
     {
-        string animation = GetAnimation(CustomerState.WaitingForFood);
-        animator.Play(animation);
-        SetActive(true);
-        yield return new WaitForSeconds(patience);
+        PlayAnimation(CustomerState.WaitingForFood);
+        yield return PatienceTimer(patience, true, CustomerState.Eating);
     }
 
     private IEnumerator Eating()
     {
-        string animation = GetAnimation(CustomerState.Eating);
-        animator.Play(animation);
-        SetActive(false);
-        yield return new WaitForSeconds(eatTime);
+        PlayAnimation(CustomerState.Eating);
+        yield return PatienceTimer(eatTime, false, CustomerState.WaitingForBillCheck);
     }
 
     private IEnumerator WaitForBillCheck()
     {
-        string animation = GetAnimation(CustomerState.WaitingForBillCheck);
-        animator.Play(animation);
-        SetActive(true);
-        yield return new WaitForSeconds(patience);
+        PlayAnimation(CustomerState.WaitingForBillCheck);
+        yield return PatienceTimer(patience, true, CustomerState.Leave);
     }
 
     private void Leave()
     {
-        string animation = GetAnimation(CustomerState.Leave);
-        animator.Play(animation); // wave animation
-        SetActive(false);
+        // Vector2Int seat = new Vector2Int((int)this.transform.position.x, (int)this.transform.position.z);
+        // seatManager.FreeUp(seat);
+        PlayAnimation(CustomerState.Leave);
         Destroy(gameObject, 1f);
-    }
-
-    private void SetActive(bool isActive)
-    {
-        this.isActive = isActive;
     }
 
     public void SetSeated()
     {
         isSeated = true;
+        currState = CustomerState.ReadingMenu;
+    }
+
+    private IEnumerator PatienceTimer(float duration, bool leaveOnTimeout, CustomerState nextState)
+    {
+        while (duration > 0f)
+        {
+            if (currState == nextState)
+            {
+                yield break;
+            }
+            duration -= Time.deltaTime;
+            yield return null;
+        }
+
+        if (leaveOnTimeout)
+        {
+            currState = CustomerState.Leave;
+        }
+        else
+        {
+            currState = nextState;
+        }
     }
 
     public void Interact()
     {
-        Debug.Log(isActive + "Interacted");
-        if (isActive == false)
+        if (!PauseMenu.gameIsPaused)
         {
-            isActive = true;
+            switch(currState)
+            {
+                case CustomerState.WaitingForOrderPickup:
+                    PickUp(id);
+                    currState = CustomerState.WaitingForFood;
+                    Debug.Log("Order picked up.");
+                    break;
+                case CustomerState.WaitingForFood:
+                    currState = CustomerState.Eating;
+                    Debug.Log("Food served.");
+                    break;
+                case CustomerState.WaitingForBillCheck:
+                    currState = CustomerState.Leave;
+                    Debug.Log("Bill checked.");
+                    break;
+            }
         }
-        else
+    }
+
+    private void PickUp(int id)
+    {
+        orders.AddOrder(id, this.foodType);
+    }
+
+    private void ServeFood()
+    {
+        //if (WaiterInventory.)
         {
-            isActive = false;
+            
         }
-        return;
+    }
+
+    private void CheckBill()
+    {
+
     }
 }
