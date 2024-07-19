@@ -47,7 +47,7 @@ public class LevelSelector : MonoBehaviour
     }
 
     public void ResetProgress()
-    {
+    {    
         PlayerPrefs.DeleteAll();
         Initialize();
         UpdateStars();
