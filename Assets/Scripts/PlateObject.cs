@@ -36,4 +36,8 @@ public class PlateObject : KitchenObject
             return true;
         }
     }
+
+    public List<KitchenObjectScript> GetKOSList() {
+    return KOSList;
+    }
 }

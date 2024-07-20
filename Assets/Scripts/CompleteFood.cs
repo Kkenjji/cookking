@@ -13,6 +13,7 @@ public class CompleteFood : MonoBehaviour
     }
     [SerializeField] private PlateObject plateObject;
     [SerializeField] private List<Ingredient_Visual> IngredientVisualList;
+    [SerializeField] private GameObject completeBurgerGameObject;
     private void Start()
     {
         plateObject.AddIngredient += PlateObject_AddIngredient;
@@ -20,10 +21,12 @@ public class CompleteFood : MonoBehaviour
         {
             ingredient_Visual.gameObject.SetActive(false);
         }
+        completeBurgerGameObject.SetActive(false);
     }
 
     private void PlateObject_AddIngredient(object sender, PlateObject.AddIngredientEventArgs e)
     {
+        bool AllIngredients = true;
         foreach (Ingredient_Visual ingredient_Visual in IngredientVisualList)
         {
             if (ingredient_Visual.KOS == e.KOS)
@@ -31,6 +34,25 @@ public class CompleteFood : MonoBehaviour
                 ingredient_Visual.gameObject.SetActive(true);
             }
         }
-    }
-}
+        foreach (Ingredient_Visual ingredient_Visual in IngredientVisualList)
+        {
+            if (!ingredient_Visual.gameObject.activeSelf)
+            {
+                AllIngredients = false;
+                break;
+            }
+        }
+        if (AllIngredients)
+        {
+            foreach (Ingredient_Visual ingredient_Visual in IngredientVisualList)
+            {
+                ingredient_Visual.gameObject.SetActive(false);
+            }
+            completeBurgerGameObject.SetActive(true);
+        }
+            }
+            
+        }
+    
+
 
