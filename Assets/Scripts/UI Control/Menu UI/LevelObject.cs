@@ -6,18 +6,23 @@ using UnityEngine.UI;
 public class LevelObject : MonoBehaviour
 {
     public Image[] stars;
+    public Sprite emptyStar;
+    public Sprite yellowStar;
     
     public void ActivateStars(int num)
     {
-        for (int i = 0; i < stars.Length; i++)
+        if (num == 0)
         {
-            if (i == num - 1)
+            for (int i = 0; i < stars.Length; i++)
             {
-                stars[i].enabled = true;
+                stars[i].sprite = emptyStar;
             }
-            else
+        }
+        else
+        {
+            for (int i = 0; i < num; i++)
             {
-                stars[i].enabled = false;
+                stars[i].sprite = yellowStar;
             }
         }
     }

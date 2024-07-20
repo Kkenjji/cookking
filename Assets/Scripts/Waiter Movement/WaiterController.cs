@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WaiterController : MonoBehaviour
 {
-    [SerializeField] float movementSpeed = 5f;
+    public float movementSpeed = 5f;
     public Animator animator;
     
     [SerializeField] GameObject waiter;
