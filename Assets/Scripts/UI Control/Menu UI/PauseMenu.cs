@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        FindObjectOfType<AudioManager>().PlaySFX("Pause");
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
@@ -39,6 +40,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        FindObjectOfType<AudioManager>().PlaySFX("Back");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
@@ -53,6 +55,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitToMenu()
     {
+        FindObjectOfType<AudioManager>().PlaySFX("Select");
         SceneManager.LoadScene("MainMenu");
         Reset();
     }

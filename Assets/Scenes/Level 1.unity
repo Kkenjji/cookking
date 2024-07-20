@@ -56570,6 +56570,98 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 697995694}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1110029268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110029270}
+  - component: {fileID: 1110029269}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1110029269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110029268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e573900abcf441d496dd6a2aa814afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musics:
+  - name: MainTheme
+    clip: {fileID: 8300000, guid: 0e18c9d45dd024c53ad62edc388d0bbb, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: GameplayMusic
+    clip: {fileID: 8300000, guid: 6cc7260b26b16495b966404501dbee05, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  sfxs:
+  - name: Click
+    clip: {fileID: 8300000, guid: 38a24fee8577d41eab9752645d393a16, type: 3}
+    volume: 1
+    pitch: 1.6
+    loop: 0
+    source: {fileID: 0}
+  - name: Back
+    clip: {fileID: 8300000, guid: 3ef9c0c46f0244b8dba4681fcfba6b90, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Reset
+    clip: {fileID: 8300000, guid: 7e9beafe1f7de47459b1440c2f007b6c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pause
+    clip: {fileID: 8300000, guid: cb4291cd9490344ae862d2a48adf2b2d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Select
+    clip: {fileID: 8300000, guid: 42a6f22ecfe4f4b808953bffe3b9b7f0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  musicMixerGroup: {fileID: -1872277715138092579, guid: 4ef2ff8377a15418a9bc24d01461862d,
+    type: 2}
+  sfxMixerGroup: {fileID: -8071739673732584940, guid: 4ef2ff8377a15418a9bc24d01461862d,
+    type: 2}
+--- !u!4 &1110029270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110029268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1114661395
 GameObject:
   m_ObjectHideFlags: 0
@@ -102638,3 +102730,4 @@ SceneRoots:
   - {fileID: 513459706}
   - {fileID: 1959528372}
   - {fileID: 1685748365}
+  - {fileID: 1110029270}
