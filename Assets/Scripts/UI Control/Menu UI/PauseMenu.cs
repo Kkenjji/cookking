@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused;
     public GameObject pauseMenuUI;
+    public GameObject optionsMenuUI;
+    public GameObject pauseBackground;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !optionsMenuUI.activeSelf)
         {
             if (gameIsPaused)
             {
@@ -34,6 +36,7 @@ public class PauseMenu : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().PlaySFX("Pause");
         pauseMenuUI.SetActive(true);
+        pauseBackground.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
     }
@@ -42,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().PlaySFX("Back");
         pauseMenuUI.SetActive(false);
+        pauseBackground.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
     }
@@ -49,6 +53,7 @@ public class PauseMenu : MonoBehaviour
     private void Reset()
     {
         pauseMenuUI.SetActive(false);
+        pauseBackground.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
     }

@@ -15,7 +15,6 @@ public class LevelComplete : MonoBehaviour
             {
                 PlayerPrefs.SetInt("levelsUnlocked", currLevel + 1);
             }
-
             Debug.Log("Level " + PlayerPrefs.GetInt("levelsUnlocked") + " Unlocked");
         }
         
