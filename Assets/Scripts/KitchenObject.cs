@@ -12,9 +12,11 @@ public class KitchenObject : MonoBehaviour
     {
         return kitchenObjectScript;
     }
-    public void SetKitchenInterface(KitchenInterface kitchenInterface) {
-        if (this.kitchenInterface != null) {
-        this.kitchenInterface.ClearKitchenObject();//set new parent
+    public void SetKitchenInterface(KitchenInterface kitchenInterface)
+    {
+        if (this.kitchenInterface != null)
+        {
+            this.kitchenInterface.ClearKitchenObject();//set new parent
         }
         this.kitchenInterface = kitchenInterface;
 
@@ -22,18 +24,40 @@ public class KitchenObject : MonoBehaviour
         transform.parent = kitchenInterface.MovementPointTransform();
         transform.localPosition = Vector3.zero;
     }
-    public KitchenInterface GetKitchenInterface() { 
+    public KitchenInterface GetKitchenInterface()
+    {
         return kitchenInterface;
     }
-    public void DestroyFood() {
-        kitchenInterface.ClearKitchenObject() ;
+    public void DestroyFood()
+    {
+        kitchenInterface.ClearKitchenObject();
         Destroy(gameObject);
     }
 
-    public static KitchenObject SpawnFood(KitchenObjectScript kitchenObjectScript, KitchenInterface kitchenInterface) {
+    public static KitchenObject SpawnFood(KitchenObjectScript kitchenObjectScript, KitchenInterface kitchenInterface)
+    {
         Transform kitchenObjectTransform = Instantiate(kitchenObjectScript.prefab);
         KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
         kitchenObject.SetKitchenInterface(kitchenInterface);
         return kitchenObject;
     }
+
+     public bool CheckPlate(out PlateObject plateObject)
+    {
+        if (this is PlateObject)
+        {
+            plateObject = this as PlateObject;
+            return true;
+        }
+        else
+        {
+            plateObject = null;
+            return false;
+        }
+
+    }
+
+
+
+
 }
