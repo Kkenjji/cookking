@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1028896604418325347}
-  - component: {fileID: 4978695759478503141}
+  - component: {fileID: 355413524850493056}
   - component: {fileID: 1694574623569893564}
   - component: {fileID: 8093430235446975410}
   m_Layer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &4978695759478503141
+--- !u!114 &355413524850493056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,12 +43,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8080389188701458727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6caac38fdb58d40a3b27b8a5ef6c28ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d896b44843936d4b8e6555eb5ab2e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  customerType: 0
   currState: 0
+  foodType: 0
+  seatManager: {fileID: 0}
+  animator: {fileID: 0}
+  customerType: 3
+  isSeated: 0
 --- !u!212 &1694574623569893564
 SpriteRenderer:
   m_ObjectHideFlags: 0
