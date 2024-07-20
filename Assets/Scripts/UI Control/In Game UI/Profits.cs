@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class Profits : MonoBehaviour
 {
-    public int total;
-    public TextMeshPro profitsText;
+    private int total;
+    public TMP_Text profitsText;
 
     // Start is called before the first frame update
     void Start()
     {
         total = 0;
-        UpdateTotalUI();
+        UpdateTotal();
     }
 
     public void AddProfits(int amount)
     {
-        this.total += amount;
-        UpdateTotalUI();
+        total += amount;
+        UpdateTotal();
     }
 
-    private void UpdateTotalUI()
+    private void UpdateTotal()
     {
-        profitsText.text = "$" + total.ToString();
+        profitsText.text = total.ToString();
     }
 }

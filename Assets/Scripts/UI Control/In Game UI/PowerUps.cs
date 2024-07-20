@@ -8,6 +8,7 @@ public class PowerUps : MonoBehaviour
     public int value = 50;
     public float multiplier = 1.8f;
     public float duration = 6f;
+    private static bool isBoosted = false;
     
     void OnTriggerEnter(Collider other)
     {
@@ -33,34 +34,40 @@ public class PowerUps : MonoBehaviour
                 StartCoroutine(Boost());
                 break;
         }
-
-        Destroy(gameObject);
     }
 
     private void AddHeart()
     {
-        // Destroy(gameObject);
+        FindObjectOfType<Health>().AddHealth();
+        Destroy(gameObject);
     }
 
     private void AddToProfits()
     {
-        // Profits profits = FindObjectOfType<Profits>();
-        // profits.total
-        // Destroy(gameObject);
+        Profits profits = FindObjectOfType<Profits>();
+        profits.AddProfits(value);
+        
+        Destroy(gameObject);
     }
 
     private IEnumerator Boost()
     {
-        WaiterController controller = FindObjectOfType<WaiterController>();
-        controller.movementSpeed *= multiplier;
+        if (!isBoosted)
+        {
+            WaiterController controller = FindObjectOfType<WaiterController>();
 
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
+            isBoosted = true;
+            controller.movementSpeed *= multiplier;
+        
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+            
+            yield return new WaitForSeconds(duration);
+            
+            controller.movementSpeed /= multiplier;
+            isBoosted = false;
+        }
 
-        yield return new WaitForSeconds(duration);
-
-        controller.movementSpeed /= multiplier;
-
-        // Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
