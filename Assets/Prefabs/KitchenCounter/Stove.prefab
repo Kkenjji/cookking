@@ -416,8 +416,10 @@ MonoBehaviour:
   Countertop: {fileID: 6751990219342928955}
   CookingArray:
   - {fileID: 11400000, guid: 554518ea1f4e3784ea687ca55b98d881, type: 2}
+  - {fileID: 11400000, guid: cf8fd13e49a5cdb4c9965e54debb6c5f, type: 2}
   BurntCookingArray:
   - {fileID: 11400000, guid: 2b16799e919cef84b9fcc0aaf28a35be, type: 2}
+  - {fileID: 11400000, guid: e64ef423d962c21419c0449f8da539c7, type: 2}
 --- !u!4 &6751990219342928955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2317924913863104767, guid: 91a2f8ecd1c0e6447b53046c7347dcd8,
