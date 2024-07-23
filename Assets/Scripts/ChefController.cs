@@ -67,7 +67,7 @@ public class ChefController : MonoBehaviour, KitchenInterface
     {
         Vector2 InputVector = chefMovement.Moving();
         Vector3 Position3D = new Vector3(InputVector.x, 0f, InputVector.y);
-        float InteractionDistance = 2f;
+        float InteractionDistance = 1f;
         if (Position3D != Vector3.zero)
         {
             LastSeen = Position3D;

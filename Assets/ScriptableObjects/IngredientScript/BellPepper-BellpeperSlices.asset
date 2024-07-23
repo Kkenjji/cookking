@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b108f57282cbde41b11fdcca18f13d5, type: 3}
+  m_Name: BellPepper-BellpeperSlices
+  m_EditorClassIdentifier: 
+  Original: {fileID: 11400000, guid: 57c23e5cd9f79104382e7e1f27b08a20, type: 2}
+  New: {fileID: 11400000, guid: fc084dbdf53ee2b41a95d45e62d712b7, type: 2}

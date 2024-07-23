@@ -456,7 +456,7 @@ PrefabInstance:
     - target: {fileID: 2317924913863104767, guid: 91a2f8ecd1c0e6447b53046c7347dcd8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 0.919
       objectReference: {fileID: 0}
     - target: {fileID: 5009568773780692136, guid: 91a2f8ecd1c0e6447b53046c7347dcd8,
         type: 3}
@@ -567,6 +567,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a727363ee20ece94e920cf5f1e577878, type: 2}
   - {fileID: 11400000, guid: 54e60af474a9d5346bde6bc623ebe825, type: 2}
   - {fileID: 11400000, guid: 6fe62f6020bf68c44bb1763419a5e395, type: 2}
+  - {fileID: 11400000, guid: 3f06dfcd74bfb18458b37bd1c0674b1e, type: 2}
+  - {fileID: 11400000, guid: bb18da11bced0cc4786ef9cc555f863d, type: 2}
+  - {fileID: 11400000, guid: 59dde7dbbf0e5034a8d14cb1f7937af8, type: 2}
+  - {fileID: 11400000, guid: a6418fc5646059b498e012162a1c5e1e, type: 2}
+  - {fileID: 11400000, guid: 3d4da94b6c0fd1b4faa26e200f09433c, type: 2}
 --- !u!4 &6085891704659134242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2317924913863104767, guid: 91a2f8ecd1c0e6447b53046c7347dcd8,
