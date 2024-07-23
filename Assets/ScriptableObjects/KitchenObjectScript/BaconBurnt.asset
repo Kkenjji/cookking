@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eda754811b469244b000f1c0d0b991e, type: 3}
-  m_Name: Burger
+  m_Script: {fileID: 11500000, guid: 9dbdb97f5a6e92745ae7a1fbec71a997, type: 3}
+  m_Name: BaconBurnt
   m_EditorClassIdentifier: 
-  KOSList:
-  - {fileID: 11400000, guid: 4a9c52292d7742246b07e76065ff6779, type: 2}
-  - {fileID: 11400000, guid: 4fa4fa239764a0d4893bd0acad634943, type: 2}
-  RecipeName: Burger
+  prefab: {fileID: 6738135828068229569, guid: 301cd6e34264f934bbc103f65b04e72d, type: 3}
+  Name: BaconBurnt
+  sprite: {fileID: 21300000, guid: 9879ab51ff64741439c63227b3cf28eb, type: 3}

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Full Recipe List
   m_EditorClassIdentifier: 
   recipeLists:
-  - {fileID: 11400000, guid: ac0f4bc484a8e7f45835fb89a78c70f0, type: 2}
-  - {fileID: 11400000, guid: 2d69138d36444aa418ed0738cfd53a62, type: 2}
   - {fileID: 11400000, guid: 2192d99eea2a83d479be0e9bdd8ebc22, type: 2}
   - {fileID: 11400000, guid: f014f462c0f2c164c8c8792abbde9196, type: 2}
+  - {fileID: 11400000, guid: dbf1c2eb5085b164e8b26e66f12d0ed4, type: 2}
+  - {fileID: 11400000, guid: 00b9082c8795f5e4e8e6cf77a014f776, type: 2}
+  - {fileID: 11400000, guid: bf07bf5218d22294da4d5daaabcfd3ee, type: 2}
