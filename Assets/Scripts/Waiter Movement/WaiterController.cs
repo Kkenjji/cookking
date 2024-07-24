@@ -8,9 +8,6 @@ public class WaiterController : MonoBehaviour
     public float movementSpeed;
     public Animator animator;
     
-    [SerializeField] GameObject waiter;
-    Transform wTransform;
-    
     List<Node> path = new List<Node>();
 
     GridManager gridManager;
@@ -23,10 +20,9 @@ public class WaiterController : MonoBehaviour
     {
         gridManager = FindObjectOfType<GridManager>();
         seatManager = FindObjectOfType<SeatManager>();
-        pathFinder = FindObjectOfType<Pathfinding>();
+        pathFinder = GetComponent<Pathfinding>(); // 
+        animator = GetComponent<Animator>();
         camera2 = GameObject.Find("Camera 2").GetComponent<Camera>();
-        wTransform = waiter.transform;
-        animator = waiter.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -107,9 +103,9 @@ public class WaiterController : MonoBehaviour
     {
         for (int i = 1; i < path.Count; i++)
         {
-            Vector3 startPos = wTransform.position;
+            Vector3 startPos = transform.position;
             Vector3 endPos = gridManager.GetPositionFromCoordinates(path[i].coords);
-            endPos.y = wTransform.position.y;
+            endPos.y = transform.position.y;
             float travelPercent = 0f;
 
             // Debug.Log($"Moving from {startPos} to {endPos}");
@@ -122,11 +118,10 @@ public class WaiterController : MonoBehaviour
             while (travelPercent < 1f)
             {
                 travelPercent += Time.deltaTime * movementSpeed;
-                wTransform.position = Vector3.Lerp(startPos, endPos, travelPercent);
+                transform.position = Vector3.Lerp(startPos, endPos, travelPercent);
                 yield return new WaitForEndOfFrame(); 
             }
         }
-
         animator.SetFloat("Speed", 0);
         // Debug.Log("Idle");
     }
@@ -137,8 +132,8 @@ public class WaiterController : MonoBehaviour
         {
             Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
             targetCoords.x += 1;
-            Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
-                                                    (int) wTransform.position.z / gridManager.UnityGridSize);
+            Vector2Int startCoords = new Vector2Int((int) transform.position.x / gridManager.UnityGridSize,
+                                                    (int) transform.position.z / gridManager.UnityGridSize);
             pathFinder.SetNewDestination(startCoords, targetCoords);
             RecalculatePath(true);
         }
@@ -151,8 +146,8 @@ public class WaiterController : MonoBehaviour
             Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
             targetCoords.x += 1;
             targetCoords.y += 1;
-            Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
-                                                    (int) wTransform.position.z / gridManager.UnityGridSize);
+            Vector2Int startCoords = new Vector2Int((int) transform.position.x / gridManager.UnityGridSize,
+                                                    (int) transform.position.z / gridManager.UnityGridSize);
             pathFinder.SetNewDestination(startCoords, targetCoords);
             RecalculatePath(true);
         }
@@ -164,8 +159,8 @@ public class WaiterController : MonoBehaviour
         {
             Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
             targetCoords.y += 1;
-            Vector2Int startCoords = new Vector2Int((int) wTransform.position.x / gridManager.UnityGridSize,
-                                                    (int) wTransform.position.z / gridManager.UnityGridSize);
+            Vector2Int startCoords = new Vector2Int((int) transform.position.x / gridManager.UnityGridSize,
+                                                    (int) transform.position.z / gridManager.UnityGridSize);
             pathFinder.SetNewDestination(startCoords, targetCoords);
             RecalculatePath(true);
         }

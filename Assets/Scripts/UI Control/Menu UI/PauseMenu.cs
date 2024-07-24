@@ -75,4 +75,11 @@ public class PauseMenu : MonoBehaviour
         int currScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currScene);
     }
+
+    public void NextLevel()
+    {
+        FindObjectOfType<LevelComplete>().Complete(1);
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextScene);
+    }
 }

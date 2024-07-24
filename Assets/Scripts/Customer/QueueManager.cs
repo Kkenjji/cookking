@@ -20,7 +20,7 @@ public class QueueManager : MonoBehaviour
         customer.GetComponent<Customer>().SetSeated();
     }
 
-    private void RemoveCustomer(GameObject customer)
+    public void RemoveCustomer(GameObject customer)
     {
         List<GameObject> temp = new List<GameObject>(queue);
         temp.Remove(customer);

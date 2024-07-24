@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 7012110705647168639}
   - component: {fileID: 2893102996395387263}
   - component: {fileID: 1739023444763015568}
+  - component: {fileID: 3311527184776866338}
+  - component: {fileID: 651191851687616656}
+  - component: {fileID: 1614762870828908869}
   m_Layer: 0
   m_Name: Waiter_3
   m_TagString: Untagged
@@ -156,3 +159,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3311527184776866338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336877750286054782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b485587e662af400bb0bf24a1d50a3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCoords: {x: 0, y: 0}
+  targetCoords: {x: 0, y: 0}
+--- !u!114 &651191851687616656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336877750286054782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d308082d6677440797202c67ef80a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currCustomer: {fileID: 0}
+--- !u!114 &1614762870828908869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336877750286054782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12456d0dfbdf349f4b83f4ae19ac4b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 10
+  animator: {fileID: 0}
