@@ -46,8 +46,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
-        int prefabIndex = Random.Range(0, 1);// customerPrefabs.Length);
-        GameObject newCustomer = Instantiate(customerPrefabs[prefabIndex]);
+        GameObject newCustomer = Instantiate(customerPrefabs[Random.Range(0, 1)]);
         newCustomer.transform.SetParent(layer3.transform);
         queueManager.AddCustomer(newCustomer);
         totalCustomers--;

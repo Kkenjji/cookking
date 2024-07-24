@@ -198,13 +198,13 @@ public class Customer : MonoBehaviour
 
     private void ServeFood()
     {
-        WaiterInventory waiterInventory = FindObjectOfType<WaiterInventory>();
-        if (waiterInventory.currentFoodType == this.foodType)
-        {
+        // WaiterInventory waiterInventory = FindObjectOfType<WaiterInventory>();
+        // if (waiterInventory.currentFoodType == this.foodType)
+        // {
             FindObjectOfType<OrderQueue>().RemoveOrder(this.tableId);
             currState = CustomerState.Eating;
             Debug.Log("Food served.");
-        }
+        // }
     }
 
     private void CheckBill()

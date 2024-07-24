@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour
 {
+    public bool levelCompleted;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        levelCompleted = false;
+    }
+
     public void Complete(int starCount)
     {
+        levelCompleted = true;
         int currLevel = SceneManager.GetActiveScene().buildIndex;
         
         if (starCount != 0) // checks whether to unlock the next level
