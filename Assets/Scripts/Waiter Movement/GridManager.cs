@@ -106,4 +106,17 @@ public class GridManager : MonoBehaviour
 
         return nodeList;
     }
+
+    public List<Vector2Int> GetWalkable()
+    {
+        List<Vector2Int> walkableCoords = new List<Vector2Int>();
+        foreach (var entry in grid)
+        {
+            if (entry.Value.walkable)
+            {
+                walkableCoords.Add(entry.Key);
+            }
+        }
+        return walkableCoords;
+    }
 }

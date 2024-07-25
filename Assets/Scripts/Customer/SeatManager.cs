@@ -23,11 +23,13 @@ public class SeatManager : MonoBehaviour
     public void Occupy(Vector2Int seat)
     {
         occupiedSeats[seat] = true;
+        Debug.Log("Seat: (" + seat.x + " ," + seat.y + ") is occupied.");
     }
 
     public void FreeUp(Vector2Int seat)
     {
         occupiedSeats[seat] = false;
+        Debug.Log("Seat: (" + seat.x + " ," + seat.y + ") is available.");
     }
 
     public bool isOccupied(Vector2Int seat)

@@ -13,7 +13,7 @@ public class Customer : MonoBehaviour
         WaitingForFood, // Idle
         Eating, // Eating
         WaitingForBillCheck, // Raise Hand
-        Leave // Destroy
+        Leave // Wave/Destroy
     }
     public CustomerState currState;
 
@@ -22,29 +22,28 @@ public class Customer : MonoBehaviour
         Hamburger,
         Sandwich,
         Pizza,
-        MushroomSoup
+        Salad
     }
     public Food foodType;
 
-    // public SeatManager seatManager;
+    public int tableId;
+
+    private Order myOrder;
+
     public Animator animator;
     public int customerType;
-    public int id;
-    public static int counter;
-
-    private Orders orders;
 
     private float readTime = 3f;
     private float eatTime = 3f;
     private float patience = 10f;
     
     public bool isSeated = false;
-    
+    public bool billChecked = false;
     // Start is called before the first frame update
     void Start()
     {
+        tableId = UnityEngine.Random.Range(0, 10);
         animator = GetComponent<Animator>();
-        // seatManager = FindObjectOfType<SeatManager>();
         currState = CustomerState.InQueue;
         foodType = GetFood();
         StartCoroutine(StateMachine());
@@ -84,30 +83,7 @@ public class Customer : MonoBehaviour
             }
         }
 
-        Leave();
-    }
-
-    private string GetAnimation(CustomerState state)
-    {
-        switch (state)
-        {
-            case CustomerState.InQueue:
-                return "Customer_" + customerType + "_Idle";
-            case CustomerState.ReadingMenu:
-                return "Customer_" + customerType + "_Read_Menu";
-            case CustomerState.WaitingForOrderPickup:
-                return "Customer_" + customerType + "_Raise_Hand";
-            case CustomerState.WaitingForFood:
-                return "Customer_" + customerType + "_Idle";
-            case CustomerState.Eating:
-                return "Customer_" + customerType + "_Eating";
-            case CustomerState.WaitingForBillCheck:
-                return "Customer_" + customerType + "_Raise_Hand";
-            case CustomerState.Leave:
-                return "Customer_" + customerType + "_Wave";
-            default:
-                return "Customer_" + customerType + "_Idle";
-        }
+        StartCoroutine(Leave());
     }
 
     private void PlayAnimation(CustomerState state)
@@ -151,12 +127,30 @@ public class Customer : MonoBehaviour
         yield return PatienceTimer(patience, true, CustomerState.Leave);
     }
 
-    private void Leave()
+    private IEnumerator Leave()
     {
-        // Vector2Int seat = new Vector2Int((int)this.transform.position.x, (int)this.transform.position.z);
-        // seatManager.FreeUp(seat);
+        if (isSeated)
+        {
+            Vector2Int seat = new Vector2Int((int)transform.position.x, (int)transform.position.z);
+            FindObjectOfType<SeatManager>().FreeUp(seat);
+        }
+        else
+        {
+            FindObjectOfType<QueueManager>().RemoveCustomer(gameObject);
+        }
+
         PlayAnimation(CustomerState.Leave);
-        Destroy(gameObject, 1f);
+
+        FindObjectOfType<LevelComplete>().remainingCustomers--;
+        yield return new WaitForSeconds(1f);
+
+        if (!billChecked)
+        {
+            FindObjectOfType<Health>().RemoveHealth();
+        }
+
+        Destroy(gameObject);
+        
     }
 
     public void SetSeated()
@@ -194,37 +188,41 @@ public class Customer : MonoBehaviour
             switch(currState)
             {
                 case CustomerState.WaitingForOrderPickup:
-                    PickUp(id);
-                    currState = CustomerState.WaitingForFood;
-                    Debug.Log("Order picked up.");
+                    PickUpOrder();
                     break;
                 case CustomerState.WaitingForFood:
-                    currState = CustomerState.Eating;
-                    Debug.Log("Food served.");
+                    ServeFood();
                     break;
                 case CustomerState.WaitingForBillCheck:
-                    currState = CustomerState.Leave;
-                    Debug.Log("Bill checked.");
+                    CheckBill();
                     break;
             }
         }
     }
 
-    private void PickUp(int id)
+    private void PickUpOrder()
     {
-        orders.AddOrder(id, this.foodType);
+        FindObjectOfType<OrderQueue>().AddOrder(this.tableId, this.foodType);
+        currState = CustomerState.WaitingForFood;
+        Debug.Log("Order picked up.");
     }
 
     private void ServeFood()
     {
-        //if (WaiterInventory.)
-        {
-            
-        }
+        // WaiterInventory waiterInventory = FindObjectOfType<WaiterInventory>();
+        // if (waiterInventory.currentFoodType == this.foodType)
+        // {
+            FindObjectOfType<OrderQueue>().RemoveOrder(this.tableId);
+            currState = CustomerState.Eating;
+            Debug.Log("Food served.");
+        // }
     }
 
     private void CheckBill()
     {
-
-    }
+        FindObjectOfType<Profits>().AddProfits(50);
+        billChecked = true;
+        currState = CustomerState.Leave;
+        Debug.Log("Bill checked.");
+    }    
 }
