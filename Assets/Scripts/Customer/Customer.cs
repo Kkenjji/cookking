@@ -40,6 +40,7 @@ public class Customer : MonoBehaviour
     
     public bool isSeated = false;
     public bool billChecked = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -204,6 +205,26 @@ public class Customer : MonoBehaviour
     private void PickUpOrder()
     {
         FindObjectOfType<OrderQueue>().AddOrder(this.tableId, this.foodType);
+        
+        switch (foodType)
+        {
+            case Food.FullBurger:
+                // FindObjectOfType<OrderBurger>().TriggerThisEvent();
+                break;
+            case Food.ChickenSet:
+            
+                break;
+            case Food.Salad:
+            
+                break;
+            case Food.Sandwich:
+            
+                break;
+            case Food.LambSet:
+            
+                break;
+        }
+        
         currState = CustomerState.WaitingForFood;
         Debug.Log("Order picked up.");
     }

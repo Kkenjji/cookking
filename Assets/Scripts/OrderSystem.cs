@@ -67,11 +67,9 @@ public class OrderSystem : MonoBehaviour
                 }
             }
         }
-
-        
     }
 
     public List<RecipeList> GetRecipeList() {
-    return recipeList;
+        return recipeList;
     }
 }
