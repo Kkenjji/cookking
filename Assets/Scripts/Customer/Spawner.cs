@@ -9,9 +9,9 @@ public class Spawner : MonoBehaviour
     public Tilemap layer3;
     public GameObject[] customerPrefabs;
     public QueueManager queueManager;
-    [SerializeField] float spawnTimeMin;
-    [SerializeField] float spawnTimeMax;
-    [SerializeField] int totalCustomers;
+    public float spawnTimeMin;
+    public float spawnTimeMax;
+    public int totalCustomers;
 
     // Start is called before the first frame update
     void Start()

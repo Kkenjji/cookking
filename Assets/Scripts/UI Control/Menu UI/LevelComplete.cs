@@ -5,17 +5,69 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour
 {
-    public bool levelCompleted;
+    public GameObject winUI;
+    public GameObject gameOverUI;
+    public GameObject gameElementsUI;
+    public Health healthTracker;
+    public int targetProfits;
+    public int remainingCustomers;
+    public bool hasEnded;
     
     // Start is called before the first frame update
     void Start()
     {
-        levelCompleted = false;
+        healthTracker = FindObjectOfType<Health>();
+        remainingCustomers = FindObjectOfType<Spawner>().totalCustomers;
+        hasEnded = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!hasEnded)
+        {
+            if (healthTracker.health == 0)
+            {
+                FailLevel();
+            }
+            else if (remainingCustomers == 0)
+            {
+                int stars = 1;
+
+                if (FindObjectOfType<Profits>().total >= targetProfits)
+                {
+                    stars++;
+                }
+
+                if (healthTracker.health == healthTracker.heartCount)
+                {
+                    stars++;
+                }
+
+                StartCoroutine(CompleteLevel(stars));
+            }
+        }
+    }
+
+    private void FailLevel()
+    {
+        hasEnded = true;
+        FindObjectOfType<PauseMenu>().FreezeGame();
+        gameOverUI.SetActive(true);
+        Complete(0);
+    }
+
+    private IEnumerator CompleteLevel(int stars)
+    {
+        yield return new WaitForSeconds(1f);
+        hasEnded = true;
+        FindObjectOfType<PauseMenu>().FreezeGame();
+        winUI.SetActive(true);
+        Complete(stars);
     }
 
     public void Complete(int starCount)
     {
-        levelCompleted = true;
         int currLevel = SceneManager.GetActiveScene().buildIndex;
         
         if (starCount != 0) // checks whether to unlock the next level
@@ -31,7 +83,5 @@ public class LevelComplete : MonoBehaviour
         {
             PlayerPrefs.SetInt("Level " + currLevel + " StarCount", starCount);
         }
-
-        SceneManager.LoadScene("MainMenu");
     }
 }

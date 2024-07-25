@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Profits : MonoBehaviour
 {
-    private int total;
+    public int total;
     public TMP_Text profitsText;
 
     // Start is called before the first frame update

@@ -22,7 +22,7 @@ public class PowerUpsSpawner : MonoBehaviour
         List<Vector2Int> walkables = FindObjectOfType<GridManager>().GetWalkable();
         foreach (Vector2Int entry in walkables)
         {
-            Debug.Log("x: " + entry.x + ", y: " + entry.y + ")");
+            // Debug.Log("x: " + entry.x + ", y: " + entry.y);
         }
 
         while (true)

@@ -38,7 +38,7 @@ public class Customer : MonoBehaviour
     private float patience = 10f;
     
     public bool isSeated = false;
-    
+    public bool billChecked = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,7 +83,7 @@ public class Customer : MonoBehaviour
             }
         }
 
-        Leave();
+        StartCoroutine(Leave());
     }
 
     private void PlayAnimation(CustomerState state)
@@ -127,7 +127,7 @@ public class Customer : MonoBehaviour
         yield return PatienceTimer(patience, true, CustomerState.Leave);
     }
 
-    private void Leave()
+    private IEnumerator Leave()
     {
         if (isSeated)
         {
@@ -138,8 +138,19 @@ public class Customer : MonoBehaviour
         {
             FindObjectOfType<QueueManager>().RemoveCustomer(gameObject);
         }
+
         PlayAnimation(CustomerState.Leave);
-        Destroy(gameObject, 1f);
+
+        FindObjectOfType<LevelComplete>().remainingCustomers--;
+        yield return new WaitForSeconds(1f);
+
+        if (!billChecked)
+        {
+            FindObjectOfType<Health>().RemoveHealth();
+        }
+
+        Destroy(gameObject);
+        
     }
 
     public void SetSeated()
@@ -210,6 +221,7 @@ public class Customer : MonoBehaviour
     private void CheckBill()
     {
         FindObjectOfType<Profits>().AddProfits(50);
+        billChecked = true;
         currState = CustomerState.Leave;
         Debug.Log("Bill checked.");
     }    

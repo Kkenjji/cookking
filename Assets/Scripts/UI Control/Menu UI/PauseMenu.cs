@@ -45,6 +45,14 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
     }
 
+    public void FreezeGame()
+    {
+        pauseBackground.SetActive(true);
+        gameElementsUI.SetActive(false);
+        Time.timeScale = 0f;
+        gameIsPaused = true;
+    }
+
     public void ResumeGame()
     {
         FindObjectOfType<AudioManager>().PlaySFX("Back");
