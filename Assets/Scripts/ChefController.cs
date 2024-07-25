@@ -133,7 +133,7 @@ public class ChefController : MonoBehaviour, KitchenInterface
         if (!ObjectInfront) //if no object can move
         {
             transform.position += Position3D * Time.deltaTime * MoveSpeed;
-            transform.forward = Vector3.Slerp(transform.forward, Position3D, Time.deltaTime * RotationSpeed);
+            transform.forward = Position3D;//Vector3.Slerp(transform.forward, Position3D, Time.deltaTime * RotationSpeed);
         }
     }
 

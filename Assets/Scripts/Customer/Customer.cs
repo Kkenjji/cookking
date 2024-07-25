@@ -19,10 +19,11 @@ public class Customer : MonoBehaviour
 
     public enum Food
     {
-        Hamburger,
+        FullBurger,
+        ChickenSet,
+        Salad,
         Sandwich,
-        Pizza,
-        Salad
+        LambSet
     }
     public Food foodType;
 
