@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WaiterController : MonoBehaviour
 {
+    private bool isMoving;
     public float movementSpeed;
     public Animator animator;
     
@@ -18,6 +19,7 @@ public class WaiterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isMoving = false;
         gridManager = FindObjectOfType<GridManager>();
         seatManager = FindObjectOfType<SeatManager>();
         pathFinder = GetComponent<Pathfinding>(); // 
@@ -44,7 +46,10 @@ public class WaiterController : MonoBehaviour
                     if (seatManager.isOccupied(chairPos))
                     {
                         Customer customerComponent = hit.transform.GetComponent<Customer>();
-                        customerComponent.Interact();
+                        if (!isMoving)
+                        {
+                            customerComponent.Interact();
+                        }
                     }
                 }
                 
@@ -56,7 +61,10 @@ public class WaiterController : MonoBehaviour
                     if (seatManager.isOccupied(chairPos))
                     {
                         Customer customerComponent = hit.transform.GetComponent<Customer>();
-                        customerComponent.Interact();
+                        if (!isMoving)
+                        {
+                            customerComponent.Interact();
+                        }
                     }
                 }
                 
@@ -68,7 +76,10 @@ public class WaiterController : MonoBehaviour
                     if (seatManager.isOccupied(chairPos))
                     {
                         Customer customerComponent = hit.transform.GetComponent<Customer>();
-                        customerComponent.Interact();
+                        if (!isMoving)
+                        {
+                            customerComponent.Interact();
+                        }
                     }
                 }
 
@@ -76,7 +87,10 @@ public class WaiterController : MonoBehaviour
                 {
                     MoveFromChair(hit);
                     Customer customerComponent = hit.transform.GetComponent<Customer>();
-                    customerComponent.Interact();
+                    if (!isMoving)
+                    {
+                        customerComponent.Interact();
+                    }
                 }
             }
         }
@@ -101,6 +115,7 @@ public class WaiterController : MonoBehaviour
 
     IEnumerator FollowPath()
     {
+        isMoving = true;
         for (int i = 1; i < path.Count; i++)
         {
             Vector3 startPos = transform.position;
@@ -123,6 +138,7 @@ public class WaiterController : MonoBehaviour
             }
         }
         animator.SetFloat("Speed", 0);
+        isMoving = false;
         // Debug.Log("Idle");
     }
     
