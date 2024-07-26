@@ -5,6 +5,21 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
+    public event Action BurgerOrder;
+    public event Action SandwichOrder;
+    public event Action SaladOrder;
+    public event Action ChickenSetOrder;
+    public event Action LambSetOrder;
+    public static Customer Instance
+    {
+        get; private set;
+    }
+    private void Awake()
+    {
+        Instance= this;
+    }
+
+
     public enum CustomerState
     {
         InQueue, // Idle
@@ -209,19 +224,29 @@ public class Customer : MonoBehaviour
         switch (foodType)
         {
             case Food.FullBurger:
-                // FindObjectOfType<OrderBurger>().TriggerThisEvent();
+                EventManager.TriggerBurgerOrder();
+                Debug.Log("burgerorder");
+                
                 break;
             case Food.ChickenSet:
-            
+                EventManager.TriggerChickenSetOrder();
+                Debug.Log("Chickenorder");
+                
                 break;
             case Food.Salad:
-            
+                EventManager.TriggerSaladOrder();
+                Debug.Log("saladorder");
+                
                 break;
             case Food.Sandwich:
-            
+                EventManager.TriggerSandwichOrder();
+                Debug.Log("sandwichorder");
+                
                 break;
             case Food.LambSet:
-            
+                EventManager.TriggerLambSetOrder();
+                Debug.Log("lamborder");
+                
                 break;
         }
         

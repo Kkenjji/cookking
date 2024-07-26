@@ -24,12 +24,12 @@ public class CompleteFood : MonoBehaviour
         completeBurgerGameObject.SetActive(false);
     }
 
-    private void PlateObject_AddIngredient(object sender, PlateObject.AddIngredientEventArgs e)
+    private void PlateObject_AddIngredient(KitchenObjectScript kitchenObjectScript)
     {
         bool AllIngredients = true;
         foreach (Ingredient_Visual ingredient_Visual in IngredientVisualList)
         {
-            if (ingredient_Visual.KOS == e.KOS)
+            if (ingredient_Visual.KOS == kitchenObjectScript)
             {
                 ingredient_Visual.gameObject.SetActive(true);
             }

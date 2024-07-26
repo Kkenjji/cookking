@@ -56,6 +56,11 @@ public class WaiterController : MonoBehaviour
                     if (seatManager.isOccupied(chairPos))
                     {
                         Customer customerComponent = hit.transform.GetComponent<Customer>();
+                        if (customerComponent == null)
+                        {
+                            Debug.LogWarning("Customer Component not detected on hit object");
+                            return;
+                        }
                         customerComponent.Interact();
                     }
                 }

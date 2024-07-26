@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 public class GameManager : MonoBehaviour
 {
     private bool GamePause = false;
-    public event EventHandler OnGamePause;
-    public event EventHandler OnGameResume;
+    public event Action OnGamePause;
+    public event Action OnGameResume;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void Instance_OnPause(object sender, System.EventArgs e)
+    private void Instance_OnPause()
     {
         TogglePause();
     }
@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour
         if (GamePause)
         {
             Time.timeScale = 0f;
-            OnGamePause?.Invoke(this,EventArgs.Empty);
+            OnGamePause?.Invoke();
         }
         else {
         Time.timeScale = 1f;
-            OnGameResume?.Invoke(this,EventArgs.Empty);
+            OnGameResume?.Invoke();
         }
     }
 }

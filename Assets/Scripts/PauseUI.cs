@@ -24,12 +24,12 @@ public class PauseUI : MonoBehaviour
         hide();
     }
 
-    private void Instance_OnGameResume(object sender, System.EventArgs e)
+    private void Instance_OnGameResume()
     {
         hide();
     }
 
-    private void Instance_OnGamePause(object sender, System.EventArgs e)
+    private void Instance_OnGamePause()
     {
         show();
     }

@@ -7,9 +7,9 @@ using System.Runtime.CompilerServices;
 
 public class ChefMovement : MonoBehaviour
 {
-    public event EventHandler OnInteract;
-    public event EventHandler OnCut;
-    public event EventHandler OnPause;
+    public event Action OnInteract;
+    public event Action OnCut;
+    public event Action OnPause;
     private ChefInput chefInput;
     public static ChefMovement Instance { get; private set; }
 
@@ -34,17 +34,17 @@ public class ChefMovement : MonoBehaviour
 
     private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnPause?.Invoke(this, EventArgs.Empty);
+        OnPause?.Invoke();
     }
 
     private void Cut_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnCut?.Invoke(this,EventArgs.Empty);
+        OnCut?.Invoke();
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnInteract?.Invoke(this,EventArgs.Empty);
+        OnInteract?.Invoke();
     }
     public Vector2 Moving()
     {
