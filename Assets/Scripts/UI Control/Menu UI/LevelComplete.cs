@@ -51,6 +51,10 @@ public class LevelComplete : MonoBehaviour
 
     private void FailLevel()
     {
+        if (hasEnded)
+        {
+            return;
+        }
         hasEnded = true;
         FindObjectOfType<PauseMenu>().FreezeGame();
         gameOverUI.SetActive(true);
@@ -59,6 +63,10 @@ public class LevelComplete : MonoBehaviour
 
     private IEnumerator CompleteLevel(int stars)
     {
+        if (hasEnded)
+        {
+            yield break;
+        }
         yield return new WaitForSeconds(1f);
         hasEnded = true;
         FindObjectOfType<PauseMenu>().FreezeGame();
