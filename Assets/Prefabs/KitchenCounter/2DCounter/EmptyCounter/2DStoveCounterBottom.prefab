@@ -235,9 +235,13 @@ MonoBehaviour:
   CookingArray:
   - {fileID: 11400000, guid: 554518ea1f4e3784ea687ca55b98d881, type: 2}
   - {fileID: 11400000, guid: cf8fd13e49a5cdb4c9965e54debb6c5f, type: 2}
+  - {fileID: 11400000, guid: d9b515eae39dcc34ca0a63b434c88b53, type: 2}
+  - {fileID: 11400000, guid: 4902edea5394a8b44894cb82f9c82c13, type: 2}
   BurntCookingArray:
   - {fileID: 11400000, guid: 2b16799e919cef84b9fcc0aaf28a35be, type: 2}
   - {fileID: 11400000, guid: e64ef423d962c21419c0449f8da539c7, type: 2}
+  - {fileID: 11400000, guid: 071f29f30e4308f4bb25787791ebebe1, type: 2}
+  - {fileID: 11400000, guid: effbbe895416d8648b04497de8b0bfa2, type: 2}
 --- !u!4 &3877731537097514800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2136290319443303397, guid: c58bbbd89c02fd3498e3ad2a908d3aba,

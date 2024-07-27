@@ -208,12 +208,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1946815538841179926}
   m_SourcePrefab: {fileID: 100100000, guid: a199899abc885f54a97ce0367a4fd782, type: 3}
---- !u!4 &4594326259355828941 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5212545533444132314, guid: a199899abc885f54a97ce0367a4fd782,
-    type: 3}
-  m_PrefabInstance: {fileID: 8616791193216077591}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6515916238179763866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3312910602820405645, guid: a199899abc885f54a97ce0367a4fd782,
@@ -232,13 +226,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d46123af2c4edc49b9053b4e1c532dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Countertop: {fileID: 4594326259355828941}
+  Countertop: {fileID: 8726510097899448765, guid: 45d185fff91b4d742a672cb8d573b850,
+    type: 3}
   CookingArray:
   - {fileID: 11400000, guid: 554518ea1f4e3784ea687ca55b98d881, type: 2}
   - {fileID: 11400000, guid: cf8fd13e49a5cdb4c9965e54debb6c5f, type: 2}
+  - {fileID: 11400000, guid: d9b515eae39dcc34ca0a63b434c88b53, type: 2}
+  - {fileID: 11400000, guid: 4902edea5394a8b44894cb82f9c82c13, type: 2}
   BurntCookingArray:
   - {fileID: 11400000, guid: 2b16799e919cef84b9fcc0aaf28a35be, type: 2}
   - {fileID: 11400000, guid: e64ef423d962c21419c0449f8da539c7, type: 2}
+  - {fileID: 11400000, guid: 071f29f30e4308f4bb25787791ebebe1, type: 2}
+  - {fileID: 11400000, guid: effbbe895416d8648b04497de8b0bfa2, type: 2}
 --- !u!4 &8289123188768928832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 332171743661505367, guid: a199899abc885f54a97ce0367a4fd782,
