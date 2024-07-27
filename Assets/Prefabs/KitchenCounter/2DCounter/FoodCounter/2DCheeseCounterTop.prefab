@@ -69,6 +69,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8663078134144020627, guid: ae24151f8b201644db19c6c4520db0c8,
+        type: 3}
+      propertyPath: baseCounter
+      value: 
+      objectReference: {fileID: 6643438911538806081}
     - target: {fileID: 8934072296824998863, guid: ae24151f8b201644db19c6c4520db0c8,
         type: 3}
       propertyPath: kitchenObjectScript
@@ -80,3 +85,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae24151f8b201644db19c6c4520db0c8, type: 3}
+--- !u!114 &6643438911538806081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8934072296824998863, guid: ae24151f8b201644db19c6c4520db0c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2868246602138433166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9581642c37ae7704aa57fbf234808a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

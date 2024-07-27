@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Countertop: {fileID: 5212545533444132314}
-  bAse: {fileID: 5934114975425041223}
+  baseCounter: {fileID: 5934114975425041223}
   visual: {fileID: 8361508188765228087}
 --- !u!1001 &2108189311709472587
 PrefabInstance:

@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 956331399821928629, guid: 15facd7f64df3494586767efa6a598ef,
+        type: 3}
+      propertyPath: baseCounter
+      value: 
+      objectReference: {fileID: 6210251937962651884}
     - target: {fileID: 1045062256972403689, guid: 15facd7f64df3494586767efa6a598ef,
         type: 3}
       propertyPath: kitchenObjectScript
@@ -80,3 +85,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15facd7f64df3494586767efa6a598ef, type: 3}
+--- !u!114 &6210251937962651884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1045062256972403689, guid: 15facd7f64df3494586767efa6a598ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6390592125971718917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9581642c37ae7704aa57fbf234808a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
