@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5320581ba5a6041208578705dc0c81c1
+guid: 09209a617cb73404bbabf6483e825ee0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Customer_1_Raise_Hand_Sprite_0
+      name: Customer_2_Eating_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 931e1c82b7948400a8e65f098fabc178
-      internalID: -1581261724
+      spriteID: ab1c015c71b334da7b4f45c30a40ae91
+      internalID: -386147138
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Customer_1_Raise_Hand_Sprite_1
+      name: Customer_2_Eating_1
       rect:
         serializedVersion: 2
         x: 16
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1193e71beb4e74c9c9e5105332d14f94
-      internalID: -1090731908
+      spriteID: 27626bf1b46cb4c9fac41db7b1dbbb91
+      internalID: 89532961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Customer_1_Raise_Hand_Sprite_2
+      name: Customer_2_Eating_2
       rect:
         serializedVersion: 2
         x: 32
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 954423f9a91754e9f9281c197b70c23a
-      internalID: -2076666325
+      spriteID: 19cc6882485344211a5924684c50a596
+      internalID: 586737040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Customer_1_Raise_Hand_Sprite_3
+      name: Customer_2_Eating_3
       rect:
         serializedVersion: 2
         x: 48
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eeb38ecc873964f98818ad491c37cb3d
-      internalID: 314273095
+      spriteID: c4ca2a8dec56644609b2e2be7a3e67c9
+      internalID: 771310229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Customer_1_Raise_Hand_Sprite_4
+      name: Customer_2_Eating_4
       rect:
         serializedVersion: 2
         x: 64
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 327acfcb28b56482195d13f1813c4b2b
-      internalID: 548365768
+      spriteID: 29e3e8a459fa54d848e8c797c1e8c0d5
+      internalID: 1690003735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Customer_1_Raise_Hand_Sprite_5
+      name: Customer_2_Eating_5
       rect:
         serializedVersion: 2
         x: 80
@@ -229,8 +229,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1606f564127764a1cbe7566c2b0769f9
-      internalID: 2018480210
+      spriteID: 79402546185a342828e1b5f22bdc14fb
+      internalID: -131947502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Customer_2_Eating_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 529626b6b5e52471bb06b63632617438
+      internalID: 1873113110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Customer_2_Eating_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e47132c6edaa4cd59862386f9c2f869
+      internalID: 1632506759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Customer_2_Eating_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b5593f38f356447692f8e1bbbe78482
+      internalID: -656669430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Customer_2_Eating_9
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 109bfe4ba96724ead9344dbc60851948
+      internalID: 1936038840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Customer_2_Eating_10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f96a419fbcce84cd6921832b3c883eb8
+      internalID: -1716132907
       vertices: []
       indices: 
       edges: []
@@ -238,7 +343,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 88f259d62be954155944f2280e6ab736
+    spriteID: 6d0c641097d1742d08c1971643c98c31
     internalID: 0
     vertices: []
     indices: 
@@ -246,12 +351,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Customer_1_Raise_Hand_Sprite_0: -1581261724
-      Customer_1_Raise_Hand_Sprite_1: -1090731908
-      Customer_1_Raise_Hand_Sprite_2: -2076666325
-      Customer_1_Raise_Hand_Sprite_3: 314273095
-      Customer_1_Raise_Hand_Sprite_4: 548365768
-      Customer_1_Raise_Hand_Sprite_5: 2018480210
+      Customer_2_Eating_0: -386147138
+      Customer_2_Eating_1: 89532961
+      Customer_2_Eating_10: -1716132907
+      Customer_2_Eating_2: 586737040
+      Customer_2_Eating_3: 771310229
+      Customer_2_Eating_4: 1690003735
+      Customer_2_Eating_5: -131947502
+      Customer_2_Eating_6: 1873113110
+      Customer_2_Eating_7: 1632506759
+      Customer_2_Eating_8: -656669430
+      Customer_2_Eating_9: 1936038840
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
