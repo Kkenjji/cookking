@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
@@ -44,10 +42,8 @@ public class Customer : MonoBehaviour
     }
     public Food foodType;
 
-    public Timer timer;
-
     public int tableId;
-    public TextMeshPro tableIdtext;
+
     private Order myOrder;
 
     public Animator animator;
@@ -64,8 +60,6 @@ public class Customer : MonoBehaviour
     void Start()
     {
         tableId = UnityEngine.Random.Range(0, 10);
-        tableIdtext.text = tableId.ToString();
-        tableIdtext.enabled = false;
         animator = GetComponent<Animator>();
         currState = CustomerState.InQueue;
         foodType = GetFood();
@@ -152,17 +146,6 @@ public class Customer : MonoBehaviour
 
     private IEnumerator Leave()
     {
-        if (billChecked)
-        {
-            PlayAnimation(CustomerState.Leave);
-        }
-        else
-        {
-            PlayAnimation(CustomerState.InQueue);
-        }
-
-        yield return new WaitForSeconds(1f);
-
         if (isSeated)
         {
             Vector2Int seat = new Vector2Int((int)transform.position.x, (int)transform.position.z);
@@ -171,9 +154,12 @@ public class Customer : MonoBehaviour
         else
         {
             FindObjectOfType<QueueManager>().RemoveCustomer(gameObject);
-        }        
+        }
+
+        PlayAnimation(CustomerState.Leave);
 
         FindObjectOfType<LevelComplete>().remainingCustomers--;
+        yield return new WaitForSeconds(1f);
 
         if (!billChecked)
         {
@@ -181,44 +167,24 @@ public class Customer : MonoBehaviour
         }
 
         Destroy(gameObject);
+        
     }
 
     public void SetSeated()
     {
         isSeated = true;
-        tableIdtext.enabled = true;
         currState = CustomerState.ReadingMenu;
     }
 
     private IEnumerator PatienceTimer(float duration, bool leaveOnTimeout, CustomerState nextState)
     {
-        // Debug.Log("Patience Timer Started");
-        timer.transform.gameObject.SetActive(leaveOnTimeout);
-
-        float timePerSprite = duration / timer.timerSprites.Length;
-
-        int currSpriteIndex = 0;
-        timer.UpdateSprite(currSpriteIndex);
-        float spriteTimer = timePerSprite;
-
         while (duration > 0f)
         {
             if (currState == nextState)
             {
-                // Debug.Log("Patience Timer Stopped: State Changed");
                 yield break;
             }
             duration -= Time.deltaTime;
-            spriteTimer -= Time.deltaTime;
-
-            if (spriteTimer <= 0f && currSpriteIndex < timer.timerSprites.Length)
-            {
-                currSpriteIndex++;
-                timer.UpdateSprite(currSpriteIndex);
-                // Debug.Log("Sprite Updated to: " + currSpriteIndex);
-                spriteTimer = timePerSprite;
-            }
-
             yield return null;
         }
 
@@ -230,8 +196,6 @@ public class Customer : MonoBehaviour
         {
             currState = nextState;
         }
-
-        // Debug.Log("Patience Timer Ended");
     }
 
     public void Interact()
