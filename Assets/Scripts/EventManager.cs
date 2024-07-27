@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public static class EventManager 
 {
@@ -9,8 +10,6 @@ public static class EventManager
     public static event Action SaladOrder;
     public static event Action ChickenSetOrder;
     public static event Action LambSetOrder;
-
-    //Add all events here
 
 
     public static void TriggerBurgerOrder()

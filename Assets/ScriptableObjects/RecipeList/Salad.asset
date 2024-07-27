@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KOSList:
   - {fileID: 11400000, guid: 60eb3d5ff03ed0b448e3d8db495c68ef, type: 2}
-  - {fileID: 11400000, guid: 10de753d19ff8754db265d7634abe3ec, type: 2}
-  - {fileID: 11400000, guid: c1e5aa235f4d72f45bf4af5273654510, type: 2}
+  - {fileID: 11400000, guid: 507fcdb3594a6d24f8f5709c629d1f05, type: 2}
+  - {fileID: 11400000, guid: fc084dbdf53ee2b41a95d45e62d712b7, type: 2}
   - {fileID: 11400000, guid: fa49184909a2bb740b7dd39c91c6cfe1, type: 2}
   - {fileID: 11400000, guid: fac976887dfed4c4dbd33f7f1f44a768, type: 2}
   RecipeName: Salad
