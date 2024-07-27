@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b108f57282cbde41b11fdcca18f13d5, type: 3}
+  m_Name: Corn-CornKernals
+  m_EditorClassIdentifier: 
+  Original: {fileID: 11400000, guid: bf26cb894ff6f2b4d9636ceb3e718b86, type: 2}
+  New: {fileID: 11400000, guid: c1e5aa235f4d72f45bf4af5273654510, type: 2}
