@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
@@ -10,15 +11,6 @@ public class Customer : MonoBehaviour
     public event Action SaladOrder;
     public event Action ChickenSetOrder;
     public event Action LambSetOrder;
-    public static Customer Instance
-    {
-        get; private set;
-    }
-    private void Awake()
-    {
-        Instance= this;
-    }
-
 
     public enum CustomerState
     {
@@ -34,7 +26,7 @@ public class Customer : MonoBehaviour
 
     public enum Food
     {
-        FullBurger,
+        Burger,
         ChickenSet,
         Salad,
         Sandwich,
@@ -42,9 +34,10 @@ public class Customer : MonoBehaviour
     }
     public Food foodType;
 
-    public int tableId;
+    public Timer timer;
 
-    private Order myOrder;
+    public int tableId;
+    public TextMeshPro tableIdtext;
 
     public Animator animator;
     public int customerType;
@@ -56,10 +49,22 @@ public class Customer : MonoBehaviour
     public bool isSeated = false;
     public bool billChecked = false;
 
+    public static Customer Instance
+    {
+        get; private set;
+    }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         tableId = UnityEngine.Random.Range(0, 10);
+        tableIdtext.text = tableId.ToString();
+        tableIdtext.enabled = false;
         animator = GetComponent<Animator>();
         currState = CustomerState.InQueue;
         foodType = GetFood();
@@ -146,6 +151,17 @@ public class Customer : MonoBehaviour
 
     private IEnumerator Leave()
     {
+        if (billChecked)
+        {
+            PlayAnimation(CustomerState.Leave);
+        }
+        else
+        {
+            PlayAnimation(CustomerState.InQueue);
+        }
+
+        yield return new WaitForSeconds(1f);
+
         if (isSeated)
         {
             Vector2Int seat = new Vector2Int((int)transform.position.x, (int)transform.position.z);
@@ -154,12 +170,9 @@ public class Customer : MonoBehaviour
         else
         {
             FindObjectOfType<QueueManager>().RemoveCustomer(gameObject);
-        }
-
-        PlayAnimation(CustomerState.Leave);
+        }        
 
         FindObjectOfType<LevelComplete>().remainingCustomers--;
-        yield return new WaitForSeconds(1f);
 
         if (!billChecked)
         {
@@ -167,24 +180,45 @@ public class Customer : MonoBehaviour
         }
 
         Destroy(gameObject);
-        
     }
 
     public void SetSeated()
     {
         isSeated = true;
+        tableIdtext.enabled = true;
         currState = CustomerState.ReadingMenu;
     }
 
     private IEnumerator PatienceTimer(float duration, bool leaveOnTimeout, CustomerState nextState)
     {
+        // Debug.Log("Patience Timer Started");
+        timer.transform.gameObject.SetActive(leaveOnTimeout);
+
+        float timePerSprite = duration / timer.timerSprites.Length;
+
+        int currSpriteIndex = 0;
+        timer.UpdateSprite(currSpriteIndex);
+        float spriteTimer = timePerSprite;
+
         while (duration > 0f)
         {
             if (currState == nextState)
             {
+                // Debug.Log("Patience Timer Stopped: State Changed");
+                timer.transform.gameObject.SetActive(false);
                 yield break;
             }
             duration -= Time.deltaTime;
+            spriteTimer -= Time.deltaTime;
+
+            if (spriteTimer <= 0f && currSpriteIndex < timer.timerSprites.Length)
+            {
+                currSpriteIndex++;
+                timer.UpdateSprite(currSpriteIndex);
+                // Debug.Log("Sprite Updated to: " + currSpriteIndex);
+                spriteTimer = timePerSprite;
+            }
+
             yield return null;
         }
 
@@ -196,6 +230,8 @@ public class Customer : MonoBehaviour
         {
             currState = nextState;
         }
+
+        // Debug.Log("Patience Timer Ended");
     }
 
     public void Interact()
@@ -223,35 +259,29 @@ public class Customer : MonoBehaviour
         
         switch (foodType)
         {
-            case Food.FullBurger:
+            case Food.Burger:
                 EventManager.TriggerBurgerOrder();
-                Debug.Log("burgerorder");
-                
+                Debug.Log("Picked up a Burger order.");
                 break;
             case Food.ChickenSet:
                 EventManager.TriggerChickenSetOrder();
-                Debug.Log("Chickenorder");
-                
+                Debug.Log("Picked up a ChickenSet order.");
                 break;
             case Food.Salad:
                 EventManager.TriggerSaladOrder();
-                Debug.Log("saladorder");
-                
+                Debug.Log("Picked up a Salad order.");
                 break;
             case Food.Sandwich:
                 EventManager.TriggerSandwichOrder();
-                Debug.Log("sandwichorder");
-                
+                Debug.Log("Picked up a Sandwich order.");
                 break;
             case Food.LambSet:
                 EventManager.TriggerLambSetOrder();
-                Debug.Log("lamborder");
-                
+                Debug.Log("Picked up a LambSet order.");
                 break;
         }
         
         currState = CustomerState.WaitingForFood;
-        Debug.Log("Order picked up.");
     }
 
     private void ServeFood()
