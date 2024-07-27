@@ -26,7 +26,7 @@ public class Customer : MonoBehaviour
 
     public enum Food
     {
-        FullBurger,
+        Burger,
         ChickenSet,
         Salad,
         Sandwich,
@@ -259,30 +259,29 @@ public class Customer : MonoBehaviour
         
         switch (foodType)
         {
-            case Food.FullBurger:
+            case Food.Burger:
                 EventManager.TriggerBurgerOrder();
-                Debug.Log("burgerorder");
+                Debug.Log("Picked up a Burger order.");
                 break;
             case Food.ChickenSet:
                 EventManager.TriggerChickenSetOrder();
-                Debug.Log("Chickenorder");
+                Debug.Log("Picked up a ChickenSet order.");
                 break;
             case Food.Salad:
                 EventManager.TriggerSaladOrder();
-                Debug.Log("saladorder");
+                Debug.Log("Picked up a Salad order.");
                 break;
             case Food.Sandwich:
                 EventManager.TriggerSandwichOrder();
-                Debug.Log("sandwichorder");
+                Debug.Log("Picked up a Sandwich order.");
                 break;
             case Food.LambSet:
                 EventManager.TriggerLambSetOrder();
-                Debug.Log("lamborder");
+                Debug.Log("Picked up a LambSet order.");
                 break;
         }
         
         currState = CustomerState.WaitingForFood;
-        Debug.Log("Order picked up.");
     }
 
     private void ServeFood()

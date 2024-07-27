@@ -32,8 +32,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8443054668544374880}
   - {fileID: 6186787451062996711}
+  - {fileID: 8443054668544374880}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2212723610547427767
@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 8
-  chefMovement: {fileID: 7600808885772564335}
-  chefAnimator: {fileID: 5143787618431011563}
-  KitchenObjectHold: {fileID: 8443054668544374880}
+  chefMovement: {fileID: 0}
+  chefAnimator: {fileID: 0}
+  KitchenObjectHold: {fileID: 0}
 --- !u!114 &7600808885772564335
 MonoBehaviour:
   m_ObjectHideFlags: 0

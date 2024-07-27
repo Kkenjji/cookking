@@ -13277,6 +13277,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f761f2d6eaf84d52b955f66d213c8da, type: 3}
+--- !u!4 &264622734 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8443054668544374880, guid: 8e1e33e7471df47688dcace1ffd33a8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 655359848}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &265503403
 GameObject:
   m_ObjectHideFlags: 0
@@ -34539,6 +34545,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1091565473}
     m_Modifications:
+    - target: {fileID: 2212723610547427767, guid: 8e1e33e7471df47688dcace1ffd33a8c,
+        type: 3}
+      propertyPath: chefAnimator
+      value: 
+      objectReference: {fileID: 1391083605}
+    - target: {fileID: 2212723610547427767, guid: 8e1e33e7471df47688dcace1ffd33a8c,
+        type: 3}
+      propertyPath: chefMovement
+      value: 
+      objectReference: {fileID: 1266897278}
+    - target: {fileID: 2212723610547427767, guid: 8e1e33e7471df47688dcace1ffd33a8c,
+        type: 3}
+      propertyPath: KitchenObjectHold
+      value: 
+      objectReference: {fileID: 264622734}
     - target: {fileID: 3665467706695036541, guid: 8e1e33e7471df47688dcace1ffd33a8c,
         type: 3}
       propertyPath: m_Name
@@ -64884,6 +64905,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1266897278 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7600808885772564335, guid: 8e1e33e7471df47688dcace1ffd33a8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 655359848}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa5b9e8c486c56438b26e1de6ff783c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1267804309
 GameObject:
   m_ObjectHideFlags: 0
@@ -71475,6 +71508,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f21a74c2cd3a4cb4aa5e6c964def82cc, type: 3}
+--- !u!95 &1391083605 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5143787618431011563, guid: 8e1e33e7471df47688dcace1ffd33a8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 655359848}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1392063110
 PrefabInstance:
   m_ObjectHideFlags: 0
