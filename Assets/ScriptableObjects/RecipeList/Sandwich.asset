@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3eda754811b469244b000f1c0d0b991e, type: 3}
-  m_Name: Sandwhich
+  m_Name: Sandwich
   m_EditorClassIdentifier: 
   KOSList:
   - {fileID: 11400000, guid: 4a9c52292d7742246b07e76065ff6779, type: 2}

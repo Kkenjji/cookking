@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WhenInteractCounter : Base
 {
-    [SerializeField] private Base bAse;
+    [SerializeField] private Base baseCounter;
     [SerializeField] private GameObject visual;
 
     private void Start()//do on start and not awake to make sure Instance is initialised first
@@ -12,10 +10,10 @@ public class WhenInteractCounter : Base
         ChefController.Instance.SelectedCounter += Instance_SelectedCounter;
     }
 
-    private void Instance_SelectedCounter(object sender, ChefController.SelectedCounterEventArgs e)
+    private void Instance_SelectedCounter(Base counter)
     {
         
-        if (e.InteractedCounter == bAse)
+        if (counter == baseCounter)
         {
             Show();
         }

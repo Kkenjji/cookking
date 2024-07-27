@@ -34,6 +34,7 @@ public class SeatManager : MonoBehaviour
 
     public bool isOccupied(Vector2Int seat)
     {
+      
         return occupiedSeats[seat];
     }
 }

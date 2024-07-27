@@ -17,7 +17,7 @@ public class IngredientUI : MonoBehaviour
         plateObject.AddIngredient += PlateObject_AddIngredient;
     }
 
-    private void PlateObject_AddIngredient(object sender, PlateObject.AddIngredientEventArgs e)
+    private void PlateObject_AddIngredient(KitchenObjectScript kitchenObjectScript)
     {
         ChangeUI();
     }

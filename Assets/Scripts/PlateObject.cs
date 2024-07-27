@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlateObject : KitchenObject
 {
-    public event EventHandler<AddIngredientEventArgs> AddIngredient;
-    public class AddIngredientEventArgs : EventArgs
+    public event Action<KitchenObjectScript> AddIngredient;
+    public class AddIngredientEventArgs
     {
         public KitchenObjectScript KOS;
     }
@@ -29,10 +27,9 @@ public class PlateObject : KitchenObject
         else
         {
             KOSList.Add(KOS);
-            AddIngredient?.Invoke(this, new AddIngredientEventArgs
-            {
-                KOS = KOS
-            });
+            AddIngredient?.Invoke(
+                KOS
+            );
             return true;
         }
     }

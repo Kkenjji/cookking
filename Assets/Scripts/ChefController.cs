@@ -11,19 +11,24 @@ public class ChefController : MonoBehaviour, KitchenInterface
         private set;
     }
     [SerializeField] private float MoveSpeed = 8f;
-    [SerializeField] private float RotationSpeed = 10f;
+    //[SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private ChefMovement chefMovement;
+    [SerializeField] private Animator chefAnimator;
     [SerializeField] private Transform KitchenObjectHold;
+    
+    
+    
     private Vector3 LastSeen;
     private Base InteractedCounter;
-    public event EventHandler<SelectedCounterEventArgs> SelectedCounter;
+    public event Action<Base> SelectedCounter;
     private KitchenObject kitchenObject;
 
+    //Animation Hashes
+    private static readonly int ISMOVING_HASH = Animator.StringToHash("IsMoving");
+    private static readonly int MOVEX_HASH = Animator.StringToHash("MoveX");
+    private static readonly int MOVEY_HASH = Animator.StringToHash("MoveY");
 
-    public class SelectedCounterEventArgs : EventArgs
-    {
-        public Base InteractedCounter;
-    }
+
 
     private void Awake()
     {
@@ -40,7 +45,7 @@ public class ChefController : MonoBehaviour, KitchenInterface
         chefMovement.OnCut += ChefMovement_OnCut;
     }
 
-    private void ChefMovement_OnCut(object sender, EventArgs e)
+    private void ChefMovement_OnCut()
     {
         if (InteractedCounter != null)
         {
@@ -49,7 +54,7 @@ public class ChefController : MonoBehaviour, KitchenInterface
     }
 
 
-    private void ChefMovement_OnInteract(object sender, System.EventArgs e)
+    private void ChefMovement_OnInteract()
     {
         if (InteractedCounter != null)
         {
@@ -106,6 +111,11 @@ public class ChefController : MonoBehaviour, KitchenInterface
         float PlayerHeight = 2f;
         float Distance = Time.deltaTime * MoveSpeed;
         bool ObjectInfront = Physics.CapsuleCast(transform.position, transform.position + Vector3.up * PlayerHeight, PlayerSize, Position3D, Distance);
+        bool isMoving = InputVector.magnitude > 0;
+        chefAnimator.SetBool(ISMOVING_HASH, isMoving); //Set based on whether player is moving or not
+        chefAnimator.SetFloat(MOVEX_HASH, InputVector.x);
+        chefAnimator.SetFloat(MOVEY_HASH, InputVector.y);
+
 
 
         if (ObjectInfront)// when got object infront
@@ -133,7 +143,7 @@ public class ChefController : MonoBehaviour, KitchenInterface
         if (!ObjectInfront) //if no object can move
         {
             transform.position += Position3D * Time.deltaTime * MoveSpeed;
-            transform.forward = Position3D;//Vector3.Slerp(transform.forward, Position3D, Time.deltaTime * RotationSpeed);
+            //transform.forward = Position3D;//Vector3.Slerp(transform.forward, Position3D, Time.deltaTime * RotationSpeed);
         }
     }
 
@@ -142,10 +152,7 @@ public class ChefController : MonoBehaviour, KitchenInterface
     {
         this.InteractedCounter = InteractedCounter;
 
-        SelectedCounter?.Invoke(this, new SelectedCounterEventArgs
-        {
-            InteractedCounter = InteractedCounter
-        });
+        SelectedCounter?.Invoke(InteractedCounter);
         
 
     }

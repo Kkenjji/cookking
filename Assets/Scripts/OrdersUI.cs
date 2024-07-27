@@ -19,12 +19,12 @@ public class OrdersUI : MonoBehaviour
         UpdateVisual();
     }
 
-    private void Instance_OrderFinish(object sender, System.EventArgs e)
+    private void Instance_OrderFinish()
     {
         UpdateVisual();
     }
 
-    private void Instance_OrderSpawn(object sender, System.EventArgs e)
+    private void Instance_OrderSpawn()
     {
         UpdateVisual();
     }

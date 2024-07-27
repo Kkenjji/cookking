@@ -49,6 +49,11 @@ public class Pathfinding : MonoBehaviour
 
     private void BFS(Vector2Int coordinates)
     {
+        if (startNode == null || targetNode == null)
+        {
+            Debug.LogWarning("Start Node or Target Node is null. Cannot run BFS");
+            return;
+        }
         startNode.walkable = true;
         targetNode.walkable = true;
 
@@ -99,7 +104,15 @@ public class Pathfinding : MonoBehaviour
 
     private List<Node> BuildPath()
     {
+       
+
         List<Node> path = new List<Node>();
+        if (targetNode == null)
+        {
+            Debug.LogWarning("Cannot Build Path when target node is null");
+            //Return empty path
+            return path;
+        }
         Node currentNode = targetNode;
         
         path.Add(currentNode);
@@ -124,8 +137,10 @@ public class Pathfinding : MonoBehaviour
     {
         startCoords = startCoordinates;
         targetCoords = targetCoordinates;
-        startNode = grid[this.startCoords];
-        targetNode = grid[this.targetCoords];
+
+        grid.TryGetValue(this.startCoords,out startNode);
+        grid.TryGetValue(this.targetCoords,out targetNode);
+
         GetNewPath();
     }
 }
