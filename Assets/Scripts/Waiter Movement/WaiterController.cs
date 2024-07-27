@@ -92,6 +92,11 @@ public class WaiterController : MonoBehaviour
                         customerComponent.Interact();
                     }
                 }
+
+                if (hit.transform.tag == "Power Up")
+                {
+                    MoveToPowerUp(hit);
+                }
             }
         }
     }
@@ -175,6 +180,18 @@ public class WaiterController : MonoBehaviour
         {
             Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
             targetCoords.y += 1;
+            Vector2Int startCoords = new Vector2Int((int) transform.position.x / gridManager.UnityGridSize,
+                                                    (int) transform.position.z / gridManager.UnityGridSize);
+            pathFinder.SetNewDestination(startCoords, targetCoords);
+            RecalculatePath(true);
+        }
+    }
+
+    private void MoveToPowerUp(RaycastHit hit)
+    {
+        if (!PauseMenu.gameIsPaused)
+        {
+            Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
             Vector2Int startCoords = new Vector2Int((int) transform.position.x / gridManager.UnityGridSize,
                                                     (int) transform.position.z / gridManager.UnityGridSize);
             pathFinder.SetNewDestination(startCoords, targetCoords);

@@ -11,6 +11,7 @@ TagManager:
   - Chair
   - Customer
   - Waiter
+  - Power Up
   layers:
   - Default
   - TransparentFX

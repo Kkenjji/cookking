@@ -11,7 +11,6 @@ public class ChefController : MonoBehaviour, KitchenInterface
         private set;
     }
     [SerializeField] private float MoveSpeed = 8f;
-    //[SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private ChefMovement chefMovement;
     [SerializeField] private Animator chefAnimator;
     [SerializeField] private Transform KitchenObjectHold;
@@ -65,7 +64,6 @@ public class ChefController : MonoBehaviour, KitchenInterface
     {
         Movement();
         Interaction();
-
     }
 
     private void Interaction()
@@ -116,8 +114,6 @@ public class ChefController : MonoBehaviour, KitchenInterface
         chefAnimator.SetFloat(MOVEX_HASH, InputVector.x);
         chefAnimator.SetFloat(MOVEY_HASH, InputVector.y);
 
-
-
         if (ObjectInfront)// when got object infront
         {
             Vector3 MoveLeft = new Vector3(Position3D.x, 0, 0);//try to move left
@@ -140,6 +136,7 @@ public class ChefController : MonoBehaviour, KitchenInterface
                 }
            }
         }
+        
         if (!ObjectInfront) //if no object can move
         {
             transform.position += Position3D * Time.deltaTime * MoveSpeed;

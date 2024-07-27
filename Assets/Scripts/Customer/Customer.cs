@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
@@ -12,15 +11,6 @@ public class Customer : MonoBehaviour
     public event Action SaladOrder;
     public event Action ChickenSetOrder;
     public event Action LambSetOrder;
-    public static Customer Instance
-    {
-        get; private set;
-    }
-    private void Awake()
-    {
-        Instance= this;
-    }
-
 
     public enum CustomerState
     {
@@ -48,7 +38,6 @@ public class Customer : MonoBehaviour
 
     public int tableId;
     public TextMeshPro tableIdtext;
-    private Order myOrder;
 
     public Animator animator;
     public int customerType;
@@ -59,6 +48,16 @@ public class Customer : MonoBehaviour
     
     public bool isSeated = false;
     public bool billChecked = false;
+
+    public static Customer Instance
+    {
+        get; private set;
+    }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -206,6 +205,7 @@ public class Customer : MonoBehaviour
             if (currState == nextState)
             {
                 // Debug.Log("Patience Timer Stopped: State Changed");
+                timer.transform.gameObject.SetActive(false);
                 yield break;
             }
             duration -= Time.deltaTime;
@@ -262,27 +262,22 @@ public class Customer : MonoBehaviour
             case Food.FullBurger:
                 EventManager.TriggerBurgerOrder();
                 Debug.Log("burgerorder");
-                
                 break;
             case Food.ChickenSet:
                 EventManager.TriggerChickenSetOrder();
                 Debug.Log("Chickenorder");
-                
                 break;
             case Food.Salad:
                 EventManager.TriggerSaladOrder();
                 Debug.Log("saladorder");
-                
                 break;
             case Food.Sandwich:
                 EventManager.TriggerSandwichOrder();
                 Debug.Log("sandwichorder");
-                
                 break;
             case Food.LambSet:
                 EventManager.TriggerLambSetOrder();
                 Debug.Log("lamborder");
-                
                 break;
         }
         
