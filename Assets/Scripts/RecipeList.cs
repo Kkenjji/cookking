@@ -8,4 +8,5 @@ public class RecipeList : ScriptableObject
 {
     public List<KitchenObjectScript> KOSList;
     public string RecipeName;
+    public Food FoodType;
 }

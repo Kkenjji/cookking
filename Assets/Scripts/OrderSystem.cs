@@ -198,11 +198,16 @@ public class OrderSystem : MonoBehaviour
                     }
                     if (!IngredientSame) {
                         Plate_Order= false;
+                        Food food = Food.WrongFood;
+                        
+                        //call function
                     }
 
                 }
                 if (Plate_Order) {
                     //correct order
+                    Food food=recipeList[i].FoodType;
+                    //whatever function
                     recipeList.RemoveAt(i);
                     OrderFinish?.Invoke();
                     return;
