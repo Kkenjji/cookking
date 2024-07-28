@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8137d2c399758464d816bef7e2064046, type: 2}
   - {fileID: 11400000, guid: fa49184909a2bb740b7dd39c91c6cfe1, type: 2}
   RecipeName: Sandwhich
+  FoodType: 3

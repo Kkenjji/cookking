@@ -635,6 +635,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2DCuttingCounterSide
       objectReference: {fileID: 0}
+    - target: {fileID: 4132462005226669031, guid: a199899abc885f54a97ce0367a4fd782,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132462005226669031, guid: a199899abc885f54a97ce0367a4fd782,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132462005226669031, guid: a199899abc885f54a97ce0367a4fd782,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5212545533444132314, guid: a199899abc885f54a97ce0367a4fd782,
         type: 3}
       propertyPath: m_LocalPosition.z

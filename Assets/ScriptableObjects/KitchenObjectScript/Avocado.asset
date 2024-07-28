@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6738135828068229569, guid: 7ce58e61f1d2a884cbda8a5e3c9c7671, type: 3}
   Name: Avocado
-  sprite: {fileID: 21300000, guid: 1d4acafc53f8a6044bb6073b4080ddb8, type: 3}
+  sprite: {fileID: 12838759, guid: f5d3af2c2fa73fc4ab89c2f806c3b620, type: 3}

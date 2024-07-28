@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6738135828068229569, guid: 37b8eca4d9a80634e9658c7c84e512a9, type: 3}
   Name: BaconRaw
-  sprite: {fileID: 21300000, guid: 9879ab51ff64741439c63227b3cf28eb, type: 3}
+  sprite: {fileID: -106596426, guid: 32c39ce59f9aeda438778bbe5337acea, type: 3}

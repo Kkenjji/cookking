@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6738135828068229569, guid: 301cd6e34264f934bbc103f65b04e72d, type: 3}
   Name: BaconBurnt
-  sprite: {fileID: 21300000, guid: 9879ab51ff64741439c63227b3cf28eb, type: 3}
+  sprite: {fileID: 21300000, guid: a2c2c4ca4d88bc04a9e67bf15b4dacb0, type: 3}

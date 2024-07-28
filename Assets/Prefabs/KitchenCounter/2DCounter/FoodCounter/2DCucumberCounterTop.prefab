@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 528381487082209902, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 528381487082209902, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 528381487082209902, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 528381487082209902, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.986
+      objectReference: {fileID: 0}
     - target: {fileID: 909815587029517522, guid: 764d6ee4990793d4ba1b718592498d8c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -61,8 +81,30 @@ PrefabInstance:
     - target: {fileID: 2721755961338623496, guid: 764d6ee4990793d4ba1b718592498d8c,
         type: 3}
       propertyPath: m_Name
-      value: 2DAvocadoCounterTop
+      value: 2DCucumberCounterTop
       objectReference: {fileID: 0}
+    - target: {fileID: 3559312965885377634, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559312965885377634, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660325585349264269, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c805ecf1a0f31884ba433264ec3c417a,
+        type: 3}
+    - target: {fileID: 6224551560436067154, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: kitchenObjectScript
+      value: 
+      objectReference: {fileID: 11400000, guid: 800ea8549d59d1648aa8266848ab51d7,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

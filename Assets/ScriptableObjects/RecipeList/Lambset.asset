@@ -17,3 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa49184909a2bb740b7dd39c91c6cfe1, type: 2}
   - {fileID: 11400000, guid: 8ae3f119bef0da14d908d9a205f3b701, type: 2}
   RecipeName: ChickenSet
+  FoodType: 4

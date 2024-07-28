@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6738135828068229569, guid: 63604257abd92aa4c9b99dc2b4854f8f, type: 3}
   Name: RawMeat
-  sprite: {fileID: 21300000, guid: 57fce0f5294456948999b813f2e6cef0, type: 3}
+  sprite: {fileID: 21300000, guid: 1928bfa6291e37b4db8f99a6d0f8a15f, type: 3}
