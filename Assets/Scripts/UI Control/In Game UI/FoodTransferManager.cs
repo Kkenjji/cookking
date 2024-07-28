@@ -5,27 +5,17 @@ using static Customer;
 
 public class FoodTransferManager : MonoBehaviour
 {
-    public Sprite[] foodImages;
-    public GameObject foodPrefab;
+    public GameObject[] foods;
     public bool hasFood;
     public Transform sendingCounter;
     public Transform receivingCounter;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    public IEnumerator ShiftFood(Food foodType)
+    public IEnumerator ShiftFood(int num)//Food foodType)
     {
         if (!hasFood)
         {
             hasFood = true;
-            Sprite foodImage = foodImages[(int)foodType];
-            GameObject newFood = Instantiate(foodPrefab, sendingCounter);
-            newFood.GetComponent<SpriteRenderer>().sprite = foodImage;
-            newFood.GetComponent<FoodObject>().SetFoodObject(foodType, foodImage);
+            GameObject newFood = Instantiate(foods[num/*(int)foodType*/], sendingCounter);
             yield return new WaitForSeconds(1f);
             newFood.transform.position = receivingCounter.position;
         }
@@ -34,5 +24,10 @@ public class FoodTransferManager : MonoBehaviour
     public void Picked()
     {
         hasFood = false;
+    }
+
+    public void Penalty()
+    {
+        FindObjectOfType<Profits>().Penalty();
     }
 }

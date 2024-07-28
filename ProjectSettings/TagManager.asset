@@ -12,6 +12,10 @@ TagManager:
   - Customer
   - Waiter
   - Power Up
+  - Bin
+  - Receiving Top
+  - Receiving Bottom
+  - Food
   layers:
   - Default
   - TransparentFX

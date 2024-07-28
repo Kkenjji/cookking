@@ -4,6 +4,5 @@ public enum Food
     ChickenSet,
     Salad,
     Sandwich,
-    LambSet,
-    WrongFood
+    Steak
 }

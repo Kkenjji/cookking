@@ -25,4 +25,10 @@ public class Profits : MonoBehaviour
     {
         profitsText.text = total.ToString();
     }
+
+    public void Penalty()
+    {
+        total -= 50;
+        UpdateTotal();
+    }
 }

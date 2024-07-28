@@ -18,6 +18,7 @@ public class OrderSystem : MonoBehaviour
     }
     [SerializeField] private FullRecipeList fullRecipeList;
     private List<RecipeList> recipeList;
+    private FoodTransferManager ftm;
     private float SpawnTimer;
     private float SpawnTimerMax= 4f;
     private int MaxRecipe = 4;
@@ -27,6 +28,12 @@ public class OrderSystem : MonoBehaviour
     {
         Instance = this;
         recipeList = new List<RecipeList>();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        ftm = FindObjectOfType<FoodTransferManager>();
     }
 
     /* private void ..Start()
@@ -112,7 +119,7 @@ public class OrderSystem : MonoBehaviour
             Customer.Instance.SandwichOrder += Instance_SandwichOrder;
             Customer.Instance.SaladOrder += Instance_SaladOrder;
             Customer.Instance.ChickenSetOrder += Instance_ChickenSetOrder;
-            Customer.Instance.LambSetOrder += Instance_LambSetOrder;
+            Customer.Instance.SteakOrder += Instance_SteakOrder;
             Subscribed = true;
           
         }
@@ -127,16 +134,16 @@ public class OrderSystem : MonoBehaviour
         EventManager.SandwichOrder += Instance_SandwichOrder;
         EventManager.SaladOrder += Instance_SaladOrder;
         EventManager.ChickenSetOrder += Instance_ChickenSetOrder;
-        EventManager.LambSetOrder += Instance_LambSetOrder;
+        EventManager.SteakOrder += Instance_SteakOrder;
     }
 
-    private void Instance_LambSetOrder()
+    private void Instance_SteakOrder()
     {
         recipeList.Add(fullRecipeList.recipeLists[4]);
-        Customer.Instance.LambSetOrder -= Instance_LambSetOrder;
+        Customer.Instance.SteakOrder -= Instance_SteakOrder;
         OrderSpawn?.Invoke();
 
-        Debug.Log("Lamb");
+        Debug.Log("Steak");
     }
 
     private void Instance_ChickenSetOrder()
@@ -180,7 +187,7 @@ public class OrderSystem : MonoBehaviour
         EventManager.SaladOrder -= Instance_SaladOrder;
         EventManager.SandwichOrder -= Instance_SandwichOrder;
         EventManager.ChickenSetOrder -= Instance_ChickenSetOrder;
-        EventManager.LambSetOrder -= Instance_LambSetOrder;
+        EventManager.SteakOrder -= Instance_SteakOrder;
     }
 
     public void CheckContents(PlateObject plate) {
@@ -198,20 +205,21 @@ public class OrderSystem : MonoBehaviour
                     }
                     if (!IngredientSame) {
                         Plate_Order= false;
-                        Food food = Food.WrongFood;
-                        
-                        //call function
+                        ftm.Penalty();
+                        // call function
                     }
 
                 }
                 if (Plate_Order) {
                     //correct order
-                    Food food=recipeList[i].FoodType;
-                    //whatever function
-                    recipeList.RemoveAt(i);
+                    Food food = recipeList[i].FoodType;
+                    // if (ftm.hasFood)
+                    // {
+                    //     ftm.ShiftFood(food);
+                    //     recipeList.RemoveAt(i);
+                    // }
                     OrderFinish?.Invoke();
                     return;
-
                 }
             }
         }

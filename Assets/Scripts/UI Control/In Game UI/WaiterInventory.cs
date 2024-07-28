@@ -51,6 +51,7 @@ public class WaiterInventory : MonoBehaviour
         }
         else
         {
+            foodImage.sprite = null;
             foodImage.enabled = false;
         }
     }

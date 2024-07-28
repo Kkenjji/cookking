@@ -5,13 +5,13 @@ using static Customer;
 
 public class OrderQueue : MonoBehaviour
 {
-    public Sprite[] foodImages;
+    public SpriteRenderer[] foodImages;
     public GameObject orderPrefab;
     public List<GameObject> orders = new List<GameObject>();
 
     public void AddOrder(int tableId, Food foodType)
     {
-        Sprite foodImage = foodImages[(int)foodType];
+        Sprite foodImage = foodImages[(int)foodType].sprite;
         GameObject newOrder = Instantiate(orderPrefab, transform);
         newOrder.GetComponent<Order>().Setup(tableId, foodImage);
         orders.Add(newOrder);

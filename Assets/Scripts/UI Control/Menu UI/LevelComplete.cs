@@ -19,6 +19,7 @@ public class LevelComplete : MonoBehaviour
         healthTracker = FindObjectOfType<Health>();
         remainingCustomers = FindObjectOfType<Spawner>().totalCustomers;
         hasEnded = false;
+        remainingCustomers = 10;
     }
 
     // Update is called once per frame

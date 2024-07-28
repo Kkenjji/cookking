@@ -6,10 +6,11 @@ using static Customer;
 public class FoodObject : MonoBehaviour
 {
     public Food foodType;
-    public Sprite foodSprite;
-    public void SetFoodObject(Food foodType, Sprite foodSprite)
+    public Sprite sprite;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        this.foodType = foodType;
-        this.foodSprite = foodSprite;
+        this.sprite = GetComponent<SpriteRenderer>().sprite;
     }
 }

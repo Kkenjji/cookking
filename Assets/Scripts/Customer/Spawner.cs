@@ -12,10 +12,15 @@ public class Spawner : MonoBehaviour
     public float spawnTimeMin;
     public float spawnTimeMax;
     public int totalCustomers;
+    private bool[] tableNumbers = new bool[20];
 
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < 20; i++)
+        {
+            tableNumbers[i] = true;
+        }
         queueManager = GameObject.FindObjectOfType<QueueManager>();
         StartCoroutine(FirstSpawn());
     }
@@ -50,5 +55,21 @@ public class Spawner : MonoBehaviour
         newCustomer.transform.SetParent(layer3.transform);
         queueManager.AddCustomer(newCustomer);
         totalCustomers--;
+    }
+
+    public int GetTableNumber()
+    {
+        int tempNumber = UnityEngine.Random.Range(0, tableNumbers.Length);
+        while (!tableNumbers[tempNumber])
+        {
+            tempNumber = UnityEngine.Random.Range(0, tableNumbers.Length);
+        }
+        tableNumbers[tempNumber] = false;
+        return tempNumber + 1;
+    }
+
+    public void SetAvailable(int tableId)
+    {
+        tableNumbers[tableId - 1] = true;
     }
 }
