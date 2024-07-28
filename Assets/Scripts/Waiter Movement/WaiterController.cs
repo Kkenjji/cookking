@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Customer;
 
 public class WaiterController : MonoBehaviour
 {
@@ -97,6 +98,21 @@ public class WaiterController : MonoBehaviour
                 {
                     MoveToPowerUp(hit);
                 }
+
+                if (hit.transform.tag == "Food")
+                {
+                    MoveFromFood(hit);
+                    if (!isMoving)
+                    {
+                        if (FindObjectOfType<FoodTransferManager>().hasFood)
+                        {
+                            Food food = hit.collider.gameObject.GetComponent<FoodObject>().foodType;
+                            Sprite foodSprite = hit.collider.gameObject.GetComponent<FoodObject>().foodSprite;
+                            FindObjectOfType<WaiterInventory>().PickUpItem(food, foodSprite);
+                            Destroy(hit.collider.gameObject);
+                        }
+                    }
+                }
             }
         }
     }
@@ -148,6 +164,19 @@ public class WaiterController : MonoBehaviour
     }
     
     private void MoveFromChair(RaycastHit hit)
+    {
+        if (!PauseMenu.gameIsPaused)
+        {
+            Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
+            targetCoords.x += 1;
+            Vector2Int startCoords = new Vector2Int((int) transform.position.x / gridManager.UnityGridSize,
+                                                    (int) transform.position.z / gridManager.UnityGridSize);
+            pathFinder.SetNewDestination(startCoords, targetCoords);
+            RecalculatePath(true);
+        }
+    }
+
+    private void MoveFromFood(RaycastHit hit)
     {
         if (!PauseMenu.gameIsPaused)
         {
