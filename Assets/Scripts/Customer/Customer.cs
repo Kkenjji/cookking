@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class Customer : MonoBehaviour
 {
     public event Action BurgerOrder;
@@ -24,14 +25,14 @@ public class Customer : MonoBehaviour
     }
     public CustomerState currState;
 
-    public enum Food
+    /*public enum Food
     {
         Burger,
         ChickenSet,
         Salad,
         Sandwich,
         LambSet
-    }
+    }*/
     public Food foodType;
 
     public Timer timer;
