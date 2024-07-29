@@ -25,6 +25,7 @@ public class Customer : MonoBehaviour
     }
     public CustomerState currState;
     public Food foodType;
+    public GameObject myFood;
     public FoodTransferManager ftm;
     public Transform foodHold;
 
@@ -57,12 +58,14 @@ public class Customer : MonoBehaviour
     {
         SetUp();
         ftm = FindObjectOfType<FoodTransferManager>();
+        foodType = GetFood();
+        myFood = Instantiate(ftm.foods[(int)foodType], foodHold);
+        myFood.SetActive(false);
         tableId = FindObjectOfType<Spawner>().GetTableNumber();
         tableIdtext.text = tableId.ToString();
         tableIdtext.enabled = false;
         animator = GetComponent<Animator>();
         currState = CustomerState.InQueue;
-        foodType = GetFood();
         StartCoroutine(StateMachine());
     }
 
@@ -142,15 +145,14 @@ public class Customer : MonoBehaviour
 
     private IEnumerator Eating()
     {
-        GameObject myFood = Instantiate(ftm.foods[(int)foodType], foodHold);
+        myFood.SetActive(true);
         PlayAnimation(CustomerState.Eating);
         yield return PatienceTimer(eatTime, false, CustomerState.WaitingForBillCheck);
-        Destroy(myFood);
+        myFood.SetActive(false);
     }
 
     private IEnumerator WaitForBillCheck()
     {
-        // myFood.SetActive(false);
         PlayAnimation(CustomerState.WaitingForBillCheck);
         yield return PatienceTimer(patience, true, CustomerState.Leave);
     }
@@ -203,7 +205,7 @@ public class Customer : MonoBehaviour
         // Debug.Log("Patience Timer Started");
         timer.transform.gameObject.SetActive(leaveOnTimeout);
 
-        float timePerSprite = duration / timer.timerSprites.Length;
+        float timePerSprite = (duration - 1) / (timer.timerSprites.Length - 1);
 
         int currSpriteIndex = 0;
         timer.UpdateSprite(currSpriteIndex);

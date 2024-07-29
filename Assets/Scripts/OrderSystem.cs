@@ -191,39 +191,74 @@ public class OrderSystem : MonoBehaviour
     }
 
     public void CheckContents(PlateObject plate) {
+    if (recipeList.Count == 0)
+    {
+        ftm.Penalty();
+        Debug.Log("no order");
+    }
+    else{
+        bool penalty = false;
         for (int i = 0; i < recipeList.Count; i++) {
-        RecipeList recipelist = recipeList[i];
-            if (recipelist.KOSList.Count == plate.GetKOSList().Count) {//check if same num of ingre
-                bool Plate_Order = true;
-                foreach (KitchenObjectScript OrderKOS in recipelist.KOSList) {//cycle thru ingre in order
-                    bool IngredientSame= false;
-                    foreach (KitchenObjectScript PlateKOS in plate.GetKOSList()) {//cycle thru ingre on plate
-                        if (PlateKOS == OrderKOS) {
-                        IngredientSame = true;
+    RecipeList recipelist = recipeList[i];
+    bool Plate_Order = false;
+    bool number = false;
+    bool CorrectOrder=true;
+            penalty = false;
+            if (recipelist.KOSList.Count == plate.GetKOSList().Count)
+            {//check if same num of ingre
+                number= true;
+                Plate_Order = true;
+                foreach (KitchenObjectScript OrderKOS in recipelist.KOSList)
+                {//cycle thru ingre in order
+                    bool IngredientSame = false;
+                    foreach (KitchenObjectScript PlateKOS in plate.GetKOSList())
+                    {//cycle thru ingre on plate
+                        if (PlateKOS == OrderKOS)
+                        {
+                            IngredientSame = true;
                             break;
                         }
+
                     }
-                    if (!IngredientSame) {
-                        Plate_Order= false;
-                        ftm.Penalty();
-                        // call function
+                    if (!IngredientSame)
+                    {
+                        Plate_Order = false;
+                        CorrectOrder = false;
+                        break;
                     }
 
                 }
-                if (Plate_Order) {
+            }
+            if (Plate_Order)
+                {
                     //correct order
                     Food food = recipeList[i].FoodType;
-                    if (ftm.hasFood)
-                    {
-                        ftm.ShiftFood(food);
-                        recipeList.RemoveAt(i);
-                    }
+                    //if (ftm.hasFood==false)
+                    //{
+                    ftm.ShiftFood(food);
+                    recipeList.RemoveAt(i);
+                    Debug.Log("correct order");
+                    //}
                     OrderFinish?.Invoke();
-                    return;
+                    penalty = false;
+                    break;
                 }
+                if (!number) {
+                penalty = true;
+                    Debug.Log("wrong number");
+                }
+            if (!CorrectOrder) {
+                penalty = true;
+                Debug.Log("wrong");
             }
+
+            }
+        if (penalty)
+        {
+            ftm.Penalty();
         }
     }
+}
 
     public List<RecipeList> GetRecipeList() {
         return recipeList;

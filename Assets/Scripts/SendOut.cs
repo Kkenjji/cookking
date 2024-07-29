@@ -8,14 +8,12 @@ public class SendOut : Base
     {
         if (Chef.IsKitchenObject()) {
             if (Chef.GetKitchenObject().CheckPlate(out PlateObject plateObject)) {// make sure only take in plate
-                OrderSystem.Instance.CheckContents(plateObject);
-                Chef.GetKitchenObject().DestroyFood();
-
-
+                if (!FindObjectOfType<FoodTransferManager>().hasFood)
+                {
+                    OrderSystem.Instance.CheckContents(plateObject);
+                    Chef.GetKitchenObject().DestroyFood();
+                }
             }
         }
     }
-
-
-
 }

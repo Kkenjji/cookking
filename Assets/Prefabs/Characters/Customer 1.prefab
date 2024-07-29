@@ -224,6 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currState: 0
   foodType: 0
+  myFood: {fileID: 0}
+  ftm: {fileID: 0}
   foodHold: {fileID: 307022157520757057}
   timer: {fileID: 5139334250023843520}
   tableId: 0
@@ -351,13 +353,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6894106525504687026}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.3, z: -3}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -1.2, z: -3}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5441222786380043588}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!212 &4858627595943365902
 SpriteRenderer:
   m_ObjectHideFlags: 0

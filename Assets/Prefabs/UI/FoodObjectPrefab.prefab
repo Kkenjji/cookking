@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodType: 0
-  foodSprite: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!65 &3446215031805911257
 BoxCollider:
   m_ObjectHideFlags: 0
