@@ -151,6 +151,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2DEmptyCounterBottom
       objectReference: {fileID: 0}
+    - target: {fileID: 5847139797398689474, guid: c305ba88012192346ac63dac592733bd,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847139797398689474, guid: c305ba88012192346ac63dac592733bd,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847139797398689474, guid: c305ba88012192346ac63dac592733bd,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847139797398689474, guid: c305ba88012192346ac63dac592733bd,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7845374553042169458, guid: c305ba88012192346ac63dac592733bd,
         type: 3}
       propertyPath: m_LocalPosition.x

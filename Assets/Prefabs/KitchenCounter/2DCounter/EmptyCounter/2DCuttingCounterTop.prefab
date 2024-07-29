@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 1448057849589257938}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0032998142, z: 0, w: 0.9999946}
-  m_LocalPosition: {x: 0.253, y: 0.667, z: -0.232}
+  m_LocalPosition: {x: 0.253, y: 0.73, z: -0.232}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -562,7 +562,7 @@ Transform:
   m_GameObject: {fileID: 8080460410255034424}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.097, y: 0.887, z: -0.1}
+  m_LocalPosition: {x: -0.057, y: 0.887, z: -0.1}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -580,6 +580,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3235517961248853680, guid: 82ba5052ebb697645bbf662e01d8530f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3235517961248853680, guid: 82ba5052ebb697645bbf662e01d8530f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3235517961248853680, guid: 82ba5052ebb697645bbf662e01d8530f,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3235517961248853680, guid: 82ba5052ebb697645bbf662e01d8530f,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1424320283078419731, guid: 82ba5052ebb697645bbf662e01d8530f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -638,7 +658,7 @@ PrefabInstance:
     - target: {fileID: 6849554173787427742, guid: 82ba5052ebb697645bbf662e01d8530f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.001
+      value: 0.059
       objectReference: {fileID: 0}
     - target: {fileID: 6849554173787427742, guid: 82ba5052ebb697645bbf662e01d8530f,
         type: 3}

@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2DBaconCounterTop
       objectReference: {fileID: 0}
+    - target: {fileID: 3559312965885377634, guid: 764d6ee4990793d4ba1b718592498d8c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3660325585349264269, guid: 764d6ee4990793d4ba1b718592498d8c,
         type: 3}
       propertyPath: m_Sprite

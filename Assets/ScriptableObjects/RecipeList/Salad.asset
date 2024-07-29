@@ -19,3 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa49184909a2bb740b7dd39c91c6cfe1, type: 2}
   - {fileID: 11400000, guid: fac976887dfed4c4dbd33f7f1f44a768, type: 2}
   RecipeName: Salad
+  FoodType: 2

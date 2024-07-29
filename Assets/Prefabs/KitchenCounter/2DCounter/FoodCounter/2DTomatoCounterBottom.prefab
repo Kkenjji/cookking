@@ -207,6 +207,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2DTomatoCounterBottom
       objectReference: {fileID: 0}
+    - target: {fileID: 2088271140497038591, guid: ae24151f8b201644db19c6c4520db0c8,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088271140497038591, guid: ae24151f8b201644db19c6c4520db0c8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088271140497038591, guid: ae24151f8b201644db19c6c4520db0c8,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2395474877806978127, guid: ae24151f8b201644db19c6c4520db0c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -260,7 +275,7 @@ PrefabInstance:
     - target: {fileID: 3083575861914444531, guid: ae24151f8b201644db19c6c4520db0c8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.751
+      value: 0.708
       objectReference: {fileID: 0}
     - target: {fileID: 8663078134144020627, guid: ae24151f8b201644db19c6c4520db0c8,
         type: 3}

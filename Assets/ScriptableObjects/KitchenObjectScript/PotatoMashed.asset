@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6738135828068229569, guid: b7056a040802bc84d9dfdee8f16750cf, type: 3}
   Name: PotatoMashed
-  sprite: {fileID: 21300000, guid: 562a4a2efbe21f64c9a33ba21c231126, type: 3}
+  sprite: {fileID: 21300000, guid: 3dbd490681c2dd8418a481b543c9ec48, type: 3}
