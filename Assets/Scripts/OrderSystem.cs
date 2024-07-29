@@ -213,11 +213,11 @@ public class OrderSystem : MonoBehaviour
                 if (Plate_Order) {
                     //correct order
                     Food food = recipeList[i].FoodType;
-                    // if (ftm.hasFood)
-                    // {
-                    //     ftm.ShiftFood(food);
-                    //     recipeList.RemoveAt(i);
-                    // }
+                    if (ftm.hasFood)
+                    {
+                        ftm.ShiftFood(food);
+                        recipeList.RemoveAt(i);
+                    }
                     OrderFinish?.Invoke();
                     return;
                 }

@@ -10,12 +10,12 @@ public class FoodTransferManager : MonoBehaviour
     public Transform sendingCounter;
     public Transform receivingCounter;
 
-    public IEnumerator ShiftFood(int num)//Food foodType)
+    public IEnumerator ShiftFood(Food foodType)
     {
         if (!hasFood)
         {
             hasFood = true;
-            GameObject newFood = Instantiate(foods[num/*(int)foodType*/], sendingCounter);
+            GameObject newFood = Instantiate(foods[(int)foodType], sendingCounter);
             yield return new WaitForSeconds(1f);
             newFood.transform.position = receivingCounter.position;
         }

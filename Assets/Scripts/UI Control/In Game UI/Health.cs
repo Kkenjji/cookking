@@ -15,12 +15,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (heartCount > 5)
-        {
-            Debug.Log("Error: HeartCount is greater than 5!");
-        }
-
-        health = heartCount;
+        SetUp();
         
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -33,6 +28,13 @@ public class Health : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+    }
+
+    private void SetUp()
+    {
+        LevelProperties LP = FindObjectOfType<LevelProperties>();
+        this.heartCount = LP.heartCount;
+        this.health = this.heartCount;
     }
 
     public void AddHealth()

@@ -25,6 +25,8 @@ public class Customer : MonoBehaviour
     }
     public CustomerState currState;
     public Food foodType;
+    public FoodTransferManager ftm;
+    public Transform foodHold;
 
     public Timer timer;
     public int tableId;
@@ -33,9 +35,9 @@ public class Customer : MonoBehaviour
     public Animator animator;
     public int customerType;
 
-    private float readTime = 3f;
-    private float eatTime = 3f;
-    private float patience = 20f;
+    private float readTime;
+    private float eatTime;
+    private float patience;
     
     public bool isSeated = false;
     public bool billChecked = false;
@@ -53,6 +55,8 @@ public class Customer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetUp();
+        ftm = FindObjectOfType<FoodTransferManager>();
         tableId = FindObjectOfType<Spawner>().GetTableNumber();
         tableIdtext.text = tableId.ToString();
         tableIdtext.enabled = false;
@@ -60,6 +64,14 @@ public class Customer : MonoBehaviour
         currState = CustomerState.InQueue;
         foodType = GetFood();
         StartCoroutine(StateMachine());
+    }
+
+    private void SetUp()
+    {
+        LevelProperties LP = FindObjectOfType<LevelProperties>();
+        this.readTime = LP.readTime;
+        this.eatTime = LP.eatTime;
+        this.patience = LP.patience;
     }
 
     private static Food GetFood()
@@ -130,12 +142,15 @@ public class Customer : MonoBehaviour
 
     private IEnumerator Eating()
     {
+        GameObject myFood = Instantiate(ftm.foods[(int)foodType], foodHold);
         PlayAnimation(CustomerState.Eating);
         yield return PatienceTimer(eatTime, false, CustomerState.WaitingForBillCheck);
+        Destroy(myFood);
     }
 
     private IEnumerator WaitForBillCheck()
     {
+        // myFood.SetActive(false);
         PlayAnimation(CustomerState.WaitingForBillCheck);
         yield return PatienceTimer(patience, true, CustomerState.Leave);
     }
@@ -292,7 +307,7 @@ public class Customer : MonoBehaviour
 
     private void CheckBill()
     {
-        FindObjectOfType<Profits>().AddProfits(50);
+        FindObjectOfType<Profits>().AddProfits(100);
         billChecked = true;
         currState = CustomerState.Leave;
         Debug.Log("Bill checked.");
