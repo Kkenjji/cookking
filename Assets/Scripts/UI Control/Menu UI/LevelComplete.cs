@@ -9,16 +9,23 @@ public class LevelComplete : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject gameElementsUI;
     public Health healthTracker;
-    public int targetProfits;
+    private int targetProfits;
     public int remainingCustomers;
     public bool hasEnded;
     
     // Start is called before the first frame update
     void Start()
     {
+        SetUp();
         healthTracker = FindObjectOfType<Health>();
         remainingCustomers = FindObjectOfType<Spawner>().totalCustomers;
         hasEnded = false;
+    }
+
+    private void SetUp()
+    {
+        LevelProperties LP = FindObjectOfType<LevelProperties>();
+        this.targetProfits = LP.targetProfits;
     }
 
     // Update is called once per frame

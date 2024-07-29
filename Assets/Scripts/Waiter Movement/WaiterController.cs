@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Customer;
 
 public class WaiterController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class WaiterController : MonoBehaviour
     Pathfinding pathFinder;
     private Camera camera2;
     private SeatManager seatManager;
+    private FoodTransferManager ftm;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,7 @@ public class WaiterController : MonoBehaviour
         pathFinder = GetComponent<Pathfinding>(); // 
         animator = GetComponent<Animator>();
         camera2 = GameObject.Find("Camera 2").GetComponent<Camera>();
+        ftm = FindObjectOfType<FoodTransferManager>();
     }
 
     // Update is called once per frame
@@ -96,6 +99,57 @@ public class WaiterController : MonoBehaviour
                 if (hit.transform.tag == "Power Up")
                 {
                     MoveToPowerUp(hit);
+                }
+
+                if (hit.transform.tag == "Receiving Top")
+                {
+                    MoveFromChair(hit);
+                }
+
+                if (hit.transform.tag == "Food")
+                {
+                    MoveFromChair(hit);
+                    if (!isMoving)
+                    {
+                        if (ftm.hasFood && !FindObjectOfType<WaiterInventory>().hasItem)
+                        {
+                            GameObject food = hit.collider.gameObject;
+                            ftm.Picked();
+                            Debug.Log(food == null);
+                            Debug.Log(food.GetComponent<FoodObject>() == null);
+                            Food foodType = food.GetComponent<FoodObject>().foodType;
+                            Sprite foodSprite = food.GetComponent<FoodObject>().sprite;
+                            FindObjectOfType<WaiterInventory>().PickUpItem(foodType, foodSprite);
+                            Destroy(food);
+                        }
+                    }
+                }
+
+                if (hit.transform.tag == "Receiving Bottom")
+                {
+                    MoveFromTableLeft(hit);
+                    if (!isMoving)
+                    {
+                        if (ftm.hasFood && !FindObjectOfType<WaiterInventory>().hasItem)
+                        {
+                            GameObject food = hit.collider.gameObject;
+                            ftm.Picked();
+                            Food foodType = food.GetComponent<FoodObject>().foodType;
+                            Sprite foodSprite = food.GetComponent<FoodObject>().sprite;
+                            FindObjectOfType<WaiterInventory>().PickUpItem(foodType, foodSprite);
+                            Destroy(food);
+                        }
+                    }
+                }
+
+                if (hit.transform.tag == "Bin")
+                {
+                    Debug.Log("Hit bin.");
+                    MoveToBin(hit);
+                    if (!isMoving)
+                    {
+                        FindObjectOfType<WaiterInventory>().DiscardItem();
+                    }
                 }
             }
         }
@@ -192,6 +246,19 @@ public class WaiterController : MonoBehaviour
         if (!PauseMenu.gameIsPaused)
         {
             Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
+            Vector2Int startCoords = new Vector2Int((int) transform.position.x / gridManager.UnityGridSize,
+                                                    (int) transform.position.z / gridManager.UnityGridSize);
+            pathFinder.SetNewDestination(startCoords, targetCoords);
+            RecalculatePath(true);
+        }
+    }
+
+    private void MoveToBin(RaycastHit hit)
+    {
+        if (!PauseMenu.gameIsPaused)
+        {
+            Vector2Int targetCoords = new Vector2Int((int)hit.transform.position.x, (int)hit.transform.position.z);
+            targetCoords.y -= 1;
             Vector2Int startCoords = new Vector2Int((int) transform.position.x / gridManager.UnityGridSize,
                                                     (int) transform.position.z / gridManager.UnityGridSize);
             pathFinder.SetNewDestination(startCoords, targetCoords);

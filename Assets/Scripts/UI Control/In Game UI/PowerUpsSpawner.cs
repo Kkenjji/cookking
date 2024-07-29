@@ -8,13 +8,21 @@ public class PowerUpsSpawner : MonoBehaviour
 {
     public GameObject[] powerUpPrefabs;
     public Tilemap layer5;
-    public float spawnIntervalMin;
-    public float spawnIntervalMax;
+    private float spawnIntervalMin;
+    private float spawnIntervalMax;
 
     // Start is called before the first frame update
     void Start()
     {
+        SetUp();
         StartCoroutine(SpawnPowerUps());
+    }
+
+    private void SetUp()
+    {
+        LevelProperties LP = FindObjectOfType<LevelProperties>();
+        this.spawnIntervalMin = LP.spawnIntervalMin;
+        this.spawnIntervalMax = LP.spawnIntervalMax;
     }
 
     private IEnumerator SpawnPowerUps()

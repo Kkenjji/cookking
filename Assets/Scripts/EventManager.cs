@@ -9,7 +9,7 @@ public static class EventManager
     public static event Action SandwichOrder;
     public static event Action SaladOrder;
     public static event Action ChickenSetOrder;
-    public static event Action LambSetOrder;
+    public static event Action SteakOrder;
 
 
     public static void TriggerBurgerOrder()
@@ -27,9 +27,9 @@ public static class EventManager
         ChickenSetOrder?.Invoke();
     }
 
-    public static void TriggerLambSetOrder() {
+    public static void TriggerSteakOrder() {
 
-        LambSetOrder?.Invoke();
+        SteakOrder?.Invoke();
     }
 
     public static void TriggerSaladOrder() {

@@ -11,7 +11,7 @@ public class Customer : MonoBehaviour
     public event Action SandwichOrder;
     public event Action SaladOrder;
     public event Action ChickenSetOrder;
-    public event Action LambSetOrder;
+    public event Action SteakOrder;
 
     public enum CustomerState
     {
@@ -24,28 +24,20 @@ public class Customer : MonoBehaviour
         Leave // Wave/Destroy
     }
     public CustomerState currState;
-
-    /*public enum Food
-    {
-        Burger,
-        ChickenSet,
-        Salad,
-        Sandwich,
-        LambSet
-    }*/
     public Food foodType;
+    public FoodTransferManager ftm;
+    public Transform foodHold;
 
     public Timer timer;
-
     public int tableId;
     public TextMeshPro tableIdtext;
 
     public Animator animator;
     public int customerType;
 
-    private float readTime = 3f;
-    private float eatTime = 3f;
-    private float patience = 10f;
+    private float readTime;
+    private float eatTime;
+    private float patience;
     
     public bool isSeated = false;
     public bool billChecked = false;
@@ -63,13 +55,23 @@ public class Customer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tableId = UnityEngine.Random.Range(0, 10);
+        SetUp();
+        ftm = FindObjectOfType<FoodTransferManager>();
+        tableId = FindObjectOfType<Spawner>().GetTableNumber();
         tableIdtext.text = tableId.ToString();
         tableIdtext.enabled = false;
         animator = GetComponent<Animator>();
         currState = CustomerState.InQueue;
         foodType = GetFood();
         StartCoroutine(StateMachine());
+    }
+
+    private void SetUp()
+    {
+        LevelProperties LP = FindObjectOfType<LevelProperties>();
+        this.readTime = LP.readTime;
+        this.eatTime = LP.eatTime;
+        this.patience = LP.patience;
     }
 
     private static Food GetFood()
@@ -140,12 +142,15 @@ public class Customer : MonoBehaviour
 
     private IEnumerator Eating()
     {
+        GameObject myFood = Instantiate(ftm.foods[(int)foodType], foodHold);
         PlayAnimation(CustomerState.Eating);
         yield return PatienceTimer(eatTime, false, CustomerState.WaitingForBillCheck);
+        Destroy(myFood);
     }
 
     private IEnumerator WaitForBillCheck()
     {
+        // myFood.SetActive(false);
         PlayAnimation(CustomerState.WaitingForBillCheck);
         yield return PatienceTimer(patience, true, CustomerState.Leave);
     }
@@ -158,7 +163,7 @@ public class Customer : MonoBehaviour
         }
         else
         {
-            PlayAnimation(CustomerState.InQueue);
+            PlayAnimation(CustomerState.InQueue); // play idle animation
         }
 
         yield return new WaitForSeconds(1f);
@@ -175,11 +180,14 @@ public class Customer : MonoBehaviour
 
         FindObjectOfType<LevelComplete>().remainingCustomers--;
 
+        FindObjectOfType<OrderQueue>().RemoveOrder(tableId);
+
         if (!billChecked)
         {
             FindObjectOfType<Health>().RemoveHealth();
         }
 
+        FindObjectOfType<Spawner>().SetAvailable(tableId);
         Destroy(gameObject);
     }
 
@@ -276,9 +284,9 @@ public class Customer : MonoBehaviour
                 EventManager.TriggerSandwichOrder();
                 Debug.Log("Picked up a Sandwich order.");
                 break;
-            case Food.LambSet:
-                EventManager.TriggerLambSetOrder();
-                Debug.Log("Picked up a LambSet order.");
+            case Food.Steak:
+                EventManager.TriggerSteakOrder();
+                Debug.Log("Picked up a Steak order.");
                 break;
         }
         
@@ -287,18 +295,19 @@ public class Customer : MonoBehaviour
 
     private void ServeFood()
     {
-        // WaiterInventory waiterInventory = FindObjectOfType<WaiterInventory>();
-        // if (waiterInventory.currentFoodType == this.foodType)
-        // {
+        WaiterInventory waiterInventory = FindObjectOfType<WaiterInventory>();
+        if (waiterInventory.hasItem && waiterInventory.foodType == this.foodType)
+        {
             FindObjectOfType<OrderQueue>().RemoveOrder(this.tableId);
+            waiterInventory.DiscardItem();
             currState = CustomerState.Eating;
             Debug.Log("Food served.");
-        // }
+        }
     }
 
     private void CheckBill()
     {
-        FindObjectOfType<Profits>().AddProfits(50);
+        FindObjectOfType<Profits>().AddProfits(100);
         billChecked = true;
         currState = CustomerState.Leave;
         Debug.Log("Bill checked.");
