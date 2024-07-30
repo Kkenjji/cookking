@@ -235,7 +235,7 @@ public class OrderSystem : MonoBehaviour
                     Food food = recipeList[i].FoodType;
                     //if (ftm.hasFood==false)
                     //{
-                    ftm.ShiftFood(food);
+                    StartCoroutine(ftm.ShiftFood(food));
                     recipeList.RemoveAt(i);
                     Debug.Log("correct order");
                     //}
