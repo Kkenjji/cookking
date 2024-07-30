@@ -11,7 +11,25 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/HL-game.unity
     guid: ba11a5fe512bf4cd68e36458d6430b66
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 747cc7633b04041fba7f3fdf67715cb7
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 22a3fbd8b57a7914e85ac5b1c2123c4e
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 2a6be688875354ebd8b67dd861de8f3c
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 493b4f2b10da54b69959f992a2f93dc8
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: 9e18f21337e764de5a3f981efc47f2de
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: 4ddf000f8f76d4514be3b632d603706b
+  - enabled: 1
+    path: Assets/Scenes/Level 6.unity
+    guid: 9e18c8062c01246f79cd39619f7704a3
   m_configObjects: {}
