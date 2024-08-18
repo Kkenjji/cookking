@@ -76,10 +76,12 @@ public class Stove : Base
             {//Chef carrying object
                 if (InCooking(Chef.GetKitchenObject().GetKitchenObjectScript()))
                 {
+                    EventManager.TriggerKitchenObjectPlacedOrRemoved(Chef.GetKitchenObject().GetKitchenObjectScript());
                     Chef.GetKitchenObject().SetKitchenInterface(this);//make sure only items with recipie can be set
                     cookings = GetCooking(GetKitchenObject().GetKitchenObjectScript());
                     state = State.Frying;
                     FryTime = 0f;
+
                 }
             }
             else
@@ -96,6 +98,7 @@ public class Stove : Base
 
                     if (plateObject.IngredientOnPlate(GetKitchenObject().GetKitchenObjectScript()))
                     {// add to plate 
+                        EventManager.TriggerKitchenObjectPickedUp(GetKitchenObject().GetKitchenObjectScript());
                         GetKitchenObject().DestroyFood();//destroy object
                         state = State.Raw;
                     }
@@ -103,6 +106,7 @@ public class Stove : Base
             }
             else
             {//player not carrying something
+                EventManager.TriggerKitchenObjectPickedUp(GetKitchenObject().GetKitchenObjectScript());
                 GetKitchenObject().SetKitchenInterface(Chef);
                 state = State.Raw;
             }

@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: 0b8a55f2699981a44b305bade3ccd161, type: 3}
   Name: LambCooked
   sprite: {fileID: 500020889, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}
+  presprite: {fileID: 508330839, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}

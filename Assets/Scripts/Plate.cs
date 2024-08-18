@@ -13,6 +13,7 @@ public class Plate : Base
         if (!Chef.IsKitchenObject())//Chef not carrying any items
         {
             KitchenObject.SpawnFood(kitchenObjectScript, Chef);
+            EventManager.TriggerKitchenObjectPickedUp(kitchenObjectScript);
         }
 
     }

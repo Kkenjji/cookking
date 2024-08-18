@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: b7056a040802bc84d9dfdee8f16750cf, type: 3}
   Name: PotatoMashed
   sprite: {fileID: 21300000, guid: 3dbd490681c2dd8418a481b543c9ec48, type: 3}
+  presprite: {fileID: 21300000, guid: 7f33a603dc78dbc42802f0560c0895fe, type: 3}

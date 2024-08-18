@@ -10,5 +10,6 @@ public class KitchenObjectScript : ScriptableObject
     public Transform prefab;
     public string Name;
     public Sprite sprite;
+    public Sprite presprite;
 
 }

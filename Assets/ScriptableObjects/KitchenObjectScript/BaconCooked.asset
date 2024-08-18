@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: 7ab8842ad2d1131429911dba62610673, type: 3}
   Name: BaconCooked
   sprite: {fileID: 21300000, guid: a2c2c4ca4d88bc04a9e67bf15b4dacb0, type: 3}
+  presprite: {fileID: 21300000, guid: a2c2c4ca4d88bc04a9e67bf15b4dacb0, type: 3}

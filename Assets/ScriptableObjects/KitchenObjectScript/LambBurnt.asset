@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: 388b9fbf8039f7448aeea97d132d202f, type: 3}
   Name: LambBurnt
   sprite: {fileID: 21300000, guid: 4f3161cebcf16e3489a06c620d79d80a, type: 3}
+  presprite: {fileID: 508330839, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}

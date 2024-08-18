@@ -34,6 +34,24 @@ public class PlateObject : KitchenObject
         }
     }
 
+
+    public void TriggerAllPickedUp()
+    {
+        foreach (var kOS in KOSList) { 
+            EventManager.TriggerKitchenObjectPickedUp( kOS );
+        }
+
+    }
+
+    public void TriggerAllRemoved()
+    {
+        foreach (var kOS in KOSList)
+        {
+            EventManager.TriggerKitchenObjectPlacedOrRemoved(kOS);
+        }
+    }
+
+
     public List<KitchenObjectScript> GetKOSList() {
     return KOSList;
     }

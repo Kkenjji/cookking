@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: d0aa71faf2b320e48ad26fb06a0e5e7b, type: 3}
   Name: ChickenRaw
   sprite: {fileID: -995274380, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}
+  presprite: {fileID: -995274380, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}

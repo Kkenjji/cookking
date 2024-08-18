@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: 6745bf888349eed4288a9e4b2942ccdb, type: 3}
   Name: CabbageSlices
   sprite: {fileID: 21300000, guid: bce4f7ffe8168024fa3c222a6074c0bc, type: 3}
+  presprite: {fileID: 21300000, guid: ac0e5a23a6921924487954cdffa76a53, type: 3}

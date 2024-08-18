@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: d1ddd7da618610b49bb7dfa848d3ba05, type: 3}
   Name: Carrot
   sprite: {fileID: 1202053807, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}
+  presprite: {fileID: 1202053807, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}

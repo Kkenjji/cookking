@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: 7ce58e61f1d2a884cbda8a5e3c9c7671, type: 3}
   Name: Avocado
   sprite: {fileID: 12838759, guid: f5d3af2c2fa73fc4ab89c2f806c3b620, type: 3}
+  presprite: {fileID: 12838759, guid: f5d3af2c2fa73fc4ab89c2f806c3b620, type: 3}

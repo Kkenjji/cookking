@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6738135828068229569, guid: d57b631d064d120438900e50a82638b4, type: 3}
   Name: BurntMeat
+  sprite: {fileID: 0}
+  presprite: {fileID: 21300000, guid: 1928bfa6291e37b4db8f99a6d0f8a15f, type: 3}

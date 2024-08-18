@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: 43778c4538d75ae4dabac84ca035b09d, type: 3}
   Name: BreadSlice
   sprite: {fileID: 21300000, guid: 1406a29e286e9d843bbf3901b42186d2, type: 3}
+  presprite: {fileID: 21300000, guid: 1406a29e286e9d843bbf3901b42186d2, type: 3}

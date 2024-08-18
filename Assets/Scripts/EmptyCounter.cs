@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EmptyCounter : Base
@@ -15,6 +16,13 @@ public class EmptyCounter : Base
         {
             if (Chef.IsKitchenObject())
             {//Chef carrying object
+                //chef is carrying plate
+                if (Chef.GetKitchenObject().CheckPlate(out PlateObject plate))
+                {
+                    //remove all plate ingredients from box
+                    plate.TriggerAllRemoved();
+                }
+                EventManager.TriggerKitchenObjectPlacedOrRemoved(Chef.GetKitchenObject().GetKitchenObjectScript());  
                 Chef.GetKitchenObject().SetKitchenInterface(this);
             }
             else
@@ -31,6 +39,9 @@ public class EmptyCounter : Base
 
                     if (plateObject.IngredientOnPlate(GetKitchenObject().GetKitchenObjectScript()))
                     {// add to plate 
+                        //remove all plate ingredients from box
+                        plateObject.TriggerAllRemoved();    
+                        EventManager.TriggerKitchenObjectPlacedOrRemoved(plateObject.GetKitchenObjectScript());
                         GetKitchenObject().DestroyFood();//destroy object
                     }
                 }
@@ -40,6 +51,8 @@ public class EmptyCounter : Base
                     {
                         if (plateObject.IngredientOnPlate(Chef.GetKitchenObject().GetKitchenObjectScript()))
                         {
+
+                            EventManager.TriggerKitchenObjectPlacedOrRemoved(Chef.GetKitchenObject().GetKitchenObjectScript());
                             Chef.GetKitchenObject().DestroyFood();
                         }
                     }
@@ -47,6 +60,13 @@ public class EmptyCounter : Base
             }
             else
             {//player not carrying something
+
+                //add all plate ingredients to box
+                if (GetKitchenObject().CheckPlate(out PlateObject plate))
+                {
+                    plate.TriggerAllPickedUp();
+                }
+                EventManager.TriggerKitchenObjectPickedUp(GetKitchenObject().GetKitchenObjectScript());
                 GetKitchenObject().SetKitchenInterface(Chef);
             }
         }

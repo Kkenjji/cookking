@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6738135828068229569, guid: 5274c4683289e6a488a84e7bb482780c, type: 3}
   Name: ChickenCooked
-  sprite: {fileID: 1448675756, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}
+  sprite: {fileID: -995274380, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}
+  presprite: {fileID: 1448675756, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}

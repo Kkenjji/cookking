@@ -12,6 +12,12 @@ public static class EventManager
     public static event Action SteakOrder;
 
 
+
+
+    public static event Action<KitchenObjectScript> OnKitchenObjectPickedUp;
+    public static event Action<KitchenObjectScript> OnKitchenObjectPlacedOrRemoved;
+
+
     public static void TriggerBurgerOrder()
     {
         BurgerOrder?.Invoke();
@@ -37,4 +43,14 @@ public static class EventManager
         SaladOrder?.Invoke();
     }
 
+
+    public static void TriggerKitchenObjectPickedUp(KitchenObjectScript kitchenObject)
+    {
+        OnKitchenObjectPickedUp?.Invoke(kitchenObject); 
+    }
+
+    public static void TriggerKitchenObjectPlacedOrRemoved(KitchenObjectScript kitchenObject)
+    {
+        OnKitchenObjectPlacedOrRemoved?.Invoke(kitchenObject);
+    }
 }

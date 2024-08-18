@@ -13,8 +13,10 @@ public class CuttingCounter : Base {
         {
             if (Chef.IsKitchenObject())
             {//Chef carrying object
-                if (InRecipe(Chef.GetKitchenObject().GetKitchenObjectScript()))
+                KitchenObjectScript current = Chef.GetKitchenObject().GetKitchenObjectScript();
+                if (InRecipe(current))
                 {
+                    EventManager.TriggerKitchenObjectPlacedOrRemoved(current);
                     Chef.GetKitchenObject().SetKitchenInterface(this);//make sure only items with recipie can be set
                 }
             }
@@ -30,6 +32,7 @@ public class CuttingCounter : Base {
             }
             else
             {//player not carrying something
+                EventManager.TriggerKitchenObjectPickedUp(GetKitchenObject().GetKitchenObjectScript());
                 GetKitchenObject().SetKitchenInterface(Chef);
             }
         }

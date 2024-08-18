@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: 954d2255cd3b628488d90fa1624cd299, type: 3}
   Name: Corn
   sprite: {fileID: 21300000, guid: 2dd34e82b72807a4195a876d5bd5e768, type: 3}
+  presprite: {fileID: 21300000, guid: 2dd34e82b72807a4195a876d5bd5e768, type: 3}

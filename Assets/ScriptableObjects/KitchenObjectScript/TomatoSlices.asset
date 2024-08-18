@@ -15,3 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 6738135828068229569, guid: 7f7912e346e99a644b48e89a6b8eb3a9, type: 3}
   Name: TomatoSlices
   sprite: {fileID: -697717978, guid: e9442ceda339a074ba06e8a8f3645cb1, type: 3}
+  presprite: {fileID: 21300000, guid: bce4fba1afc584946bba369e32e92eec, type: 3}
